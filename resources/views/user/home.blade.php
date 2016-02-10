@@ -5,34 +5,27 @@
 @stop
 
 @section('content')
-    <div class="ui grid container">
-        <!-- Breadcrumb -->
-        <div class="row">
-            <div class="sixteen wide column right aligned">
-                <div class="ui breadcrumb">
-                    <div class="active section">Home</div>
-                </div>
-            </div>
-        </div>
+    <div class="ui centered grid">
 
-        <!-- Sidebar -->
         <div class="row">
+            <div class="fifteen wide column">
+                <div class="ui grid">
+                    <div class="sixteen wide column">
+                        <br><br><br><br><br><br><br>
+                        <div class="ui search">
 
-            <div class="ui grid">
-                <div class="ui vertical menu">
-                    <div class="item">
-                        <div class="header">LEADS</div>
-                        <div class="menu">
-                            <a class="item">
-                                <i class="add icon"></i>
-                                Add BTN
-                            </a>
+                            <h3>
+                                <i class="phone circular orange inverted icon"></i>
+                                SEARCH BTN / PHONE NUMBER</h3>
+                            <div class="ui icon huge input" style="width: 100%;">
+                                <input type="text" id="search_btn" class="prompt" style="border-radius: 0.3rem;">
+                                <i class="search orange inverted circular icon"></i>
+                            </div>
+                            <div class="results"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @stop
