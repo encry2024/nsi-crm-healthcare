@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>NSI :: Lead Scheduler</title>
+        <title>NSI :: CRM Healthcare</title>
         <script src="{{ URL::to('/') }}/semantic/dist/jquery.min.js"></script>
         <script src="{{ URL::to('/') }}/semantic/dist/semantic.min.js"></script>
         <script src="{{ URL::to('/') }}/semantic/dist/components/search.js"></script>
@@ -14,13 +14,36 @@
     <body>
         <script src="{{ URL::to('/') }}/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
+        @yield('content')
+        @yield('scripts')
+
         <script>
+            var btn_num = document.getElementById('search_btn');
+
+
 
         $.fn.search.settings.templates = {
             message: function (response, type) {
+
                 $('.results').empty();
+
+                // Re-initialize url
+                var url     = "";
+                url     = "{{ route('add_btn', ':btn') }}";
+                url     = url.replace(':btn', btn_num.value);
+
+
                 $('.results').append(
-                        '<div class="message '+ type +'"><div class="header">No Results</div><div class="description">Sorry we cannot find the patient that you are looking for</div></div>'
+                    '<div class="message '+ type +'">' +
+                        '<div class="header">No Results</div>' +
+                        '<div class="description">' +
+                            'Sorry we cannot find the patient that you are looking for' +
+                        '</div>' +
+                        '<div class="ui divider"></div>'    +
+                        '<div>' +
+                            '<a href="'+ url +'">Add ' + btn_num.value + '</a>'+
+                        '</div>'+
+                    '</div>'
                 );
             },
             category: function(response) {
@@ -87,8 +110,7 @@
             });
         </script>
 
-        @yield('content')
-        @yield('scripts')
+
 
         <style>
             .index_modal_margin_top {
