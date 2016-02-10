@@ -31676,7 +31676,8 @@ a.ui.nag {
 ---------------*/
 
 .ui.category.search .results {
-  width: 28em;
+  width: 100%;
+
 }
 
 /* Category */
