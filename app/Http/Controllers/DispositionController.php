@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Record;
-use App\Http\Requests\StoreBtnRequest;
-use App\Disposition;
 
-
-class RecordController extends Controller
+class DispositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,11 +35,9 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBtnRequest $request)
+    public function store(Request $request)
     {
-        $store_record = Record::storeRecord($request);
-
-        return $store_record;
+        //
     }
 
     /**
@@ -52,11 +46,9 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($record)
+    public function show($id)
     {
-        $dispositions = Disposition::all();
-
-        return view('btn.show', compact('record', 'dispositions'));
+        //
     }
 
     /**
@@ -77,11 +69,9 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $record)
+    public function update(Request $request, $id)
     {
-        $update_record = Record::updateRecord($request, $record);
-
-        return $update_record;
+        //
     }
 
     /**

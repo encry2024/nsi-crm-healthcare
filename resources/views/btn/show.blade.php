@@ -81,6 +81,20 @@
                                     </div>
                                 </div>
 
+                                <div class="field">
+                                    <label>Call Disposition <i class="asterisk icon"></i> </label>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="gender">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Call Disposition</div>
+                                        <div class="menu">
+                                            @foreach ($dispositions as $disposition)
+                                                <div class="item" data-value="{{ $disposition->id }}">{{ $disposition->name }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="field @if($errors->has('call_notes')) error @endif">
                                     <label>Call Note <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
