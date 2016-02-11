@@ -18,20 +18,15 @@
         @yield('scripts')
 
         <script>
-            var btn_num = document.getElementById('search_btn');
-
-
-
-        $.fn.search.settings.templates = {
+            $.fn.search.settings.templates = {
             message: function (response, type) {
-
                 $('.results').empty();
-
                 // Re-initialize url
-                var url     = "";
+                btn_num = document.getElementById('search_btn');
                 url     = "{{ route('add_btn', ':btn') }}";
-                url     = url.replace(':btn', btn_num.value);
 
+                btn     = btn_num.value.replace(/[^\w\s]/gi, '');
+                url     = url.replace(':btn', btn);
 
                 $('.results').append(
                     '<div class="message '+ type +'">' +
@@ -41,13 +36,12 @@
                         '</div>' +
                         '<div class="ui divider"></div>'    +
                         '<div>' +
-                            '<a href="'+ url +'">Add ' + btn_num.value + '</a>'+
+                            '<a href="'+ url +'">Add ' + btn + '</a>'+
                         '</div>'+
                     '</div>'
                 );
             },
             category: function(response) {
-                //console.log();
                 $('.results').empty();
                 $.each(response.results, function (index, item) {
                     $.each(item.results, function (indx, itm) {
@@ -69,9 +63,9 @@
                 debug: true,
                 type: 'category',
                 minCharacters: 2,
-                cache: true,
+                cache: false,
                 apiSettings   : {
-                    url: '{{ URL::to('/') }}/patient/{query}',
+                    url: '{{ URL::to('/') }}/record_query/{query}',
                     onResponse: function(patientSource) {
                         var
                             response = {
@@ -80,10 +74,10 @@
 
                         if(patientSource.items === undefined) {
                             // no results
+
                             return response;
                         }
                         // translate GitHub API response to work with search
-
                         $.each(patientSource.items, function(index, item) {
                             var language = item.language || 'Unknown',
                             maxResults = 8
@@ -104,6 +98,8 @@
                                 url             : item.html_url
                             });
                         });
+
+
                         return response;
                     },
                 }
