@@ -13,6 +13,7 @@
     </head>
     <body>
         <script src="{{ URL::to('/') }}/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="{{ URL::to('/') }}/semantic/dist/momentjs.js"></script>
 
         @yield('content')
         @yield('scripts')
@@ -22,11 +23,12 @@
             message: function (response, type) {
                 $('.results').empty();
                 // Re-initialize url
-                btn_num = document.getElementById('search_btn');
-                url     = "{{ route('add_btn', ':btn') }}";
+                //add_mrn
+                medical_record_num = document.getElementById('search_mrn');
+                url     = "{{ route('add_mrn', ':mrn') }}";
 
-                btn     = btn_num.value.replace(/[^\w\s]/gi, '');
-                url     = url.replace(':btn', btn);
+                mrn     = medical_record_num.value.replace(/[^\w\s]/gi, '');
+                url     = url.replace(':mrn', mrn);
 
                 $('.results').append(
                     '<div class="message '+ type +'">' +
@@ -36,7 +38,7 @@
                         '</div>' +
                         '<div class="ui divider"></div>'    +
                         '<div>' +
-                            '<a href="'+ url +'">Add ' + btn + '</a>'+
+                            '<a href="'+ url +'">Add ' + mrn + '</a>'+
                         '</div>'+
                     '</div>'
                 );
