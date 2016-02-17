@@ -33,7 +33,7 @@ class Record extends Eloquent
             $record->call_notes = $request->get('call_notes');
             $record->save();
 
-            return redirect()->to('/home')->with('message', 'Record has been successfully saved');
+            return redirect()->to('/record/' . $record->id)->with('message', 'Record has been successfully saved');
         }
 
         $update_record = $record->update([
