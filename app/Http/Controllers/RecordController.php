@@ -14,6 +14,15 @@ use App\Disposition;
 class RecordController extends Controller
 {
     /**
+     * RecordController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -56,7 +65,7 @@ class RecordController extends Controller
     {
         $dispositions = Disposition::all();
 
-        return view('btn.show', compact('record', 'dispositions'));
+        return view('medical_record_number.show', compact('record', 'dispositions'));
     }
 
     /**
