@@ -39,7 +39,7 @@
 
             <div class="ui grid">
                 <div class="four wide column">
-                    <div class="ui raised segment">
+                    <div class="ui secondary raised orange segment">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="PATCH">
@@ -131,122 +131,151 @@
                     <div class="ui grid">
 
                         <div class="twelve wide stretched column">
-                            <div class="ui basic segment">
-                                <form action="" class="ui form">
-                                    <div class="field @if($errors->has('q1')) error @endif">
-                                        <label style="font-size: 16px;">1) Date of most Recent Mammogram Date</label>
-                                        <div class="ui big left icon input">
-                                            <input name="q1" id="v_d">
-                                            <i class="calendar icon"></i>
+                            <div class="row">
+                                <h2 class="header">
+                                    <div class="content">
+                                        Breast Cancer Screening
+                                    </div>
+                                </h2>
+                            </div>
+
+                            <div class="row">
+                                <div class="ui divider"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ui basic segment">
+                                    <form action="" class="ui form">
+                                        <div class="field @if($errors->has('q1')) error @endif">
+                                            <label style="font-size: 16px;">1) Date of most Recent Mammogram Date</label>
+                                            <div class="ui big left icon input">
+                                                <input name="q1" id="v_d">
+                                                <i class="calendar icon"></i>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q2')) error @endif">
-                                        <label for="q2" style="font-size: 16px;">2) Screening up to date?</label>
-                                        <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                            <input type="radio" name="q2" id="q2" checked="checked">
-                                            <label>Yes</label>
+                                        <div class="field @if($errors->has('q2')) error @endif">
+                                            <label for="q2" style="font-size: 16px;">2) Screening up to date?</label>
+                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                <input type="radio" name="q2" id="q2" checked="checked">
+                                                <label>Yes</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q2')) error @endif">
-                                        <div class="ui radio checkbox">
-                                            <input type="radio" name="q2" id="q2">
-                                            <label>No</label>
+                                        <div class="field @if($errors->has('q2')) error @endif">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="q2" id="q2">
+                                                <label>No</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q3')) error @endif">
-                                        <label for="q3" style="font-size: 16px;">3) If not up to date, was outreach to patient made?</label>
-                                        <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                            <input type="radio" name="q3" id="q3" checked="checked">
-                                            <label>Yes</label>
+                                        <div class="field @if($errors->has('q3')) error @endif">
+                                            <label for="q3" style="font-size: 16px;">3) If not up to date, was outreach to patient made?</label>
+                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                <input type="radio" name="q3" id="q3" checked="checked">
+                                                <label>Yes</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q3')) error @endif">
-                                        <div class="ui radio checkbox">
-                                            <input type="radio" name="q3" id="q3">
-                                            <label>No</label>
+                                        <div class="field @if($errors->has('q3')) error @endif">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="q3" id="q3">
+                                                <label>No</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q4')) error @endif">
-                                        <label for="q4" style="font-size: 16px;">3) Action</label>
-                                        <div class="ui big left input">
-                                            <input name="q4" id="q4">
+                                        <div class="field @if($errors->has('q4')) error @endif">
+                                            <label for="q4" style="font-size: 16px;">4) Action</label>
+                                            <div class="ui big left input">
+                                                <input name="q4" id="q4">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q5')) error @endif">
-                                        <label for="q5" style="font-size: 16px;">4) Enter appt date if mammo or office appt made</label>
-                                        <div class="ui big left input">
-                                            <input name="q5" id="appt_date">
+                                        <div class="field @if($errors->has('q5')) error @endif">
+                                            <label for="q5" style="font-size: 16px;">5) Enter appt date if mammo or office appt made</label>
+                                            <div class="ui big left input">
+                                                <input name="q5" id="appt_date">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q6')) error @endif">
-                                        <label for="q6" style="font-size: 16px;">2) Was document received and recorded in EMR?</label>
-                                        <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                            <input type="radio" name="q6" id="q6" checked="checked">
-                                            <label>Yes</label>
+                                        <div class="field @if($errors->has('q6')) error @endif">
+                                            <label for="q6" style="font-size: 16px;">6) If done outside SMG, did you request document from outside provider or patient?</label>
+                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                <input type="radio" name="q6" id="q6" checked="checked">
+                                                <label>Yes</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q6')) error @endif">
-                                        <div class="ui radio checkbox">
-                                            <input type="radio" name="q6" id="q6">
-                                            <label>No</label>
+                                        <div class="field @if($errors->has('q6')) error @endif">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="q6" id="q6">
+                                                <label>No</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="field @if($errors->has('q7')) error @endif">
-                                        <label>Closed loop: appt kept or task acted on/closed by office?</label>
-                                        <div class="ui big left icon input">
-                                            <input type="text" name="q7" >
-                                            <i class="info icon"></i>
+                                        <div class="field @if($errors->has('q7')) error @endif">
+                                            <label for="q7" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
+                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                <input type="radio" name="q7" id="q7" checked="checked">
+                                                <label>Yes</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="ui divider"></div>
+                                        <div class="field @if($errors->has('q7')) error @endif">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="q7" id="q7">
+                                                <label>No</label>
+                                            </div>
+                                        </div>
 
-                                    <div class="actions">
-                                        <button class="ui button primary fluid">Submit</button>
-                                    </div>
-                                </form>
+                                        <div class="field @if($errors->has('q8')) error @endif">
+                                            <label>7) Closed loop: appt kept or task acted on/closed by office?</label>
+                                            <div class="ui big left icon input">
+                                                <input type="text" name="q8" >
+                                                <i class="info icon"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="ui divider"></div>
+
+                                        <div class="actions">
+                                            <button class="ui button primary fluid">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
                         <div class="four wide column">
                             <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
-                                <a class="active item">
+                                <a class="item" href="{{ route('record.show', $record->id) }}">
                                     Demographics
                                 </a>
-                                <a class="item">
+                                <a class="active item">
                                     Breast Cancer Screening
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('ccs', $record->id) }}">
                                     Colon Cancer Screening
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('fv', $record->id) }}">
                                     Flu Vaccination
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('pv', $record->id) }}">
                                     Pneumonia Vaccination
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('bp', $record->id) }}">
                                     Blood pressure
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('da1c', $record->id) }}">
                                     Diabetes: A1C
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('dee', $record->id) }}">
                                     Diabetes: Eye Exam
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('hrm', $record->id) }}">
                                     High Risk Meds
                                 </a>
-                                <a class="item">
+                                <a class="item" href="{{ route('o', $record->id) }}">
                                     Other
                                 </a>
                             </div>
