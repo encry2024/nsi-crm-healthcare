@@ -12,7 +12,17 @@ class CreateBloodPressuresTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('blood_pressures', function(Blueprint $blueprint) {
+            $blueprint->increments('id');
+            $blueprint->integer('user_id')->unsigned();
+            $blueprint->string('q1');
+            $blueprint->string('q2');
+            $blueprint->string('q3');
+            $blueprint->string('q4');
+            $blueprint->string('q5');
+            $blueprint->string('q6');
+            $blueprint->timestamps();
+        });
     }
 
     /**
@@ -22,6 +32,6 @@ class CreateBloodPressuresTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('blood_pressures');
     }
 }

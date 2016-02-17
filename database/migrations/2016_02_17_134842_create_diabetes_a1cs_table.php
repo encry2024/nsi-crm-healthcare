@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBreastCancerScreeningsTable extends Migration
+class CreateDiabetesA1csTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBreastCancerScreeningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('breast_cancer_screenings', function(Blueprint $blueprint) {
+        Schema::create('diabetes_a1cs', function(Blueprint $blueprint) {
             $blueprint->increments('id');
             $blueprint->integer('user_id')->unsigned();
             $blueprint->string('q1');
@@ -21,6 +21,11 @@ class CreateBreastCancerScreeningsTable extends Migration
             $blueprint->string('q4');
             $blueprint->string('q5');
             $blueprint->string('q6');
+            $blueprint->string('q7');
+            $blueprint->string('q8');
+            $blueprint->string('q9');
+            $blueprint->string('q10');
+            $blueprint->string('q11');
             $blueprint->timestamps();
         });
     }
@@ -32,6 +37,6 @@ class CreateBreastCancerScreeningsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('breast_cancer_screenings');
+        Schema::drop('diabetes_a1cs');
     }
 }

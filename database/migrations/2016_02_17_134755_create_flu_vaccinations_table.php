@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBreastCancerScreeningsTable extends Migration
+class CreateFluVaccinationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBreastCancerScreeningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('breast_cancer_screenings', function(Blueprint $blueprint) {
+        Schema::create('flu_vaccinations', function(Blueprint $blueprint) {
             $blueprint->increments('id');
             $blueprint->integer('user_id')->unsigned();
             $blueprint->string('q1');
@@ -32,6 +32,6 @@ class CreateBreastCancerScreeningsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('breast_cancer_screenings');
+        Schema::drop('flu_vaccinations');
     }
 }
