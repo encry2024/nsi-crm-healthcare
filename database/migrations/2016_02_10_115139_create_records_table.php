@@ -14,10 +14,17 @@ class CreateRecordsTable extends Migration
     {
         Schema::create('records', function (Blueprint $blueprint) {
             $blueprint->increments('id');
-            $blueprint->string('btn')->unique();
+            $blueprint->integer('user_id')->unsigned();
+            $blueprint->string('first_name');
+            $blueprint->string('last_name');
+            $blueprint->string('btn');
+            $blueprint->integer('age');
+            $blueprint->integer('mrn');
             $blueprint->string('reference_no');
             $blueprint->date('date_of_birth');
             $blueprint->string('call_notes');
+            $blueprint->string('status');
+            $blueprint->dateTime('status_date');
             $blueprint->timestamps();
             $blueprint->softDeletes();
         });
