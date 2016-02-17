@@ -56,11 +56,42 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="ui form">
+                                <div class="field @if($errors->has('first_name')) error @endif">
+                                    <label>First name <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="first_name" placeholder="First name" value="{{ Input::old('first_name') }}">
+                                        <i class="info icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('last_name')) error @endif">
+                                    <label>Last name <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="last_name" placeholder="Last name" value="{{ Input::old('last_name') }}">
+                                        <i class="info icon"></i>
+                                    </div>
+                                </div>
+
                                 <div class="field @if($errors->has('btn')) error @endif">
                                     <label>BTN/Phone Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input type="text" name="btn" value="{{ $btn }}" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}" readonly>
+                                        <input type="text" name="btn" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
                                         <i class="phone icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('date_of_birth')) error @endif">
+                                    <label>Date of Birth <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input name="date_of_birth" placeholder="Date of Birth" id="dob" onchange="_calculateAge()">
+                                        <i class="calendar icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('age')) error @endif">
+                                    <label>Age</label>
+                                    <div class="ui left input">
+                                        <input class="read-only" name="age" id="age" readonly>
                                     </div>
                                 </div>
 
@@ -72,11 +103,11 @@
                                     </div>
                                 </div>
 
-                                <div class="field @if($errors->has('date_of_birth')) error @endif">
-                                    <label>Date of Birth <i class="asterisk icon"></i> </label>
+                                <div class="field @if($errors->has('mrn')) error @endif">
+                                    <label>Medical Reference Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input name="date_of_birth" placeholder="Date of Birth" id="dob">
-                                        <i class="calendar icon"></i>
+                                        <input type="text" value="{{ $mrn }}" name="mrn" placeholder="Medical Reference Number" value="{{ Input::old('mrn') }}" readonly>
+                                        <i class="file text outline icon"></i>
                                     </div>
                                 </div>
 
@@ -117,5 +148,20 @@
         {
             $(this).closest('.message').transition('fade');
         });
+
+        // Get age
+        function _calculateAge() {
+            var dob = document.getElementById('dob').value;
+            var age = moment().diff(moment(dob, 'MMMM DD, YYYY'), 'years');
+
+            if (age == "NaN") { document.getElementById('age').value = ""; }
+            else { document.getElementById('age').value = age; }
+
+            //document.getElementById('age').value = age;
+
+
+        }
+
+        document.getElementById('age').value = "";
     </script>
 @stop
