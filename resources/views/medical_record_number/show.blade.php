@@ -45,7 +45,7 @@
                             <input type="hidden" name="_method" value="PATCH">
 
                             <div class="ui form">
-                                <div class="field @if($errors->has('btn')) error @endif">
+                                <div class="field @if($errors->has('first_name')) error @endif">
                                     <label>First name <i class="asterisk icon"></i> </label>
                                     <div class="ui big left icon input">
                                         <input type="text" name="first_name" value="{{ $record->first_name }}" placeholder="First name" value="{{ Input::old('first_name') }}">
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
 
-                                <div class="field @if($errors->has('btn')) error @endif">
+                                <div class="field @if($errors->has('last_name')) error @endif">
                                     <label>Last name <i class="asterisk icon"></i> </label>
                                     <div class="ui big left icon input">
                                         <input type="text" name="last_name" value="{{ $record->last_name }}" placeholder="Last name" value="{{ Input::old('last_name') }}">
@@ -88,7 +88,7 @@
                                 <div class="field">
                                     <label>Call Disposition <i class="asterisk icon"></i> </label>
                                     <div class="ui selection dropdown">
-                                        <input type="hidden" name="gender">
+                                        <input type="hidden" name="disposition">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Call Disposition</div>
                                         <div class="menu">
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
 
-                                <button class="ui button fluid">Update</button>
+                                <button class="ui button fluid">Update and Dispose</button>
                             </div>
 
                         </form>

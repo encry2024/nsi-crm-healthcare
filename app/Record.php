@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Record extends Eloquent
 {
     //
-    protected $fillable = ['reference_no', 'date_of_birth', 'call_notes', 'btn'];
+    protected $fillable = ['first_name', 'last_name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition'];
+
+    public function history() {
+        return $this->hasMany('App\History');
+    }
 
     public function fullName()
     {
@@ -45,13 +49,19 @@ class Record extends Eloquent
 
     public static function updateRecord($request, $record)
     {
-        $update_record = Record::find($record->id)->update([
+        $record->update([
+            'first_name'    => $request->get('first_name'),
+            'last_name'     => $request->get('last_name'),
             'btn'           => $request->get('btn'),
             'reference_no'  => $request->get('reference_no'),
             'date_of_birth' => date('Y-m-d', strtotime($request->get('date_of_birth'))),
-            'call_notes'    => $request->get('call_notes')
+            'call_notes'    => $request->get('call_notes'),
+            'last_disposition'  => $request->get('disposition')
         ]);
 
-        return redirect()->back()->with('message', 'Record was successfully updated');
+        // Insert record history
+        $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
+
+        return redirect()->back()->with('message', 'Record successfully updated');
     }
 }
