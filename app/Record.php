@@ -12,7 +12,7 @@ class Record extends Eloquent
     protected $fillable = ['first_name', 'last_name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition'];
 
     public function history() {
-        return $this->hasMany('App\History');
+        return $this->hasMany('App\History')->orderBy('created_at');
     }
 
     public function fullName()

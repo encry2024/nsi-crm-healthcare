@@ -41,8 +41,8 @@
                 <div class="four wide column">
                     <div class="ui buttons fluid">
                         <a class="ui button" href="{{ url('record/' . $record->id) }}">Form</a>
-                        <a class="ui button">Callbacks</a>
-                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
+                        <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
+                        <button class="ui button">Disposition History</button>
                     </div>
                     <div class="ui secondary raised orange segment">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -123,22 +123,18 @@
                                     <table class="ui celled striped table">
                                         <thead>
                                         <tr><th colspan="3">
-                                                History
+                                                Disposition History
                                             </th>
                                         </tr></thead>
                                         <tbody>
-                                        @foreach($record->callback as $callback)
+                                        @foreach($record->history as $history)
                                         <tr>
-                                            <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                            <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
-                                            </td>
+                                            <td>{{ $history->disposition->name }}</td>
+                                            <td>{{ $history->created_at->toDayDateTimeString() }}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    <button class="ui primary button" id="callback_modal">
-                                        Add New Callback
-                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -42,7 +42,7 @@
                     <div class="ui buttons fluid">
                         <a class="ui button">Form</a>
                         <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
-                        <button class="ui button">Disposition History</button>
+                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
                     </div>
                     <div class="ui secondary raised orange segment">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">

@@ -109,7 +109,10 @@ class RecordController extends Controller
     }
 
     public function addCallback(Request $request, Record $record) {
-
         return $record->storeCallback($request);
+    }
+
+    public function showHistory(Record $record) {
+        return view('medical_record_number.history', compact('record'));
     }
 }
