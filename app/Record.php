@@ -20,7 +20,7 @@ class Record extends Eloquent
         ['name' => 'hrm', 'description' => 'High Risk Meds']
     );
 
-    protected $fillable = ['first_name', 'last_name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition'];
+    protected $fillable = ['first_name', 'last_name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender'];
 
     public function history() {
         return $this->hasMany('App\History')->orderBy('created_at');
@@ -53,6 +53,9 @@ class Record extends Eloquent
             $record->mrn = $request->get('mrn');
             $record->age = $request->get('age');
             $record->btn = $request->get('btn');
+            $record->insurance = $request->get('insurance');
+            $record->pcp = $request->get('pcp');
+            $record->gender = $request->get('gender');
             $record->reference_no = $request->get('reference_no');
             $record->date_of_birth = date('Y-m-d', strtotime($request->get('date_of_birth')));
             $record->call_notes = $request->get('call_notes');
