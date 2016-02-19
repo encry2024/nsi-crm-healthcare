@@ -66,7 +66,9 @@ class Record extends Eloquent
         ]);
 
         // Insert record history
-        $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
+        if($request->get('disposition') != '') {
+            $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
+        }
 
         return redirect()->back()->with('message', 'Record successfully updated');
     }
