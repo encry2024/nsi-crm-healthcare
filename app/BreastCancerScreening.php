@@ -22,6 +22,7 @@ class BreastCancerScreening extends Model
         $breast_cancer_screening->q5        = $request->get('q5');
         $breast_cancer_screening->q6        = $request->get('q6');
         $breast_cancer_screening->q7        = $request->get('q7');
+        $breast_cancer_screening->q8        = $request->get('q8');
 
         if ($breast_cancer_screening->save()) {
             return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');

@@ -222,7 +222,7 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q7')) error @endif">
-                                            <label for="q7" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
+                                            <label for="q7" style="font-size: 16px;">7) Was document received and recorded in EMR?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                 <input type="radio" name="q7" id="q7" checked="checked" value="Yes">
                                                 <label>Yes</label>
@@ -237,7 +237,7 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q8')) error @endif">
-                                            <label style="font-size: 16px;">7) Closed loop: appt kept or task acted on/closed by office?</label>
+                                            <label style="font-size: 16px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
                                             <div class="ui big left icon input">
                                                 <input type="text" name="q8" >
                                                 <i class="info icon"></i>

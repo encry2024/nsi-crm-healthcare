@@ -97,10 +97,11 @@
 
                                 <div class="field @if($errors->has('gender')) error @endif">
                                     <label>Gender <i class="asterisk icon"></i> </label>
-                                    <div class="ui left icon input">
-                                        <input type="text" name="gender" placeholder="Gender" value="{{ Input::old('gender') }}">
-                                        <i class="file text outline icon"></i>
-                                    </div>
+                                    <select class="ui dropdown" name="gender">
+                                        <option value="">Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
 
                                 <div class="field @if($errors->has('reference_no')) error @endif">

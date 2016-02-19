@@ -22,6 +22,8 @@ class CreateBreastCancerScreeningsTable extends Migration
             $blueprint->string('q4');
             $blueprint->string('q5');
             $blueprint->string('q6');
+            $blueprint->string('q7');
+            $blueprint->string('q8');
             $blueprint->timestamps();
         });
     }

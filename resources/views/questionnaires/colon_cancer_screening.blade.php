@@ -150,7 +150,9 @@
 
                             <div class="row">
                                 <div class="ui basic segment">
-                                    <form action="" class="ui form">
+                                    <form method="POST" action="{{ route('submit_colon_cancer_screening', $record->id) }}" class="ui form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 16px;">1) Date of most Recent Colonoscopy/FOBT </label>
                                             <div class="ui big left icon input">
@@ -162,14 +164,14 @@
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <label for="q2" style="font-size: 16px;">2) Screening up to date?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="checked">
+                                                <input type="radio" name="q2" id="q2" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2">
+                                                <input type="radio" name="q2" id="q2" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -177,14 +179,14 @@
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <label for="q3" style="font-size: 16px;">3) If not, was outreach to patient made?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q3" id="q3" checked="checked">
+                                                <input type="radio" name="q3" id="q3" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q3" id="q3">
+                                                <input type="radio" name="q3" id="q3" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -206,14 +208,14 @@
                                         <div class="field @if($errors->has('q6')) error @endif">
                                             <label for="q6" style="font-size: 16px;">6 If done outside SMG, did you request document from outside provider or patient?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q6" id="q6" checked="checked">
+                                                <input type="radio" name="q6" id="q6" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q6')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q6" id="q6">
+                                                <input type="radio" name="q6" id="q6" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>

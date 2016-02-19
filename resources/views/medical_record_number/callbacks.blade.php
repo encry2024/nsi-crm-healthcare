@@ -219,7 +219,8 @@
 
         $("#callback_date").datepicker({
             format: 'MM dd, yyyy',
-            autoclose: true
+            autoclose: true,
+            startDate: moment().format()
         });
 
         $('.dropdown').dropdown();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Disposition;
+use App\Other;
 use App\Record;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,12 @@ class OtherController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.other', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+        $store_other = Other::storeOther($request, $record_id);
+
+        return $store_other;
     }
 }

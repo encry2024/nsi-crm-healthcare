@@ -150,18 +150,20 @@
 
                             <div class="row">
                                 <div class="ui basic segment">
-                                    <form action="" class="ui form">
+                                    <form method="POST" action="{{ route('submit_high_risk_meds', $record->id) }}" class="ui form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label for="q1" style="font-size: 16px;">1) Is patient on High Risk Med?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q1" id="q1" checked="checked">
+                                                <input type="radio" name="q1" id="q1" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q1" id="q1">
+                                                <input type="radio" name="q1" id="q1" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -169,14 +171,14 @@
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <label for="q2" style="font-size: 16px;">2) If on High Risk Med, was Pharmacist tasked?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="checked">
+                                                <input type="radio" name="q2" id="q2" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2">
+                                                <input type="radio" name="q2" id="q2" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -184,14 +186,14 @@
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <label for="q3" style="font-size: 16px;">11) Was task acted on/closed by Pharmacist?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q3" id="q3" checked="checked">
+                                                <input type="radio" name="q3" id="q3" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q3" id="q3">
+                                                <input type="radio" name="q3" id="q3" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>

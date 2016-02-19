@@ -63,7 +63,7 @@ Route::post('{record_id}/save_answer/colon_cancer_screening',   ['as' => 'submit
 Route::post('{record_id}/save_answer/flu_vaccination',          ['as' => 'submit_flu_vaccination',         'uses' => 'FluVaccinationController@store']);
 Route::post('{record_id}/save_answer/pneumonia_vaccination',    ['as' => 'submit_pneuomia_vaccination',    'uses' => 'PneumoniaVaccinationController@store']);
 Route::post('{record_id}/save_answer/blood_pressure',           ['as' => 'submit_blood_pressure',          'uses' => 'BloodPressureController@store']);
-Route::post('{record_id}/save_answer/diabetes_A1_C',            ['as' => 'submit_diabetes_A1_C',           'uses' => 'DiabetesA1CController@store']);
+Route::post('{record_id}/save_answer/diabetes_A1_C',            ['as' => 'submit_diabetes_a1_c',           'uses' => 'DiabetesA1CController@store']);
 Route::post('{record_id}/save_answer/diabetes_eye_exam',        ['as' => 'submit_diabetes_eye_exam',       'uses' => 'DiabetesEyeExamController@store']);
 Route::post('{record_id}/save_answer/high_risk_meds',           ['as' => 'submit_high_risk_meds',          'uses' => 'HighRiskMedsController@store']);
 Route::post('{record_id}/save_answer/others',                   ['as' => 'submit_others',                  'uses' => 'OtherController@store']);

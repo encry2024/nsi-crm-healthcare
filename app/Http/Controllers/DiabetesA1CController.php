@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\DiabetesA1C;
 
 class DiabetesA1CController extends Controller
 {
@@ -28,5 +28,12 @@ class DiabetesA1CController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.diabetes_a1_c', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+        $store_diabetes_a1_c = DiabetesA1C::storeDiabetesA1C($request, $record_id);
+
+        return $store_diabetes_a1_c;
     }
 }

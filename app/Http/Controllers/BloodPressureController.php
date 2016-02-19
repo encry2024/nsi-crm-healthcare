@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BloodPressure;
 use App\Disposition;
 use App\Record;
 use Illuminate\Http\Request;
@@ -27,5 +28,12 @@ class BloodPressureController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.blood_pressure', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+        $store_blood_pressure = BloodPressure::storeBloodPressure($request, $record_id);
+
+        return $store_blood_pressure;
     }
 }
