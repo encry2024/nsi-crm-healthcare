@@ -131,6 +131,8 @@
                                         <tr>
                                             <td>{{ $history->disposition->name }}</td>
                                             <td>{{ $history->created_at->toDayDateTimeString() }}</td>
+                                            <td class="right aligned"> {{ $history->created_at->diffForHumans() }}
+                                            </td>
                                         </tr>
                                         @endforeach
                                         </tbody>
