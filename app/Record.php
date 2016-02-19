@@ -12,7 +12,7 @@ class Record extends Eloquent
     private $list = array(
         ['name' => 'bcs', 'description' => 'Breast Cancer Screening'],
         ['name' => 'ccs', 'description' => 'Colorectal Cancer Screening'],
-        ['name' => 'ccs', 'description' => 'Influenza Vaccine'],
+        ['name' => 'iv', 'description' => 'Influenza Vaccine'],
         ['name' => 'pv', 'description' => 'Pneumonia Vaccine'],
         ['name' => 'chbp', 'description' => 'Controlling High Blood Pressure'],
         ['name' => 'hapc', 'description' => 'Hemoglobin A1C Poor Control'],
