@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Symfony\Component\HttpFoundation\Request;]
+use Symfony\Component\HttpFoundation\Request;
 
 class Record extends Eloquent
 {
