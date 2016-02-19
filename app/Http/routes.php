@@ -40,6 +40,8 @@ get('record/show/{record_id}', ['as' => 'show_record', function($record) {
     return view('medical_record_number.show', compact('record'));
 }]);
 
+
+
 // Questionnaires
 Route::get('{record_id}/questionnaire/breast_cancer_screening', ['as' => 'bcs',  'uses' => 'BreastCancerScreeningController@showBreastCancerScreeningView']);
 Route::get('{record_id}/questionnaire/colon_cancer_screening',  ['as' => 'ccs',  'uses' => 'ColonCancerScreeningController@showColonCancerScreeningView']);
@@ -50,3 +52,7 @@ Route::get('{record_id}/questionnaire/diabetes_A1_C',           ['as' => 'da1c',
 Route::get('{record_id}/questionnaire/diabetes_eye_exam',       ['as' => 'dee',  'uses' => 'DiabetesEyeExamController@showDiabetesEyeExamView']);
 Route::get('{record_id}/questionnaires/high_risk_meds',         ['as' => 'hrm',  'uses' => 'HighRiskMedsController@showHighRiskMedsView']);
 Route::get('{record_id}/questionnaire/others',                  ['as' => 'o',    'uses' => 'OtherController@showOtherView']);
+
+
+Route::get('record/{record}/callbacks', 'RecordController@showCallbacks')->name('callbacks');
+Route::post('record/{record}/callbacks','RecordController@addCallback')->name('addcallback');

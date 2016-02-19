@@ -103,4 +103,13 @@ class RecordController extends Controller
     {
         //
     }
+
+    public function showCallbacks(Record $record) {
+        return view('medical_record_number.callbacks', compact('record'));
+    }
+
+    public function addCallback(Request $request, Record $record) {
+
+        return $record->storeCallback($request);
+    }
 }

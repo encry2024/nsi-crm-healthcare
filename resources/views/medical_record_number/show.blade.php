@@ -39,6 +39,11 @@
 
             <div class="ui grid">
                 <div class="four wide column">
+                    <div class="ui buttons fluid">
+                        <a class="ui button">Form</a>
+                        <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
+                        <button class="ui button">Disposition History</button>
+                    </div>
                     <div class="ui secondary raised orange segment">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Record extends Eloquent
@@ -16,6 +18,10 @@ class Record extends Eloquent
     public function fullName()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function callback() {
+        return $this->hasMany('App\Callback')->orderBy('schedule');
     }
 
     public static function storeRecord($request)
@@ -63,5 +69,12 @@ class Record extends Eloquent
         $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
 
         return redirect()->back()->with('message', 'Record successfully updated');
+    }
+
+    public function storeCallback($request) {
+        // Insert record history
+        $this->callback()->save(new Callback(['schedule' => date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')), 'user_id' => Auth::user()->id]));
+
+        return redirect()->back()->with('message', 'Callback successfully added');
     }
 }
