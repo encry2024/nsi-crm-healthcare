@@ -14,6 +14,7 @@ class CreateHighRiskMedsTable extends Migration
     {
         Schema::create('high_risk_meds', function(Blueprint $blueprint) {
             $blueprint->increments('id');
+            $blueprint->integer('record_id')->unsigned();
             $blueprint->integer('user_id')->unsigned();
             $blueprint->string('q1');
             $blueprint->string('q2');

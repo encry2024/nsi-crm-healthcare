@@ -104,9 +104,9 @@
                                 </div>
 
                                 <div class="field @if($errors->has('mrn')) error @endif">
-                                    <label>Medical Reference Number <i class="asterisk icon"></i> </label>
+                                    <label>Medical Record Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input type="text" value="{{ $mrn }}" name="mrn" placeholder="Medical Reference Number" value="{{ Input::old('mrn') }}" readonly>
+                                        <input type="text" value="{{ $mrn }}" name="mrn" placeholder="Medical Record Number" value="{{ Input::old('mrn') }}" readonly>
                                         <i class="file text outline icon"></i>
                                     </div>
                                 </div>

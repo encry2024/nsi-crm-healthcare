@@ -26,7 +26,7 @@
             @endif
 
             @if (Session::has('message'))
-                <div class="ui success message">
+                <div class="ui {{ Session::get('msg_type') }} message">
                     <i class="close icon"></i>
                     <div class="ui header">
                         <i class="check circle icon"></i>
@@ -45,6 +45,7 @@
                             <input type="hidden" name="_method" value="PATCH">
 
                             <div class="ui form">
+
                                 <div class="field @if($errors->has('btn')) error @endif">
                                     <label>First name <i class="asterisk icon"></i> </label>
                                     <div class="ui big left icon input">
@@ -145,7 +146,9 @@
 
                             <div class="row">
                                 <div class="ui basic segment">
-                                    <form action="" class="ui form">
+                                    <form action="{{ route('submit_demographics', $record->id) }}" class="ui form" method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 16px;">1) Date of most recent office visit</label>
                                             <div class="ui big left icon input">
@@ -157,14 +160,14 @@
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <label for="q2" style="font-size: 16px;">2) Is PCP listed in PCT (patient care team?)</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="checked">
+                                                <input type="radio" name="q2" id="q2" checked="checked" value="yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2">
+                                                <input type="radio" name="q2" id="q2" value="no">
                                                 <label>No</label>
                                             </div>
                                         </div>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Support\Facades\Auth;
 
 class Record extends Eloquent
 {
@@ -23,6 +24,7 @@ class Record extends Eloquent
 
         if (count($record) == 0) {
             $record = new Record();
+            $record->user_id = Auth::user()->id;
             $record->first_name = $first_name;
             $record->last_name = $last_name;
             $record->mrn = $request->get('mrn');

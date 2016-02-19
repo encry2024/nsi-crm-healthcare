@@ -14,6 +14,7 @@ class CreateDiabetesA1csTable extends Migration
     {
         Schema::create('diabetes_a1cs', function(Blueprint $blueprint) {
             $blueprint->increments('id');
+            $blueprint->integer('record_id')->unsigned();
             $blueprint->integer('user_id')->unsigned();
             $blueprint->string('q1');
             $blueprint->string('q2');
