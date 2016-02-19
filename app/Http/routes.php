@@ -43,6 +43,8 @@ get('record/show/{record_id}', ['as' => 'show_record', function($record) {
     return view('medical_record_number.show', compact('record'));
 }]);
 
+
+
 // Questionnaires
 Route::get('{record_id}/questionnaire/breast_cancer_screening', ['as' => 'bcs',  'uses' => 'BreastCancerScreeningController@showBreastCancerScreeningView']);
 Route::get('{record_id}/questionnaire/colon_cancer_screening',  ['as' => 'ccs',  'uses' => 'ColonCancerScreeningController@showColonCancerScreeningView']);
@@ -65,3 +67,8 @@ Route::post('{record_id}/save_answer/diabetes_A1_C',            ['as' => 'submit
 Route::post('{record_id}/save_answer/diabetes_eye_exam',        ['as' => 'submit_diabetes_eye_exam',       'uses' => 'DiabetesEyeExamController@store']);
 Route::post('{record_id}/save_answer/high_risk_meds',           ['as' => 'submit_high_risk_meds',          'uses' => 'HighRiskMedsController@store']);
 Route::post('{record_id}/save_answer/others',                   ['as' => 'submit_others',                  'uses' => 'OtherController@store']);
+
+Route::get('record/{record}/callbacks', 'RecordController@showCallbacks')->name('callbacks');
+Route::post('record/{record}/callbacks','RecordController@addCallback')->name('addcallback');
+Route::get('record/{record}/history', 'RecordController@showHistory')->name('history');
+Route::post('record/{record}/checklist', 'RecordController@updateChecklist')->name('checklist');

@@ -95,6 +95,14 @@
                                     </div>
                                 </div>
 
+                                <div class="field @if($errors->has('gender')) error @endif">
+                                    <label>Gender <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="gender" placeholder="Gender" value="{{ Input::old('gender') }}">
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
                                 <div class="field @if($errors->has('reference_no')) error @endif">
                                     <label>Reference Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
@@ -110,6 +118,23 @@
                                         <i class="file text outline icon"></i>
                                     </div>
                                 </div>
+
+                                <div class="field @if($errors->has('insurance')) error @endif">
+                                    <label>Insurance <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="insurance" placeholder="Insurance" value="{{ Input::old('insurance') }}">
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('pcp')) error @endif">
+                                    <label>PCP <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="pcp" placeholder="PCP" value="{{ Input::old('pcp') }}">
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
 
                                 <div class="field @if($errors->has('call_notes')) error @endif">
                                     <label>Call Note <i class="asterisk icon"></i> </label>
