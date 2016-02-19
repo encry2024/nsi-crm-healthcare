@@ -39,13 +39,18 @@
 
             <div class="ui grid">
                 <div class="four wide column">
+                    <div class="ui buttons fluid">
+                        <a class="ui button">Form</a>
+                        <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
+                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
+                    </div>
                     <div class="ui secondary raised orange segment">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="PATCH">
 
                             <div class="ui form">
-                                <div class="field @if($errors->has('btn')) error @endif">
+                                <div class="field @if($errors->has('first_name')) error @endif">
                                     <label>First name <i class="asterisk icon"></i> </label>
                                     <div class="ui big left icon input">
                                         <input type="text" name="first_name" value="{{ $record->first_name }}" placeholder="First name" value="{{ Input::old('first_name') }}">
@@ -53,7 +58,7 @@
                                     </div>
                                 </div>
 
-                                <div class="field @if($errors->has('btn')) error @endif">
+                                <div class="field @if($errors->has('last_name')) error @endif">
                                     <label>Last name <i class="asterisk icon"></i> </label>
                                     <div class="ui big left icon input">
                                         <input type="text" name="last_name" value="{{ $record->last_name }}" placeholder="Last name" value="{{ Input::old('last_name') }}">
@@ -88,7 +93,7 @@
                                 <div class="field">
                                     <label>Call Disposition <i class="asterisk icon"></i> </label>
                                     <div class="ui selection dropdown">
-                                        <input type="hidden" name="gender">
+                                        <input type="hidden" name="disposition">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Call Disposition</div>
                                         <div class="menu">
@@ -107,7 +112,7 @@
                                     </div>
                                 </div>
 
-                                <button class="ui button fluid">Update</button>
+                                <button class="ui button fluid">Update and Dispose</button>
                             </div>
 
                         </form>
@@ -130,7 +135,7 @@
                 <div class="twelve wide column">
                     <div class="ui grid">
 
-                        <div class="twelve wide stretched column">
+                        <div class="twelve wide column">
                             <div class="row">
                                 <h2 class="header">
                                     <div class="content">
@@ -200,42 +205,64 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="four wide column">
-                            <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
-                                <a class="active item">
-                                    Demographics
-                                </a>
-                                <a class="item" href="{{ route('bcs', $record->id) }}">
-                                    Breast Cancer Screening
-                                </a>
-                                <a class="item" href="{{ route('ccs', $record->id) }}">
-                                    Colon Cancer Screening
-                                </a>
-                                <a class="item" href="{{ route('fv', $record->id) }}">
-                                    Flu Vaccination
-                                </a>
-                                <a class="item" href="{{ route('pv', $record->id) }}">
-                                    Pneumonia Vaccination
-                                </a>
-                                <a class="item" href="{{ route('bp', $record->id) }}">
-                                    Blood pressure
-                                </a>
-                                <a class="item" href="{{ route('da1c', $record->id) }}">
-                                    Diabetes: A1C
-                                </a>
-                                <a class="item" href="{{ route('dee', $record->id) }}">
-                                    Diabetes: Eye Exam
-                                </a>
-                                <a class="item" href="{{ route('hrm', $record->id) }}">
-                                    High Risk Meds
-                                </a>
-                                <a class="item" href="{{ route('o', $record->id) }}">
-                                    Other
-                                </a>
+                            <div class="row">
+                                <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
+                                    <a class="active item">
+                                        Demographics
+                                    </a>
+                                    <a class="item" href="{{ route('bcs', $record->id) }}">
+                                        Breast Cancer Screening
+                                    </a>
+                                    <a class="item" href="{{ route('ccs', $record->id) }}">
+                                        Colon Cancer Screening
+                                    </a>
+                                    <a class="item" href="{{ route('fv', $record->id) }}">
+                                        Flu Vaccination
+                                    </a>
+                                    <a class="item" href="{{ route('pv', $record->id) }}">
+                                        Pneumonia Vaccination
+                                    </a>
+                                    <a class="item" href="{{ route('bp', $record->id) }}">
+                                        Blood pressure
+                                    </a>
+                                    <a class="item" href="{{ route('da1c', $record->id) }}">
+                                        Diabetes: A1C
+                                    </a>
+                                    <a class="item" href="{{ route('dee', $record->id) }}">
+                                        Diabetes: Eye Exam
+                                    </a>
+                                    <a class="item" href="{{ route('hrm', $record->id) }}">
+                                        High Risk Meds
+                                    </a>
+                                    <a class="item" href="{{ route('o', $record->id) }}">
+                                        Other
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ui secondary raised orange segment">
+                                    <form class="" action="{{ url('record/' . $record->id . '/checklist') }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <div class="ui form">
+                                            <div class="field">
+                                                <label>Other Checklist</label>
+                                            </div>
+                                            @foreach($record->checklist as $checklist)
+                                            <div class="inline field">
+                                                <div class="ui checkbox">
+                                                    <input type="checkbox" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
+                                                    <label>{{ $checklist->description }}</label>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            <button class="ui  button fluid">Update Checklist</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
