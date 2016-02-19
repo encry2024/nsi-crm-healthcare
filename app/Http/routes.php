@@ -57,3 +57,4 @@ Route::get('{record_id}/questionnaire/others',                  ['as' => 'o',   
 Route::get('record/{record}/callbacks', 'RecordController@showCallbacks')->name('callbacks');
 Route::post('record/{record}/callbacks','RecordController@addCallback')->name('addcallback');
 Route::get('record/{record}/history', 'RecordController@showHistory')->name('history');
+Route::post('record/{record}/checklist', 'RecordController@updateChecklist')->name('checklist');

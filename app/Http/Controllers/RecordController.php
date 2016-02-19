@@ -115,4 +115,8 @@ class RecordController extends Controller
     public function showHistory(Record $record) {
         return view('medical_record_number.history', compact('record'));
     }
+
+    public function updateChecklist(Request $request, Record $record) {
+        return $record->updateChecklist($request);
+    }
 }

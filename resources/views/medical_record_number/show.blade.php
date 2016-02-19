@@ -135,7 +135,7 @@
                 <div class="twelve wide column">
                     <div class="ui grid">
 
-                        <div class="twelve wide stretched column">
+                        <div class="twelve wide column">
                             <div class="row">
                                 <h2 class="header">
                                     <div class="content">
@@ -205,42 +205,64 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="four wide column">
-                            <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
-                                <a class="active item">
-                                    Demographics
-                                </a>
-                                <a class="item" href="{{ route('bcs', $record->id) }}">
-                                    Breast Cancer Screening
-                                </a>
-                                <a class="item" href="{{ route('ccs', $record->id) }}">
-                                    Colon Cancer Screening
-                                </a>
-                                <a class="item" href="{{ route('fv', $record->id) }}">
-                                    Flu Vaccination
-                                </a>
-                                <a class="item" href="{{ route('pv', $record->id) }}">
-                                    Pneumonia Vaccination
-                                </a>
-                                <a class="item" href="{{ route('bp', $record->id) }}">
-                                    Blood pressure
-                                </a>
-                                <a class="item" href="{{ route('da1c', $record->id) }}">
-                                    Diabetes: A1C
-                                </a>
-                                <a class="item" href="{{ route('dee', $record->id) }}">
-                                    Diabetes: Eye Exam
-                                </a>
-                                <a class="item" href="{{ route('hrm', $record->id) }}">
-                                    High Risk Meds
-                                </a>
-                                <a class="item" href="{{ route('o', $record->id) }}">
-                                    Other
-                                </a>
+                            <div class="row">
+                                <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
+                                    <a class="active item">
+                                        Demographics
+                                    </a>
+                                    <a class="item" href="{{ route('bcs', $record->id) }}">
+                                        Breast Cancer Screening
+                                    </a>
+                                    <a class="item" href="{{ route('ccs', $record->id) }}">
+                                        Colon Cancer Screening
+                                    </a>
+                                    <a class="item" href="{{ route('fv', $record->id) }}">
+                                        Flu Vaccination
+                                    </a>
+                                    <a class="item" href="{{ route('pv', $record->id) }}">
+                                        Pneumonia Vaccination
+                                    </a>
+                                    <a class="item" href="{{ route('bp', $record->id) }}">
+                                        Blood pressure
+                                    </a>
+                                    <a class="item" href="{{ route('da1c', $record->id) }}">
+                                        Diabetes: A1C
+                                    </a>
+                                    <a class="item" href="{{ route('dee', $record->id) }}">
+                                        Diabetes: Eye Exam
+                                    </a>
+                                    <a class="item" href="{{ route('hrm', $record->id) }}">
+                                        High Risk Meds
+                                    </a>
+                                    <a class="item" href="{{ route('o', $record->id) }}">
+                                        Other
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ui secondary raised orange segment">
+                                    <form class="" action="{{ url('record/' . $record->id . '/checklist') }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <div class="ui form">
+                                            <div class="field">
+                                                <label>Other Checklist</label>
+                                            </div>
+                                            @foreach($record->checklist as $checklist)
+                                            <div class="inline field">
+                                                <div class="ui checkbox">
+                                                    <input type="checkbox" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
+                                                    <label>{{ $checklist->description }}</label>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            <button class="ui  button fluid">Update Checklist</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -5,10 +5,21 @@ namespace App;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Symfony\Component\HttpFoundation\Request;
 
 class Record extends Eloquent
 {
-    //
+    private $list = array(
+        ['name' => 'bcs', 'description' => 'Breast Cancer Screening'],
+        ['name' => 'ccs', 'description' => 'Colorectal Cancer Screening'],
+        ['name' => 'ccs', 'description' => 'Influenza Vaccine'],
+        ['name' => 'pv', 'description' => 'Pneumonia Vaccine'],
+        ['name' => 'chbp', 'description' => 'Controlling High Blood Pressure'],
+        ['name' => 'hapc', 'description' => 'Hemoglobin A1C Poor Control'],
+        ['name' => 'dee', 'description' => 'Diabetic Eye Exam'],
+        ['name' => 'hrm', 'description' => 'High Risk Meds']
+    );
+
     protected $fillable = ['first_name', 'last_name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition'];
 
     public function history() {
@@ -22,6 +33,10 @@ class Record extends Eloquent
 
     public function callback() {
         return $this->hasMany('App\Callback')->orderBy('schedule');
+    }
+
+    public function checklist() {
+        return $this->hasMany('App\Checklist');
     }
 
     public static function storeRecord($request)
@@ -42,6 +57,11 @@ class Record extends Eloquent
             $record->date_of_birth = date('Y-m-d', strtotime($request->get('date_of_birth')));
             $record->call_notes = $request->get('call_notes');
             $record->save();
+
+            // Add checklist entries
+            foreach($record->list as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
 
             return redirect()->to('/record/' . $record->id)->with('message', 'Record has been successfully saved');
         }
@@ -78,5 +98,19 @@ class Record extends Eloquent
         $this->callback()->save(new Callback(['schedule' => date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')), 'user_id' => Auth::user()->id]));
 
         return redirect()->back()->with('message', 'Callback successfully added');
+    }
+
+    public function updateChecklist(Request $request) {
+        $checklists = $request->get('checklist');
+
+        // Reset all checklist to 0
+        Checklist::where('record_id', $this->id)->update(array('checked' => 0));
+
+        // Update each submitted checklist to 1
+        foreach($checklists as $checklist) {
+            Checklist::where('record_id', $this->id)->where('name', $checklist)->update(array('checked' => 1));
+        }
+
+        return redirect()->back()->with('message', 'Checklist successfully updated');
     }
 }
