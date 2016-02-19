@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
 
-                                <button class="ui button fluid">Update</button>
+                                <button class="ui button fluid">Update and Dispose</button>
                             </div>
 
                         </form>
