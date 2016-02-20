@@ -19,11 +19,11 @@ class DiabetesEyeExam extends Model
         $diabetes_eye_exam->q4        = $request->get('q4');
         $diabetes_eye_exam->q5        = $request->get('q5');
         $diabetes_eye_exam->q6        = $request->get('q6');
-        $diabetes_eye_exam->q6        = $request->get('q7');
-        $diabetes_eye_exam->q6        = $request->get('q8');
-        $diabetes_eye_exam->q6        = $request->get('q9');
-        $diabetes_eye_exam->q6        = $request->get('q10');
-        $diabetes_eye_exam->q6        = $request->get('q11');
+        $diabetes_eye_exam->q7        = $request->get('q7');
+        $diabetes_eye_exam->q8        = $request->get('q8');
+        $diabetes_eye_exam->q9        = $request->get('q9');
+        $diabetes_eye_exam->q10        = $request->get('q10');
+        $diabetes_eye_exam->q11        = $request->get('q11');
 
         if ($diabetes_eye_exam->save()) {
             return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');

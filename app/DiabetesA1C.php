@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DiabetesA1C extends Model
 {
+    protected $table = 'diabetes_a1cs';
+
     //
     public static function storeDiabetesA1C($request, $record_id)
     {
@@ -19,11 +21,11 @@ class DiabetesA1C extends Model
         $diabetes_a1_c->q4        = $request->get('q4');
         $diabetes_a1_c->q5        = $request->get('q5');
         $diabetes_a1_c->q6        = $request->get('q6');
-        $diabetes_a1_c->q6        = $request->get('q7');
-        $diabetes_a1_c->q6        = $request->get('q8');
-        $diabetes_a1_c->q6        = $request->get('q9');
-        $diabetes_a1_c->q6        = $request->get('q10');
-        $diabetes_a1_c->q6        = $request->get('q11');
+        $diabetes_a1_c->q7        = $request->get('q7');
+        $diabetes_a1_c->q8        = $request->get('q8');
+        $diabetes_a1_c->q9        = $request->get('q9');
+        $diabetes_a1_c->q10       = $request->get('q10');
+        $diabetes_a1_c->q11       = $request->get('q11');
 
         if ($diabetes_a1_c->save()) {
             return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');

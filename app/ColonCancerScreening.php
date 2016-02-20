@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class ColonCancerScreening extends Model
 {
     //
+    public function record()
+    {
+        return $this->belongsTo(Record::class);
+    }
+
     public static function storeColonCancerScreening($request, $record_id)
     {
         $colon_cancer_screening            = new ColonCancerScreening();

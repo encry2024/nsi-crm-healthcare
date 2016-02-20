@@ -31,6 +31,7 @@ class ColonCancerScreeningController extends Controller
 
     public function store(Request $request, $record_id)
     {
+
         $store_colon_cancer_screening = ColonCancerScreening::storeColonCancerScreening($request, $record_id);
 
         return $store_colon_cancer_screening;

@@ -1,11 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return redirect()->to('/home');
 });
 
 Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
-    return view('user.home');
+    $ctr = 0;
+    $records = App\Record::whereUserId(Auth::user()->id)->latest()->paginate(20);
+    $records->setPath('/home');
+
+    return view('user.home', compact('records', 'ctr'));
 }]);
 
 /* Authentication */
@@ -24,17 +30,27 @@ Route::get('add/medical_record/{mrn}', ['as' => 'add_mrn', function ($mrn) {
 get('record_query/{query}', function ($query)
 {
     $json = [];
-    $records = App\Record::where('mrn', 'LIKE', '%'.$query.'%')->get();
+    $records = App\Record::where('mrn', 'LIKE', '%'.$query.'%', 'AND')->where('user_id', Auth::user()->id)->get();
 
-    foreach ($records as $record) {
+    if (count($records) > 0) {
+        foreach ($records as $record) {
+            $json['items'][] = array(
+                'title' => 'Medical Record Number# ' . $record->mrn,
+                'description' => 'Patient\s Name: ' . $record->fullName() . '<br>' . 'Reference Number# ' . $record->reference_no,
+                'html_url' => route('record.show', $record->id)
+            );
+        }
+
+        return $json;
+    } else {
         $json['items'][] = array(
-            'title' => 'Medical Record Number# ' . $record->mrn,
-            'description' => 'Patient\s Name: ' . $record->fullName() . '<br>' . 'Reference Number# ' . $record->reference_no,
-            'html_url' => route('record.show', $record->id)
+            'title' => "$query doesn't exist",
+            'description' => 'It seems that medical record number doesn\'t exist in our database. Click here to add this.',
+            'html_url' => route('add_mrn', $query)
         );
-    }
 
-    return $json;
+        return $json;
+    }
 });
 
 get('record/show/{record_id}', ['as' => 'show_record', function($record) {

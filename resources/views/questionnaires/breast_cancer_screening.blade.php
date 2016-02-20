@@ -3,6 +3,17 @@
 
 @section('header')
     @include('util.header')
+    <div class="ui compact menu attached">
+        <a class="active item">
+            <i class="write icon"></i>
+            Form</a>
+        <a class="item" href="{{ route('callbacks', $record->id) }}">
+            <i class="repeat icon"></i>
+            Callbacks</a>
+        <a class="item" href="{{ route('history', $record->id) }}">
+            <i class="book icon"></i>
+            Disposition History</a>
+    </div>
 @stop
 
 
@@ -39,11 +50,6 @@
 
             <div class="ui grid">
                 <div class="four wide column">
-                    <div class="ui buttons fluid">
-                        <a class="ui button">Form</a>
-                        <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
-                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
-                    </div>
                     <div class="ui secondary raised orange segment">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -298,8 +304,8 @@
                                             @foreach($record->checklist as $checklist)
                                                 <div class="inline field">
                                                     <div class="ui checkbox">
-                                                        <input type="checkbox" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
-                                                        <label>{{ $checklist->description }}</label>
+                                                        <input type="checkbox" id="check-{{ $checklist->id }}" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
+                                                        <label style="cursor: pointer;" for="check-{{ $checklist->id }}">{{ $checklist->description }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach

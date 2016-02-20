@@ -20,7 +20,6 @@ class PneumoniaVaccination extends Model
         $pneumonia_vaccination->q5        = $request->get('q5');
         $pneumonia_vaccination->q6        = $request->get('q6');
         $pneumonia_vaccination->q7        = $request->get('q7');
-        $pneumonia_vaccination->q8        = $request->get('q8');
 
         if ($pneumonia_vaccination->save()) {
             return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
