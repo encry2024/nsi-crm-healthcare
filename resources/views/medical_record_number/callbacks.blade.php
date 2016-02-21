@@ -3,6 +3,17 @@
 
 @section('header')
     @include('util.header')
+    <div class="ui compact menu attached">
+        <a class="item" href="{{ route('record.show', $record->id) }}">
+            <i class="write icon"></i>
+            Form</a>
+        <a class="active item" href="{{ route('callbacks', $record->id) }}">
+            <i class="repeat icon"></i>
+            Callbacks</a>
+        <a class="item" href="{{ route('history', $record->id) }}">
+            <i class="book icon"></i>
+            Disposition History</a>
+    </div>
 @stop
 
 
@@ -39,12 +50,7 @@
 
             <div class="ui grid">
                 <div class="four wide column">
-                    <div class="ui buttons fluid">
-                        <a class="ui button" href="{{ url('record/' . $record->id) }}">Form</a>
-                        <a class="ui button">Callbacks</a>
-                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
-                    </div>
-                    <div class="ui secondary raised orange segment">
+                    <div class="ui secondary raised orange segment" style="width: 104.15%;">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PATCH">
 
@@ -219,7 +225,8 @@
 
         $("#callback_date").datepicker({
             format: 'MM dd, yyyy',
-            autoclose: true
+            autoclose: true,
+            startDate: moment().format()
         });
 
         $('.dropdown').dropdown();

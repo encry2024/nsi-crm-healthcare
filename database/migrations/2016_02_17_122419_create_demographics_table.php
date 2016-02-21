@@ -12,7 +12,17 @@ class CreateDemographicsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('demographics', function(Blueprint $blueprint) {
+            $blueprint->increments('id');
+            $blueprint->integer('record_id')->unsigned();
+            $blueprint->integer('user_id')->unsigned();
+            $blueprint->string('q1');
+            $blueprint->string('q2');
+            $blueprint->string('q3');
+            $blueprint->string('q4');
+            $blueprint->string('q5');
+            $blueprint->timestamps();
+        });
     }
 
     /**
@@ -22,6 +32,6 @@ class CreateDemographicsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('demographics');
     }
 }

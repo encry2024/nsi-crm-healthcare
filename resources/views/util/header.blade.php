@@ -1,4 +1,4 @@
-<div class="ui borderless menu inverted right aligned" style="border-radius: 0rem !important;">
+<div class="ui borderless menu inverted right aligned top attached" style="border-radius: 0rem !important;">
     <div class="header item">
         <h5 class="ui header inverted">
             <img src="{{ URL::to('/') }}/logo-nsi.png" class="ui mini image">
@@ -11,18 +11,18 @@
         </h5>
     </div>
 
-{{--    <div class="item" style="margin-left: 15rem;">
+    <div class="item" style="margin-left: 15rem;">
         <div class="ui search">
             <div class="ui icon input" style="width: 199%;">
-                <input type="text" class="prompt" placeholder="Search Patient..." style="border-radius: 0.3rem;">
+                <input type="text" name="search_mrn" class="prompt" placeholder="Search Patient..." style="border-radius: 0.3rem;">
                 <i class="search icon"></i>
             </div>
             <div class="results"></div>
         </div>
-    </div>--}}
+    </div>
 
     <div class="right menu">
-        <a class="left item" href="{{ route('/home') }}"><i class="icon home"></i> Home</a>
+        <a class="left item" href="{{ route('/home') }}"><i class="icon dashboard"></i> Dashboard</a>
         <div class="ui left dropdown item">
             Welcome,&nbsp;&nbsp;&nbsp;
             <i class="user icon"></i> {{ Auth::user()->name }} <i class="dropdown icon"></i>
@@ -36,6 +36,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     $('.ui.dropdown').dropdown();

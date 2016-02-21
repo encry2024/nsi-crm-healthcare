@@ -83,7 +83,7 @@
                                 <div class="field @if($errors->has('date_of_birth')) error @endif">
                                     <label>Date of Birth <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input name="date_of_birth" placeholder="Date of Birth" id="dob" onchange="_calculateAge()">
+                                        <input name="date_of_birth" placeholder="Date of Birth" id="dob" onchange="_calculateAge()" readonly value="{{ Input::old('date_of_birth') }}">
                                         <i class="calendar icon"></i>
                                     </div>
                                 </div>
@@ -91,30 +91,23 @@
                                 <div class="field @if($errors->has('age')) error @endif">
                                     <label>Age</label>
                                     <div class="ui left input">
-                                        <input class="read-only" name="age" id="age" readonly>
+                                        <input class="read-only" name="age" id="age" value="{{ Input::old('age') }}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="field @if($errors->has('gender')) error @endif">
                                     <label>Gender <i class="asterisk icon"></i> </label>
-                                    <div class="ui left icon input">
-                                        <input type="text" name="gender" placeholder="Gender" value="{{ Input::old('gender') }}">
-                                        <i class="file text outline icon"></i>
-                                    </div>
+                                    <select class="ui dropdown" name="gender">
+                                        <option value="">Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
 
                                 <div class="field @if($errors->has('reference_no')) error @endif">
                                     <label>Reference Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input type="text" name="reference_no" placeholder="Reference Number" value="{{ Input::old('btn') }}">
-                                        <i class="file text outline icon"></i>
-                                    </div>
-                                </div>
-
-                                <div class="field @if($errors->has('mrn')) error @endif">
-                                    <label>Medical Reference Number <i class="asterisk icon"></i> </label>
-                                    <div class="ui left icon input">
-                                        <input type="text" value="{{ $mrn }}" name="mrn" placeholder="Medical Reference Number" value="{{ Input::old('mrn') }}" readonly>
+                                        <input type="text" name="reference_no" placeholder="Reference Number" value="{{ Input::old('reference_no') }}">
                                         <i class="file text outline icon"></i>
                                     </div>
                                 </div>
@@ -135,6 +128,13 @@
                                     </div>
                                 </div>
 
+                                <div class="field @if($errors->has('mrn')) error @endif">
+                                    <label>Medical Record Number <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" value="{{ $mrn }}" name="mrn" placeholder="Medical Record Number" value="{{ Input::old('mrn') }}" readonly>
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
 
                                 <div class="field @if($errors->has('call_notes')) error @endif">
                                     <label>Call Note <i class="asterisk icon"></i> </label>

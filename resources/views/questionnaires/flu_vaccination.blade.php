@@ -3,6 +3,17 @@
 
 @section('header')
     @include('util.header')
+    <div class="ui compact menu attached">
+        <a class="active item">
+            <i class="write icon"></i>
+            Form</a>
+        <a class="item" href="{{ route('callbacks', $record->id) }}">
+            <i class="repeat icon"></i>
+            Callbacks</a>
+        <a class="item" href="{{ route('history', $record->id) }}">
+            <i class="book icon"></i>
+            Disposition History</a>
+    </div>
 @stop
 
 
@@ -39,36 +50,23 @@
 
             <div class="ui grid">
                 <div class="four wide column">
-                    <div class="ui buttons fluid">
-                        <a class="ui button">Form</a>
-                        <a class="ui button" href="{{ route('callbacks', $record->id) }}">Callbacks</a>
-                        <a class="ui button" href="{{ route('history', $record->id) }}">Disposition History</a>
-                    </div>
-                    <div class="ui secondary raised orange segment">
+                    <div class="ui secondary raised orange segment" style="width: 104.05%;">
                         <form class="" action="{{ route('record.update', $record->id) }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="PATCH">
 
                             <div class="ui form">
-                                <div class="field @if($errors->has('btn')) error @endif">
-                                    <label>First name <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
-                                        <input type="text" name="first_name" value="{{ $record->first_name }}" placeholder="First name" value="{{ Input::old('first_name') }}">
-                                        <i class="info icon"></i>
-                                    </div>
-                                </div>
-
-                                <div class="field @if($errors->has('btn')) error @endif">
-                                    <label>Last name <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
-                                        <input type="text" name="last_name" value="{{ $record->last_name }}" placeholder="Last name" value="{{ Input::old('last_name') }}">
+                                <div class="field @if($errors->has('first_name')) error @endif">
+                                    <label>Patient Name </label>
+                                    <div class="ui small left icon input">
+                                        <input type="text" name="fullName" value="{{ $record->fullName() }}" placeholder="First name" readonly>
                                         <i class="info icon"></i>
                                     </div>
                                 </div>
 
                                 <div class="field @if($errors->has('btn')) error @endif">
                                     <label>BTN/Phone Number <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
+                                    <div class="ui small left icon input">
                                         <input type="text" name="btn" value="{{ $record->btn }}" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
                                         <i class="phone icon"></i>
                                     </div>
@@ -76,15 +74,39 @@
 
                                 <div class="field @if($errors->has('reference_no')) error @endif">
                                     <label>Reference Number <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
+                                    <div class="ui small left icon input">
                                         <input type="text" name="reference_no" value="{{ $record->reference_no }}" placeholder="Reference Number" value="{{ Input::old('reference_no') }}">
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('reference_no')) error @endif">
+                                    <label>Medical Record Number <i class="asterisk icon"></i> </label>
+                                    <div class="ui small left icon input">
+                                        <input type="text" name="mrn" value="{{ $record->mrn }}" placeholder="Medical Record Number" readonly>
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('insurance')) error @endif">
+                                    <label>Insurance <i class="asterisk icon"></i> </label>
+                                    <div class="ui small left icon input">
+                                        <input type="text" name="insurance" value="{{ $record->insurance }}" placeholder="Insurance">
+                                        <i class="file text outline icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('pcp')) error @endif">
+                                    <label>PCP <i class="asterisk icon"></i> </label>
+                                    <div class="ui small left icon input">
+                                        <input type="text" name="pcp" value="{{ $record->pcp }}" placeholder="pcp">
                                         <i class="file text outline icon"></i>
                                     </div>
                                 </div>
 
                                 <div class="field @if($errors->has('date_of_birth')) error @endif">
                                     <label>Date of Birth <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
+                                    <div class="ui small left icon input">
                                         <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob">
                                         <i class="calendar icon"></i>
                                     </div>
@@ -93,7 +115,7 @@
                                 <div class="field">
                                     <label>Call Disposition <i class="asterisk icon"></i> </label>
                                     <div class="ui selection dropdown">
-                                        <input type="hidden" name="gender">
+                                        <input type="hidden" name="disposition">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Call Disposition</div>
                                         <div class="menu">
@@ -106,7 +128,7 @@
 
                                 <div class="field @if($errors->has('call_notes')) error @endif">
                                     <label>Call Note <i class="asterisk icon"></i> </label>
-                                    <div class="ui big left icon input">
+                                    <div class="ui small left icon input">
                                         <textarea name="call_notes">{{ $record->call_notes }}</textarea>
                                         <i class="pencil icon"></i>
                                     </div>
@@ -150,7 +172,9 @@
 
                             <div class="row">
                                 <div class="ui basic segment">
-                                    <form action="" class="ui form">
+                                    <form method="POST" action="{{ route('submit_flu_vaccination', $record->id) }}" class="ui form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 16px;">1) Date of most recent flu vaccine? </label>
                                             <div class="ui big left icon input">
@@ -162,14 +186,14 @@
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <label for="q2" style="font-size: 16px;">2) Vaccine given this season? (between August 1, 2015 and March 31, 2016?)</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="checked">
+                                                <input type="radio" name="q2" id="q2" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2">
+                                                <input type="radio" name="q2" id="q2" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -177,14 +201,14 @@
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <label for="q3" style="font-size: 16px;">3) If not, was outreach to patient made?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q3" id="q3" checked="checked">
+                                                <input type="radio" name="q3" id="q3" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q3" id="q3">
+                                                <input type="radio" name="q3" id="q3" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -192,14 +216,14 @@
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <label for="q4" style="font-size: 16px;">4) If done outside SMG, did you request document from outside provider or patient?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q4" id="q4" checked="checked">
+                                                <input type="radio" name="q4" id="q4" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q4" id="q4">
+                                                <input type="radio" name="q4" id="q4" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -207,14 +231,14 @@
                                         <div class="field @if($errors->has('q5')) error @endif">
                                             <label for="q5" style="font-size: 16px;">5) Was document received and recorded in EMR?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q5" id="q5" checked="checked">
+                                                <input type="radio" name="q5" id="q5" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q5')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q5" id="q5">
+                                                <input type="radio" name="q5" id="q5" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -222,14 +246,14 @@
                                         <div class="field @if($errors->has('q6')) error @endif">
                                             <label for="q6" style="font-size: 16px;">6) Closed loop: appt kept or task  acted on/closed by office?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q6" id="q6" checked="checked">
+                                                <input type="radio" name="q6" id="q6" checked="checked" value="Yes">
                                                 <label>Yes</label>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q6')) error @endif">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="q6" id="q5">
+                                                <input type="radio" name="q6" id="q5" value="No">
                                                 <label>No</label>
                                             </div>
                                         </div>
@@ -297,8 +321,8 @@
                                             @foreach($record->checklist as $checklist)
                                                 <div class="inline field">
                                                     <div class="ui checkbox">
-                                                        <input type="checkbox" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
-                                                        <label>{{ $checklist->description }}</label>
+                                                        <input type="checkbox" id="check-{{ $checklist->id }}" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
+                                                        <label style="cursor: pointer;" for="check-{{ $checklist->id }}">{{ $checklist->description }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach

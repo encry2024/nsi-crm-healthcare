@@ -28,6 +28,7 @@ class StoreBtnRequest extends Request
             'last_name'     => 'required',
             'btn'           => 'required|min:8|max:12',
             'mrn'           => 'required|unique:records',
+            'gender'        => 'required',
             'date_of_birth' => 'required',
             'call_notes'    => 'required',
         ];
@@ -44,7 +45,8 @@ class StoreBtnRequest extends Request
             'first_name.required' => 'Please provide Patient\'s First name',
             'last_name.required' => 'Please provide Patient\'s Last name',
             'mrn.required'  => 'Medical Record Number is missing',
-            'mrn.unique'    => 'Medical Record Number is already existing'
+            'mrn.unique'    => 'Medical Record Number is already existing',
+            'gender.required' => 'Please provide the patient\'s gender',
         ];
     }
 }

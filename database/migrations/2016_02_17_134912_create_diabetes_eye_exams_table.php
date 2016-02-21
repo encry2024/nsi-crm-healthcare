@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHighRiskMedsTable extends Migration
+class CreateDiabetesEyeExamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,21 @@ class CreateHighRiskMedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('high_risk_meds', function(Blueprint $blueprint) {
+        Schema::create('diabetes_eye_exams', function(Blueprint $blueprint) {
             $blueprint->increments('id');
             $blueprint->integer('record_id')->unsigned();
             $blueprint->integer('user_id')->unsigned();
             $blueprint->string('q1');
             $blueprint->string('q2');
             $blueprint->string('q3');
+            $blueprint->string('q4');
+            $blueprint->string('q5');
+            $blueprint->string('q6');
+            $blueprint->string('q7');
+            $blueprint->string('q8');
+            $blueprint->string('q9');
+            $blueprint->string('q10');
+            $blueprint->string('q11');
             $blueprint->timestamps();
         });
     }
@@ -30,6 +38,6 @@ class CreateHighRiskMedsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('high_risk_meds');
+        Schema::drop('diabetes_eye_exams');
     }
 }

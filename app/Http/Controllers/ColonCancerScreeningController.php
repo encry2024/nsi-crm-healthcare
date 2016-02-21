@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ColonCancerScreening;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,5 +27,13 @@ class ColonCancerScreeningController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.colon_cancer_screening', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+
+        $store_colon_cancer_screening = ColonCancerScreening::storeColonCancerScreening($request, $record_id);
+
+        return $store_colon_cancer_screening;
     }
 }

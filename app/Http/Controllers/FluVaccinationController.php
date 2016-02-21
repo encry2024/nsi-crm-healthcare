@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FluVaccination;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,5 +26,12 @@ class FluVaccinationController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.flu_vaccination', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+        $store_flu_vaccination = FluVaccination::storeFluVaccination($request, $record_id);
+
+        return $store_flu_vaccination;
     }
 }

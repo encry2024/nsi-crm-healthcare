@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BreastCancerScreening;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,5 +28,12 @@ class BreastCancerScreeningController extends Controller
         $dispositions = Disposition::all();
 
         return view('questionnaires.breast_cancer_screening', compact('record', 'dispositions'));
+    }
+
+    public function store(Request $request, $record_id)
+    {
+        $store_breast_cancer_screening = BreastCancerScreening::storeBreastCancerScreening($request, $record_id);
+
+        return $store_breast_cancer_screening;
     }
 }
