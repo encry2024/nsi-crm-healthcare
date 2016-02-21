@@ -128,16 +128,16 @@
                                 <div class="ui basic segment">
                                     <table class="ui celled striped table">
                                         <thead>
-                                        <tr><th colspan="3">
-                                                History
-                                            </th>
-                                        </tr></thead>
+                                            <tr>
+                                                <th colspan="3">History</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                         @foreach($record->callback as $callback)
                                         <tr>
                                             <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                            <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
-                                            </td>
+                                            <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}</td>
+                                            <td>{{ $callback->notes }}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -161,7 +161,7 @@
             Add Callback
         </div>
         <div class="content">
-            <form class="" action="{{ url('record/1/callbacks') }}" method="POST" id="callback_form">
+            <form class="" action="{{ url('record/'.$record->id.'/callbacks') }}" method="POST" id="callback_form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="ui form">
@@ -192,6 +192,13 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="field @if($errors->has('notes')) error @endif">
+                        <label>Call Note <i class="asterisk icon"></i> </label>
+                        <div class="ui big left icon input">
+                            <textarea name="notes"></textarea>
+                            <i class="pencil icon"></i>
                         </div>
                     </div>
                 </div>

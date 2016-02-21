@@ -120,7 +120,9 @@ class Record extends Eloquent
             ->save
             (new Callback(
                 [
-                    'schedule' => date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')), 'user_id' => Auth::user()->id
+                    'notes'     => $request->get('notes'),
+                    'schedule'  => date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')),
+                    'user_id' => Auth::user()->id
                 ]
             ));
 
