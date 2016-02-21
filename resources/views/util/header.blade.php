@@ -36,7 +36,23 @@
         </div>
     </div>
 </div>
-
+@if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE)
+    <div class="ui compact menu attached">
+        <a class="item" href="{{ route('record.show', $record->id) }}">
+            <i class="write icon"></i>
+            Form</a>
+        <a class="item" href="{{ route('callbacks', $record->id) }}">
+            {{--            <i class="large icons">
+                            <i class="phone icon"></i>
+                            <i class="inverted corner repeat icon"></i>
+                        </i>--}}
+            <i class="repeat icon"></i>
+            Callbacks</a>
+        <a class="item" href="{{ route('history', $record->id) }}">
+            <i class="book icon"></i>
+            Disposition History</a>
+    </div>
+@endif
 
 
 <script>

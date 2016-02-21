@@ -117,7 +117,9 @@ class RecordController extends Controller
     }
 
     public function showCallbacks(Record $record) {
-        return view('medical_record_number.callbacks', compact('record'));
+        $dispositions = Disposition::all();
+
+        return view('medical_record_number.callbacks', compact('record', 'dispositions'));
     }
 
     public function addCallback(Request $request, Record $record) {
@@ -125,7 +127,9 @@ class RecordController extends Controller
     }
 
     public function showHistory(Record $record) {
-        return view('medical_record_number.history', compact('record'));
+        $dispositions = Disposition::all();
+
+        return view('medical_record_number.history', compact('record', 'dispositions'));
     }
 
     public function updateChecklist(Request $request, Record $record) {
