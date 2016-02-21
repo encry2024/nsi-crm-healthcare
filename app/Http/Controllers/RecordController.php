@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Record;
 use App\Http\Requests\StoreBtnRequest;
 use App\Disposition;
+use App\Checklist;
 
 
 class RecordController extends Controller
@@ -63,8 +64,19 @@ class RecordController extends Controller
      */
     public function show($record)
     {
-        $dispositions = Disposition::all();
+        // Check if there are checklist entries for this record
+        if(count($record->checklist) != count($record->getList())) {
+            // Delete first all related checklist
+            Checklist::where('record_id', $record->id)->delete();
 
+            // Generate list for this record
+            foreach($record->getList() as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
+        }
+
+        $dispositions = Disposition::all();
+        $record = Record::find($record->id);    // Reinstantiate.. To reflect immediately the changes in checklist
         return view('medical_record_number.show', compact('record', 'dispositions'));
     }
 

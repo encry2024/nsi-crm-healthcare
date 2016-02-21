@@ -27,6 +27,10 @@ class Record extends Eloquent
         return $this->hasMany('App\History')->orderBy('created_at');
     }
 
+    public function getList() {
+        return $this->list;
+    }
+
     public function colon_cancer_screening()
     {
         return $this->hasOne(ColonCancerScreening::class);
