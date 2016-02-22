@@ -7,6 +7,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
+    // Update user status to IDLE
+    Auth::user()->addStatus('IDLE');
+
     $ctr = 0;
     $records = App\Record::whereUserId(Auth::user()->id)->latest()->paginate(20);
     $records->setPath('/home');
@@ -58,6 +61,16 @@ get('record/show/{record_id}', ['as' => 'show_record', function($record) {
 
     return view('medical_record_number.show', compact('record'));
 }]);
+
+
+// Ajax for updating status
+get('user/update_status/{record}/{status}', function($record, $status) {
+    $user = App\User::find($record->user_id);
+
+    $user->addStatus($status, $record->id);
+    return;
+});
+
 
 
 

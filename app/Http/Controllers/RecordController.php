@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Record;
 use App\Http\Requests\StoreBtnRequest;
 use App\Disposition;
-
+use App\Checklist;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -63,8 +64,22 @@ class RecordController extends Controller
      */
     public function show($record)
     {
-        $dispositions = Disposition::all();
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 
+        // Check if there are checklist entries for this record
+        if(count($record->checklist) != count($record->getList())) {
+            // Delete first all related checklist
+            Checklist::where('record_id', $record->id)->delete();
+
+            // Generate list for this record
+            foreach($record->getList() as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
+        }
+
+        $dispositions = Disposition::all();
+        $record = Record::find($record->id);    // Reinstantiate.. To reflect immediately the changes in checklist
         return view('medical_record_number.show', compact('record', 'dispositions'));
     }
 
@@ -105,7 +120,9 @@ class RecordController extends Controller
     }
 
     public function showCallbacks(Record $record) {
-        return view('medical_record_number.callbacks', compact('record'));
+        $dispositions = Disposition::all();
+
+        return view('medical_record_number.callbacks', compact('record', 'dispositions'));
     }
 
     public function addCallback(Request $request, Record $record) {
@@ -113,7 +130,9 @@ class RecordController extends Controller
     }
 
     public function showHistory(Record $record) {
-        return view('medical_record_number.history', compact('record'));
+        $dispositions = Disposition::all();
+
+        return view('medical_record_number.history', compact('record', 'dispositions'));
     }
 
     public function updateChecklist(Request $request, Record $record) {

@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'status'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +36,21 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function statuses() {
+        return $this->hasMany('App\Status')->orderBy('created_at');
+    }
+
+    public function addStatus($status, $record_id = NULL) {
+        if($this->status == $status) return;
+
+        // Update user status
+        $this->status = $status;
+        $this->save();
+
+        // Add status entry to status table
+        $this->statuses()->save(new Status(['status' => $status, 'record_id' => $record_id]));
+
+        return;
+    }
 }

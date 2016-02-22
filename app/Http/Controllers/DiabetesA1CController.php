@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\DiabetesA1C;
+use Illuminate\Support\Facades\Auth;
 
 class DiabetesA1CController extends Controller
 {
@@ -26,6 +27,9 @@ class DiabetesA1CController extends Controller
     {
         $record = Record::find($record_id);
         $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 
         return view('questionnaires.diabetes_a1_c', compact('record', 'dispositions'));
     }
