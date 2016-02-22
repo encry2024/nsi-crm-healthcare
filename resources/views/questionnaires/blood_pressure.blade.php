@@ -71,7 +71,7 @@
                                                 <div class="ui big left input">
                                                     <input type="text" name="q2"
                                                        @if(count($record->blood_pressure) > 0)
-                                                            value="{{ $record->blood_pressure->q3 }}"
+                                                            value="{{ $record->blood_pressure->q2 }}"
                                                        @else
                                                             value=""
                                                        @endif
@@ -145,9 +145,15 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q5')) error @endif">
-                                            <label style="font-size: 16px;">5) Acation taken?</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q5" >
+                                            <label style="font-size: 16px;">5) Action taken?</label>
+                                            <div class="ui big left input">
+                                                <input type="text" name="q5"
+                                                   @if(count($record->blood_pressure) > 0)
+                                                        value="{{ $record->blood_pressure->q5 }}"
+                                                   @else
+                                                        value=""
+                                                   @endif
+                                                >
                                             </div>
                                         </div>
 
