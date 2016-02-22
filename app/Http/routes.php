@@ -71,6 +71,8 @@ get('user/update_status/{record}/{status}', function($record, $status) {
     return;
 });
 
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
 
 
 
