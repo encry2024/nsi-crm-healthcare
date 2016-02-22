@@ -41,6 +41,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Status')->orderBy('created_at');
     }
 
+    public function records()
+    {
+        return $this->hasMany(Record::class)->orderBy('created_at');
+    }
+
     public function addStatus($status, $record_id = NULL) {
         if($this->status == $status) return;
 

@@ -33,48 +33,59 @@
                 <div class="ui divider"></div>
                 <a class="item">Profile</a>
                 <a class="item">Settings</a>--}}
+                <a class="item" href="{{ route('create_user') }}">Create User</a>
                 <a class="item" href="{{ url('/auth/logout') }}">Logout</a>
             </div>
         </div>
     </div>
 </div>
 @if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE || strpos(Route::getCurrentRoute()->getPath(), 'questionnaire') !== FALSE)
-    <div class="ui compact menu attached">
+    <div class="ui menu right aligned attached">
+        <div class="ui icon dropdown item">
+            <i class="help icon"></i>
+            <div class="menu">
+                <div class="item"><i class="lock icon"></i>- Readonly Fields</div>
+                <div class="item"><i class="write icon"></i>- Editable Fields</div>
+                <div class="item">BCW - Before Call Work</div>
+                <div class="item">ACW - After Call Work</div>
+            </div>
+        </div>
         <a class="item" href="{{ route('record.show', $record->id) }}">
             <i class="write icon"></i>
-            Form</a>
+            Form
+        </a>
         <a class="item" href="{{ route('callbacks', $record->id) }}">
             <i class="repeat icon"></i>
-            Callbacks</a>
+            Callbacks
+        </a>
         <a class="item" href="{{ route('history', $record->id) }}">
             <i class="book icon"></i>
-            Disposition History</a>
+            Disposition History
+        </a>
 
-        <div class="right menu">
+        <div class=" right menu">
+
             <div class="item">
-                <div class="ui form">
-                    <div class="inline fields">
-                        <div class="field">
-                            <div class="ui toggle checkbox">
-                                <input type="radio" name="status" value="BCW" {{ Auth::user()->status == 'BCW'?'checked="checked"':'' }}>
-                                <label>BCW</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui toggle checkbox">
-                                <input type="radio" name="status" value="INCALL" {{ Auth::user()->status == 'INCALL'?'checked="checked"':'' }}>
-                                <label>IN-CALL</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui toggle checkbox">
-                                <input type="radio" name="status" value="ACW" {{ Auth::user()->status == 'ACW'?'checked="checked"':'' }}>
-                                <label>ACW</label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="ui toggle checkbox">
+                    <input type="radio" name="status" value="BCW" {!! Auth::user()->status == 'BCW'?'checked="checked"':'' !!}>
+                    <label>BCW</label>
                 </div>
             </div>
+
+            <div class="item">
+                <div class="ui toggle checkbox">
+                    <input type="radio" name="status" value="INCALL" {!! Auth::user()->status == 'INCALL'?'checked="checked"':'' !!}>
+                    <label>IN-CALL</label>
+                </div>
+            </div>
+
+            <div class="bordered item">
+                <div class="ui toggle checkbox">
+                    <input type="radio" name="status" value="ACW" {!! Auth::user()->status == 'ACW'?'checked="checked"':'' !!}>
+                    <label>ACW</label>
+                </div>
+            </div>
+
         </div>
     </div>
 @endif

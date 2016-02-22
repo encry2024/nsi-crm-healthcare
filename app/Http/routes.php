@@ -17,6 +17,10 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     return view('user.home', compact('records', 'ctr'));
 }]);
 
+Route::get('create/user', ['as' => 'create_user', 'uses' => 'UserController@create']);
+Route::bind('user', function($id) { return App\User::whereId($id)->first(); });
+Route::resource('user', 'UserController');
+
 /* Authentication */
 Route::controllers([
     'auth' => 'Auth\AuthController',

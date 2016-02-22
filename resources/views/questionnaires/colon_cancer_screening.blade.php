@@ -41,85 +41,169 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="field @if($errors->has('q1')) error @endif ">
-                                            <label style="font-size: 16px;">1) Date of most Recent Colonoscopy/FOBT </label>
-                                            <div class="ui big left icon input">
-                                                <input name="q1" id="v_d" {!! count($record->colon_cancer_screening) == 0 ? 'value=""' : 'value="'.$record->colon_cancer_screening->q1.'"' !!} readonly>
-                                                <i class="{!! count($record->colon_cancer_screening) == 0 ? 'calendar' : 'checkmark' !!} icon"></i>
+                                            <label style="font-size: 14px;">1) Date of most Recent Colonoscopy/FOBT </label>
+                                            <div class="ui large left icon input">
+                                                <input name="q1" id="v_d"
+                                                   @if(count($record->colon_cancer_screening) > 0)
+                                                   value="{{ $record->colon_cancer_screening->q1 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                   readonly
+                                                >
+                                                <i class="calendar icon"></i>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <label for="q2" style="font-size: 16px;">2) Screening up to date?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="{!! count($record->colon_cancer_screening) == 0 ? '' : ($record->colon_cancer_screening->q2 == 'Yes' ? 'checked' : '') !!}" value="Yes">
-                                                <label>Yes</label>
+                                        <div class="two fields">
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q2')) error @endif">
+                                                    <label for="q2" style="font-size: 14px;">2) Screening up to date?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q2" id="q2"  value="Yes"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            @if ($record->colon_cancer_screening->q2 == "Yes")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field @if($errors->has('q2')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q2" id="q2" value="No"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            @if ($record->colon_cancer_screening->q2 == "No")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q3')) error @endif">
+                                                    <label for="q3" style="font-size: 14px;">3) If not, was outreach to patient made?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q3" id="q3" value="Yes"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            @if ($record->colon_cancer_screening->q2 == "Yes")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field @if($errors->has('q3')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q3" id="q3" value="No"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            @if ($record->colon_cancer_screening->q2 == "No")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q2"{!! count($record->colon_cancer_screening) == 0 ? '' : ($record->colon_cancer_screening->q2 == 'Yes' ? 'checked' : '') !!} id="q2" value="No">
-                                                <label>No</label>
+                                        <div class="two fields">
+                                            <div class="field @if($errors->has('q4')) error @endif">
+                                                <label for="q4" style="font-size: 14px;">4) Action taken</label>
+                                                <div class="ui large left input">
+                                                    <input name="q4" id="q4"
+                                                       @if(count($record->colon_cancer_screening) > 0)
+                                                       value="{{ $record->colon_cancer_screening->q4 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="field @if($errors->has('q5')) error @endif">
+                                                <label for="q5" style="font-size: 14px;">5) Enter appt date if mammo or office appt made</label>
+                                                <div class="ui large left icon input">
+                                                    <i class="calendar icon"></i>
+                                                    <input name="q5" id="appt_date"
+                                                           @if(count($record->colon_cancer_screening) > 0)
+                                                           value="{{ $record->colon_cancer_screening->q5 }}"
+                                                           @else
+                                                           value=""
+                                                            @endif
+                                                    >
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q3')) error @endif">
-                                            <label for="q3" style="font-size: 16px;">3) If not, was outreach to patient made?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q3" id="q3" checked="checked" value="Yes">
-                                                <label>Yes</label>
+                                        <div class="grouped fields">
+                                            <div class="field @if($errors->has('q6')) error @endif">
+                                                <label for="q6" style="font-size: 14px;">6) If done outside SMG, did you request document from outside provider or patient?</label>
+                                                <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                    <input type="radio" name="q6" id="q6"
+                                                           @if(count($record->colon_cancer_screening) > 0)
+                                                           @if ($record->colon_cancer_screening->q6 == "Yes")
+                                                           checked="checked"
+                                                           @else
+                                                           @endif
+                                                           @endif
+                                                           value="Yes">
+                                                    <label>Yes</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="field @if($errors->has('q6')) error @endif">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q6" id="q6"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            @if ($record->colon_cancer_screening->q6 == "No")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                    value="No">
+                                                    <label>No</label>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q3')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q3" id="q3" value="No">
-                                                <label>No</label>
+                                        <div class="two fields">
+                                            <div class="field @if($errors->has('q7')) error @endif">
+                                                <label style="font-size: 14px;">7) Was the document received and recorded in EMR?</label>
+                                                <div class="ui large left icon input">
+                                                    <input type="text" name="q7"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                             value="{{ $record->colon_cancer_screening->q7 }}"
+                                                        @else
+                                                             value=""
+                                                        @endif
+                                                    >
+                                                    <i class="info icon"></i>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="field @if($errors->has('q4')) error @endif">
-                                            <label for="q4" style="font-size: 16px;">3) Action taken</label>
-                                            <div class="ui big left input">
-                                                <input name="q4" id="q4">
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q5')) error @endif">
-                                            <label for="q5" style="font-size: 16px;">5) Enter appt date if mammo or office appt made</label>
-                                            <div class="ui big left input">
-                                                <input name="q5" id="appt_date">
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <label for="q6" style="font-size: 16px;">6 If done outside SMG, did you request document from outside provider or patient?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q6" id="q6" checked="checked" value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q6" id="q6" value="No">
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q7')) error @endif">
-                                            <label style="font-size: 16px;">7) Was the document received and recorded in EMR?</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q7">
-                                                <i class="info icon"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q8')) error @endif">
-                                            <label style="font-size: 16px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q8" >
-                                                <i class="info icon"></i>
+                                            <div class="field @if($errors->has('q8')) error @endif">
+                                                <label style="font-size: 14px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
+                                                <div class="ui large left icon input">
+                                                    <input type="text" name="q8"
+                                                        @if(count($record->colon_cancer_screening) > 0)
+                                                            value="{{ $record->colon_cancer_screening->q8 }}"
+                                                        @else
+                                                            value=""
+                                                        @endif
+                                                    >
+                                                    <i class="info icon"></i>
+                                                </div>
                                             </div>
                                         </div>
 

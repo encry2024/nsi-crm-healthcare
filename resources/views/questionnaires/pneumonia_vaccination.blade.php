@@ -37,91 +37,186 @@
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 16px;">1) Date of most recent Pneumonia Vaccine Date for 65yrs and older </label>
                                             <div class="ui big left icon input">
-                                                <input name="q1" id="v_d">
+                                                <input name="q1" id="v_d"
+                                                   @if(count($record->pneumonia_vaccination) > 0)
+                                                   value="{{ $record->pneumonia_vaccination->q1 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                >
                                                 <i class="calendar icon"></i>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <label for="q2" style="font-size: 16px;">2) Pneumonai Vaccine Status: UTD, appt date, refused</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2" checked="checked" value="Yes">
-                                                <label>Yes</label>
+                                        <div class="two fields">
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q2')) error @endif">
+                                                    <label for="q2" style="font-size: 16px;">2) Pneumonia Vaccine Status: UTD, appt date, refused</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q2" id="q2"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q2 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field @if($errors->has('q2')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q2" id="q2"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q2 == "No")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="No">
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="field @if($errors->has('q3')) error @endif">
+                                                <label style="font-size: 16px;">3) Date of most recent pneumovax for patients 65 or older (N/A if pt < 65)</label>
+                                                <div class="ui big left icon input">
+                                                    <input name="q3" id="pneumax"
+                                                       @if(count($record->pneumonia_vaccination) > 0)
+                                                            value="{{ $record->pneumonia_vaccination->q3 }}"
+                                                       @else
+                                                            value=""
+                                                       @endif
+                                                    >
+                                                    <i class="calendar icon"></i>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2" value="No">
-                                                <label>No</label>
+                                        <div class="two fields">
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q4')) error @endif">
+                                                    <label for="q4" style="font-size: 16px;">4) >65 and pneumovax given</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q4" id="q4"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q4 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field @if($errors->has('q4')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q4" id="q4"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q4 == "No")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="No">
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q5')) error @endif">
+                                                    <label for="q5" style="font-size: 16px;">5) If not up-to-date, was outreach to patient made?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q5" id="q5"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q5 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+
+                                                    <div class="field @if($errors->has('q5')) error @endif">
+                                                        <div class="ui radio checkbox">
+                                                            <input type="radio" name="q5" id="q5"
+                                                               @if(count($record->pneumonia_vaccination) > 0)
+                                                                   @if ($record->pneumonia_vaccination->q5 == "No")
+                                                                   checked="checked"
+                                                                   @else
+                                                                   @endif
+                                                               @endif
+                                                            value="No">
+                                                            <label>No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q3')) error @endif">
-                                            <label style="font-size: 16px;">3) Date of most recent pneumovax for patients 65 or older (N/A if pt < 65)</label>
-                                            <div class="ui big left icon input">
-                                                <input name="q3" id="pneumax">
-                                                <i class="calendar icon"></i>
+                                        <div class="two fields">
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <label for="q6" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q6" id="q6"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q6 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q6" id="q6"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q6 == "No")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="No">
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="field @if($errors->has('q4')) error @endif">
-                                            <label for="q4" style="font-size: 16px;">4) >65 and pneumovax given</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q4" id="q4" checked="checked" value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q4')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q4" id="q4" value="No">
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q5')) error @endif">
-                                            <label for="q5" style="font-size: 16px;">5) If not uptodate, was outreach to patient made?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q5" id="q5" checked="checked" value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q5')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q5" id="q5" value="No">
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <label for="q6" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q6" id="q6" checked="checked" value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q6" id="q6" value="No">
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q7')) error @endif">
-                                            <label for="q7" style="font-size: 16px;">7) Closed loop: appt kept or task  acted on/closed by office?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q7" id="q7" checked="checked" value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q7')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q7" id="q7" value="No">
-                                                <label>No</label>
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q7')) error @endif">
+                                                    <label for="q7" style="font-size: 16px;">7) Closed loop: appt kept or task  acted on/closed by office?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q7" id="q7"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q7 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field @if($errors->has('q7')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q7" id="q7"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                               @if ($record->pneumonia_vaccination->q7 == "No")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="No">
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

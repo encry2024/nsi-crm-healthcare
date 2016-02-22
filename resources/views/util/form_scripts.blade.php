@@ -9,6 +9,40 @@
         autoclose: true
     });
 
+    $("#appt_date").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
+    $("#a1c").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
+    $("#pcp_ov").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
+    $("#prev_sched").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
+    $("#prev_sched_appts").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
+    $("#date_of_pcp_ov").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+    $("#pneumax").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
     $("#date_chart_review").datepicker({
         format: 'MM dd, yyyy',
         autoclose: true
