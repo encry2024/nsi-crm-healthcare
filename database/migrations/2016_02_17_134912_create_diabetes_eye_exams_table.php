@@ -16,17 +16,17 @@ class CreateDiabetesEyeExamsTable extends Migration
             $blueprint->increments('id');
             $blueprint->integer('record_id')->unsigned();
             $blueprint->integer('user_id')->unsigned();
-            $blueprint->string('q1');
-            $blueprint->string('q2');
-            $blueprint->string('q3');
-            $blueprint->string('q4');
-            $blueprint->string('q5');
-            $blueprint->string('q6');
-            $blueprint->string('q7');
-            $blueprint->string('q8');
-            $blueprint->string('q9');
-            $blueprint->string('q10');
-            $blueprint->string('q11');
+            $blueprint->string('q1')->nullable();
+            $blueprint->string('q2')->nullable();
+            $blueprint->string('q3')->nullable();
+            $blueprint->string('q4')->nullable();
+            $blueprint->string('q5')->nullable();
+            $blueprint->string('q6')->nullable();
+            $blueprint->string('q7')->nullable();
+            $blueprint->string('q8')->nullable();
+            $blueprint->string('q9')->nullable();
+            $blueprint->string('q10')->nullable();
+            $blueprint->string('q11')->nullable();
             $blueprint->timestamps();
         });
     }

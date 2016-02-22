@@ -99,8 +99,8 @@
                                     <label>Gender <i class="asterisk icon"></i> </label>
                                     <select class="ui dropdown" name="gender">
                                         <option value="">Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
                                     </select>
                                 </div>
 

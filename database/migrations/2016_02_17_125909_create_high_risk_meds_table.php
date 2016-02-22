@@ -16,9 +16,9 @@ class CreateHighRiskMedsTable extends Migration
             $blueprint->increments('id');
             $blueprint->integer('record_id')->unsigned();
             $blueprint->integer('user_id')->unsigned();
-            $blueprint->string('q1');
-            $blueprint->string('q2');
-            $blueprint->string('q3');
+            $blueprint->string('q1')->nullable();
+            $blueprint->string('q2')->nullable();
+            $blueprint->string('q3')->nullable();
             $blueprint->timestamps();
         });
     }

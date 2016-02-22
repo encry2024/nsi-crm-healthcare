@@ -38,7 +38,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="ui form">
                 <div class="field">
-                    <label>Other Checklist</label>
+                    <label>Pending Items</label>
                 </div>
                 @foreach($record->checklist as $checklist)
                     <div class="inline field">

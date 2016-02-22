@@ -31,11 +31,6 @@ class Record extends Eloquent
         return $this->list;
     }
 
-    public function colon_cancer_screening()
-    {
-        return $this->hasOne(ColonCancerScreening::class);
-    }
-
     public function fullName()
     {
         return $this->first_name . ' ' . $this->last_name;
@@ -47,6 +42,56 @@ class Record extends Eloquent
 
     public function checklist() {
         return $this->hasMany('App\Checklist');
+    }
+
+    public function demographic()
+    {
+        return $this->hasOne(Demographics::class);
+    }
+
+    public function breast_cancer_screening()
+    {
+        return $this->hasOne(BreastCancerScreening::class);
+    }
+
+    public function colon_cancer_screening()
+    {
+        return $this->hasOne(ColonCancerScreening::class);
+    }
+
+    public function flu_vaccination()
+    {
+        return $this->hasOne(FluVaccination::class);
+    }
+
+    public function pneumonia_vaccination()
+    {
+        return $this->hasOne(PneumoniaVaccination::class);
+    }
+
+    public function blood_pressure()
+    {
+        return $this->hasOne(BloodPressure::class);
+    }
+
+    public function diabetes_a1_c()
+    {
+        return $this->hasOne(DiabetesA1C::class);
+    }
+
+    public function diabetes_eye_exam()
+    {
+        return $this->hasOne(DiabetesEyeExam::class);
+    }
+
+    public function high_risk_meds()
+    {
+        return $this->hasOne(HighRiskMeds::class);
+    }
+
+    public function other()
+    {
+        return $this->hasOne(Other::class);
     }
 
     public static function storeRecord($request)

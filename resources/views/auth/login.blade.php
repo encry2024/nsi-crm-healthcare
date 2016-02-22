@@ -39,9 +39,9 @@
                             <br><br><br>
 
                             <div class="field">
-                                <label for="email">E-mail</label>
+                                <label for="email">Username</label>
                                 <div class="ui left icon input">
-                                    <input type="email" name="email" id="email" placeholder="E-mail">
+                                    <input type="string" name="email" id="email" placeholder="Username">
                                     <i class="mail icon"></i>
                                 </div>
                             </div>

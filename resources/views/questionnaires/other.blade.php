@@ -34,18 +34,32 @@
                                     <form method="POST" action="{{ route('submit_others', $record->id) }}" class="ui form">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                        <div class="field @if($errors->has('q1')) error @endif">
-                                            <label for="q1" style="font-size: 16px;">1) Date of Prev Sched  OV for non chronic disease</label>
-                                            <div class="ui big left icon input">
-                                                <input name="q1" id="prev_sched">
-                                                <i class="calendar icon"></i>
+                                        <div class="two fields">
+                                            <div class="field @if($errors->has('q1')) error @endif">
+                                                <label for="q1" style="font-size: 16px;">1) Date of Prev Sched  OV for non chronic disease</label>
+                                                <div class="ui big left icon input">
+                                                    <input name="q1" id="prev_sched"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q1 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    readonly>
+                                                    <i class="calendar icon"></i>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <label style="font-size: 16px;">2) Status of OV for non chronic disease</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q2" >
+                                            <div class="field @if($errors->has('q2')) error @endif">
+                                                <label style="font-size: 16px;">2) Status of OV for non chronic disease</label>
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q2"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q2 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
                                             </div>
                                         </div>
 
@@ -53,80 +67,154 @@
                                             <label for="q3" style="font-size: 16px;">3) Date of 2nd Chart review (to check status of Prev. Sched. Appts)</label>
                                             <div class="ui big left icon input">
                                                 <i class="calendar icon"></i>
-                                                <input name="q3" id="prev_sched_appts">
+                                                <input name="q3" id="prev_sched_appts"
+                                                   @if(count($record->other) > 0)
+                                                   value="{{ $record->other->q3 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                >
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <label style="font-size: 16px;">4) OV1 Appt. status for Current Month</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q4" >
+                                            <div class="ui big left input">
+                                                <input type="text" name="q4"
+                                                   @if(count($record->other) > 0)
+                                                   value="{{ $record->other->q4 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                >
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q5')) error @endif">
-                                            <label for="q5" style="font-size: 16px;">5) Result of Call #1 or Patient Call Back - Was Lab appt. scheduled?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q5" id="q5" checked="checked" value="Yes">
-                                                <label>Yes</label>
+                                        <div class="two fields">
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q5')) error @endif">
+                                                    <label for="q5" style="font-size: 16px;">5) Result of Call #1 or Patient Call Back - Was Lab appt. scheduled?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q5" id="q5"
+                                                           @if(count($record->other) > 0)
+                                                               @if ($record->other->q5 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field @if($errors->has('q5')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q5" id="q5" value="No"
+                                                        @if(count($record->other) > 0)
+                                                            @if ($record->other->q5 == "No")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grouped fields">
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <label for="q6" style="font-size: 16px;">6) Result of Call #1 or Patient Call Back - Was OV appt. scheduled?</label>
+                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                        <input type="radio" name="q6" id="q6"
+                                                           @if(count($record->other) > 0)
+                                                               @if ($record->other->q6 == "Yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                           @endif
+                                                        value="Yes">
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q6" id="q6" value="No"
+                                                        @if(count($record->other) > 0)
+                                                            @if ($record->other->q6 == "No")
+                                                            checked="checked"
+                                                            @else
+                                                            @endif
+                                                        @endif
+                                                        >
+                                                        <label>No</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q5')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q5" id="q5" value="No">
-                                                <label>No</label>
+                                        <div class="two fields">
+                                            <div class="field @if($errors->has('q7')) error @endif">
+                                                <label for="q7" style="font-size: 16px;">7) Date of PCP OV July-Dec</label>
+                                                <div class="ui big left icon input">
+                                                    <i class="calendar icon"></i>
+                                                    <input name="q7" id="date_of_pcp_ov"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q7 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="field @if($errors->has('q8')) error @endif">
+                                                <label style="font-size: 16px;">8) Status of PCP OV for  July-Dec</label>
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q8"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q8 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <label for="q6" style="font-size: 16px;">6) Result of Call #1 or Patient Call Back - Was OV appt. scheduled?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q6" id="q6" checked="checked" value="Yes">
-                                                <label>Yes</label>
+                                        <div class="two fields">
+                                            <div class="field @if($errors->has('q9')) error @endif">
+                                                <label style="font-size: 16px;">9) If OV Not scheduled - select reason:</label>
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q9"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q9 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="field @if($errors->has('q6')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q6" id="q6" value="No">
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q7')) error @endif">
-                                            <label for="q7" style="font-size: 16px;">3) Date of PCP OV July-Dec</label>
-                                            <div class="ui big left icon input">
-                                                <i class="calendar icon"></i>
-                                                <input name="q7" id="date_of_pcp_ov">
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q8')) error @endif">
-                                            <label style="font-size: 16px;">8) Status of PCP OV for  July-Dec</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q8" >
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q9')) error @endif">
-                                            <label style="font-size: 16px;">9) If OV Not scheduled - select reason:</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q9" >
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q10')) error @endif">
-                                            <label style="font-size: 16px;">10) Final status of Care Coordinator Outreach </label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q10" >
+                                            <div class="field @if($errors->has('q10')) error @endif">
+                                                <label style="font-size: 16px;">10) Final status of Care Coordinator Outreach </label>
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q10"
+                                                       @if(count($record->other) > 0)
+                                                       value="{{ $record->other->q10 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q11')) error @endif">
                                             <label style="font-size: 16px;">11) Additional Comments</label>
-                                            <div class="ui big left icon input">
-                                                <textarea type="text" name="q11" ></textarea>
+                                            <div class="ui big left input">
+                                                <textarea type="text" name="q11" >@if(count($record->other) > 0){{ $record->other->q11 }}@endif</textarea>
                                             </div>
                                         </div>
 
