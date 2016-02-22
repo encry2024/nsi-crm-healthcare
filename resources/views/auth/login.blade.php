@@ -41,7 +41,7 @@
                             <div class="field">
                                 <label for="email">Username</label>
                                 <div class="ui left icon input">
-                                    <input type="string" name="email" id="email" placeholder="E-mail">
+                                    <input type="string" name="email" id="email" placeholder="Username">
                                     <i class="mail icon"></i>
                                 </div>
                             </div>
