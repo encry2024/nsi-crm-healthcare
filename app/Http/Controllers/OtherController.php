@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OtherController extends Controller
 {
@@ -25,6 +26,9 @@ class OtherController extends Controller
     {
         $record = Record::find($record_id);
         $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 
         return view('questionnaires.other', compact('record', 'dispositions'));
     }

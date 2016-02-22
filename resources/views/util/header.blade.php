@@ -11,6 +11,7 @@
         </h5>
     </div>
 
+    @if (strpos(Route::getCurrentRoute()->getPath(), 'home') !== FALSE)
     <div class="item" style="margin-left: 15rem;">
         <div class="ui search">
             <div class="ui icon input" style="width: 199%;">
@@ -20,6 +21,7 @@
             <div class="results"></div>
         </div>
     </div>
+    @endif
 
     <div class="right menu">
         <a class="left item" href="{{ route('/home') }}"><i class="icon dashboard"></i> Dashboard</a>
@@ -36,25 +38,63 @@
         </div>
     </div>
 </div>
-@if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE)
+@if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE || strpos(Route::getCurrentRoute()->getPath(), 'questionnaire') !== FALSE)
     <div class="ui compact menu attached">
         <a class="item" href="{{ route('record.show', $record->id) }}">
             <i class="write icon"></i>
             Form</a>
         <a class="item" href="{{ route('callbacks', $record->id) }}">
-            {{--            <i class="large icons">
-                            <i class="phone icon"></i>
-                            <i class="inverted corner repeat icon"></i>
-                        </i>--}}
             <i class="repeat icon"></i>
             Callbacks</a>
         <a class="item" href="{{ route('history', $record->id) }}">
             <i class="book icon"></i>
             Disposition History</a>
+
+        <div class="right menu">
+            <div class="item">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="radio" name="status" value="BCW" {{ Auth::user()->status == 'BCW'?'checked="checked"':'' }}>
+                                <label>BCW</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="radio" name="status" value="INCALL" {{ Auth::user()->status == 'INCALL'?'checked="checked"':'' }}>
+                                <label>IN-CALL</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="radio" name="status" value="ACW" {{ Auth::user()->status == 'ACW'?'checked="checked"':'' }}>
+                                <label>ACW</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 
 
 <script>
     $('.ui.dropdown').dropdown();
+
+    @if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE)
+    $('.toggle.checkbox')
+        .checkbox({
+            // check all children
+            onChecked: function() {
+                $.get( "{{ URL::to('/') }}/user/update_status/{{ $record->id }}/" + $(this).val());
+            },
+            // uncheck all children
+            onUnchecked: function() {
+
+            }
+        })
+    ;
+    @endif
 </script>

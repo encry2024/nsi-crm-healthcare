@@ -10,7 +10,7 @@ use App\Record;
 use App\Http\Requests\StoreBtnRequest;
 use App\Disposition;
 use App\Checklist;
-
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -64,6 +64,9 @@ class RecordController extends Controller
      */
     public function show($record)
     {
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
         // Check if there are checklist entries for this record
         if(count($record->checklist) != count($record->getList())) {
             // Delete first all related checklist

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Record;
 use App\Disposition;
+use Illuminate\Support\Facades\Auth;
 
 class ColonCancerScreeningController extends Controller
 {
@@ -25,6 +26,9 @@ class ColonCancerScreeningController extends Controller
     {
         $record = Record::find($record_id);
         $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 
         return view('questionnaires.colon_cancer_screening', compact('record', 'dispositions'));
     }

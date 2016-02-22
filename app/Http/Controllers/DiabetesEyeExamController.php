@@ -9,6 +9,7 @@ use App\Disposition;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\DiabetesEyeExam;
+use Illuminate\Support\Facades\Auth;
 
 class DiabetesEyeExamController extends Controller
 {
@@ -27,6 +28,9 @@ class DiabetesEyeExamController extends Controller
     {
         $record = Record::find($record_id);
         $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 
         return view('questionnaires.diabetes_eye_exam', compact('record', 'dispositions'));
     }
