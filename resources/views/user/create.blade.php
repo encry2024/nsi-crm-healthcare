@@ -63,7 +63,7 @@
                                 <div class="field @if($errors->has('email')) error @endif">
                                     <label>Username <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input type="text" name="string" placeholder="Username" value="{{ Input::old('email') }}">
+                                        <input type="text" name="email" placeholder="Username" value="{{ Input::old('email') }}">
                                         <i class="mail icon"></i>
                                     </div>
                                 </div>

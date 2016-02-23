@@ -39,7 +39,7 @@
         </div>
     </div>
 </div>
-@if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE || strpos(Route::getCurrentRoute()->getPath(), 'questionnaire') !== FALSE)
+@if (isset($record))
     <div class="ui menu right aligned attached">
         <div class="ui icon dropdown item">
             <i class="help icon"></i>
@@ -94,7 +94,7 @@
 <script>
     $('.ui.dropdown').dropdown();
 
-    @if (strpos(Route::getCurrentRoute()->getPath(), 'record') !== FALSE)
+    @if (isset($record))
     $('.toggle.checkbox')
         .checkbox({
             // check all children
