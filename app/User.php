@@ -62,8 +62,10 @@ class User extends Model implements AuthenticatableContract,
 
         //update duration of recent status
         $recentStatus = Status::where('user_id', $this->id)->orderBy('id', 'DESC')->first();
-        $recentStatus->duration = $now->getTimestamp() - $status_date->getTimestamp();
-        $recentStatus->save();
+        if($recentStatus) {
+            $recentStatus->duration = $now->getTimestamp() - $status_date->getTimestamp();
+            $recentStatus->save();
+        }
 
         // Add status entry to status table
         $this->statuses()->save(new Status(['status' => $status, 'record_id' => $record_id]));
