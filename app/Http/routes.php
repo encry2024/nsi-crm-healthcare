@@ -37,13 +37,18 @@ Route::get('add/medical_record/{mrn}', ['as' => 'add_mrn', function ($mrn) {
 get('record_query/{query}', function ($query)
 {
     $json = [];
-    $records = App\Record::where('mrn', 'LIKE', '%'.$query.'%', 'AND')->where('user_id', Auth::user()->id)->get();
+    $records = App\Record::where(function($subquery) use ($query)
+    {
+        $subquery->where('mrn', 'LIKE', '%'.$query.'%')
+            ->orWhere('name', 'LIKE', '%'.$query.'%')
+            ->orWhere('btn', 'LIKE', '%'.$query.'%');
+    })->where('user_id', Auth::user()->id)->get();
 
     if (count($records) > 0) {
         foreach ($records as $record) {
             $json['items'][] = array(
-                'title' => 'Medical Record Number# ' . $record->mrn,
-                'description' => 'Patient\s Name: ' . $record->name . '<br>' . 'Reference Number# ' . $record->reference_no,
+                'title' => 'Patient\'s Name: ' . $record->name,
+                'description' => 'MRN: ' . $record->mrn . '<br>' . 'Phone Number: ' . $record->btn,
                 'html_url' => route('record.show', $record->id)
             );
         }
@@ -53,7 +58,7 @@ get('record_query/{query}', function ($query)
         $json['items'][] = array(
             'title' => "$query doesn't exist",
             'description' => 'It seems that medical record number doesn\'t exist in our database. Click here to add this.',
-            'html_url' => route('add_mrn', $query)
+            'html_url' => '#'
         );
 
         return $json;
