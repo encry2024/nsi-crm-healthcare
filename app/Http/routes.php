@@ -12,7 +12,7 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
 
     $ctr = 0;
     $records = App\Record::whereUserId(Auth::user()->id)->latest()->paginate(20);
-    $records->setPath('/home');
+    $records->setPath('home');
 
     return view('user.home', compact('records', 'ctr'));
 }]);
