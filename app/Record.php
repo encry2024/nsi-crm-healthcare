@@ -21,7 +21,7 @@ class Record extends Eloquent
     );
 
     protected $fillable = ['first_name', 'last_name', 'reference_no',
-        'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender'];
+        'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn'];
 
     public function history() {
         return $this->hasMany('App\History')->orderBy('created_at');
@@ -148,7 +148,8 @@ class Record extends Eloquent
             'reference_no'  => $request->get('reference_no'),
             'date_of_birth' => date('Y-m-d', strtotime($request->get('date_of_birth'))),
             'call_notes'    => $request->get('call_notes'),
-            'last_disposition'  => $request->get('disposition')
+            'last_disposition'  => $request->get('disposition'),
+            'rn'  => $request->get('rn')
         ]);
 
         // Insert record history

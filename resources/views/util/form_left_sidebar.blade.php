@@ -42,11 +42,21 @@
                 </select>
             </div>
 
-            <div class="field @if($errors->has('btn')) error @endif">
-                <label><i class="write icon"></i> BTN/Phone No# </label>
-                <div class="ui left icon input">
-                    <input type="text" name="btn" value="{{ $record->btn }}" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
-                    <i class="phone icon"></i>
+            <div class="two fields">
+                <div class="field @if($errors->has('btn')) error @endif">
+                    <label><i class="write icon"></i> Phone Number </label>
+                    <div class="ui left icon input">
+                        <input type="text" name="btn" value="{{ $record->btn }}" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
+                        <i class="phone icon"></i>
+                    </div>
+                </div>
+
+                <div class="field @if($errors->has('rn')) error @endif">
+                    <label><i class="write icon"></i> RN </label>
+                    <div class="ui left icon input">
+                        <input type="text" name="rn" value="{{ $record->rn }}" placeholder="Name of Care Innovations - RN" value="{{ Input::old('rn') }}">
+                        <i class="phone icon"></i>
+                    </div>
                 </div>
             </div>
 
