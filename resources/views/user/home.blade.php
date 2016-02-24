@@ -96,7 +96,7 @@
                                     </th>
                                 </tr></thead>
                                 <tbody>
-                                @foreach(\Illuminate\Support\Facades\Auth::user()->records()->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
+                                @foreach(\Illuminate\Support\Facades\Auth::user()->records()->where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
                                     <tr>
                                         <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
                                         <td>{{ $record->mrn }}</td>
