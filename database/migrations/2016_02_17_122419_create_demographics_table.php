@@ -21,6 +21,7 @@ class CreateDemographicsTable extends Migration
             $blueprint->string('q3')->nullable();
             $blueprint->string('q4')->nullable();
             $blueprint->string('q5')->nullable();
+            $blueprint->string('q6')->nullable();
             $blueprint->timestamps();
         });
     }

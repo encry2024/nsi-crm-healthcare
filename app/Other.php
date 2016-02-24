@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Other extends Model
 {
     //
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8','q9','q10','q11'];
+    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8','q9','q10','q11','q12','q13'];
 
     public static function storeOther($request, $record_id)
     {
@@ -29,6 +29,8 @@ class Other extends Model
             $other->q9        = $request->get('q9');
             $other->q10       = $request->get('q10');
             $other->q11       = $request->get('q11');
+            $other->q12       = $request->get('q12');
+            $other->q13       = $request->get('q13');
 
             if ($other->save()) {
                 // Touch parent model
@@ -52,6 +54,8 @@ class Other extends Model
                 'q9' => $request->get('q9'),
                 'q10' => $request->get('q10'),
                 'q11' => $request->get('q11'),
+                'q12' => $request->get('q12'),
+                'q13' => $request->get('q13')
             ]);
 
             // Touch parent model

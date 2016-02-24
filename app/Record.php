@@ -137,6 +137,7 @@ class Record extends Eloquent
             'btn'           => $request->get('btn'),
             'reference_no'  => $request->get('reference_no'),
             'date_of_birth' => date('Y-m-d', strtotime($request->get('date_of_birth'))),
+            'age'           => $request->get('age'),
             'call_notes'    => $request->get('call_notes'),
             'last_disposition'  => $request->get('disposition'),
             'rn'  => $request->get('rn')

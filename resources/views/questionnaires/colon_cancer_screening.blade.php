@@ -117,42 +117,26 @@
                                             </div>
                                         </div>
 
-                                        <div class="two fields">
-                                            <div class="field @if($errors->has('q4')) error @endif">
-                                                <label for="q4" style="font-size: 14px;">4) Action taken</label>
-                                                <div class="ui large left input">
-                                                    <input name="q4" id="q4"
-                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                       value="{{ $record->colon_cancer_screening->q4 }}"
-                                                       @else
-                                                       value=""
-                                                       @endif
-                                                    >
-                                                </div>
-                                            </div>
-
-                                            <div class="field @if($errors->has('q5')) error @endif">
-                                                <label for="q5" style="font-size: 14px;">5) Enter appt date if mammo or office appt made</label>
-                                                <div class="ui large left icon input">
-                                                    <i class="calendar icon"></i>
-                                                    <input name="q5" id="appt_date"
-                                                           @if(count($record->colon_cancer_screening) > 0)
-                                                           value="{{ $record->colon_cancer_screening->q5 }}"
-                                                           @else
-                                                           value=""
-                                                            @endif
-                                                    >
-                                                </div>
+                                        <div class="field @if($errors->has('q4')) error @endif">
+                                            <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                            <div class="ui large left input">
+                                                <input name="q4" id="q4"
+                                                   @if(count($record->colon_cancer_screening) > 0)
+                                                   value="{{ $record->colon_cancer_screening->q4 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                >
                                             </div>
                                         </div>
 
                                         <div class="grouped fields">
-                                            <div class="field @if($errors->has('q6')) error @endif">
-                                                <label for="q6" style="font-size: 14px;">6) If done outside SMG, did you request document from outside provider or patient?</label>
+                                            <div class="field @if($errors->has('q5')) error @endif">
+                                                <label for="q5" style="font-size: 14px;">5) If done outside SMG, did you request document from outside provider or patient?</label>
                                                 <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                    <input type="radio" name="q6" id="q6"
+                                                    <input type="radio" name="q5" id="q5"
                                                            @if(count($record->colon_cancer_screening) > 0)
-                                                           @if ($record->colon_cancer_screening->q6 == "Yes")
+                                                           @if ($record->colon_cancer_screening->q5 == "Yes")
                                                            checked="checked"
                                                            @else
                                                            @endif
@@ -162,11 +146,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q6')) error @endif">
+                                            <div class="field @if($errors->has('q5')) error @endif">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" name="q6" id="q6"
+                                                    <input type="radio" name="q5" id="q5"
                                                         @if(count($record->colon_cancer_screening) > 0)
-                                                            @if ($record->colon_cancer_screening->q6 == "No")
+                                                            @if ($record->colon_cancer_screening->q5 == "No")
                                                             checked="checked"
                                                             @else
                                                             @endif
@@ -178,12 +162,12 @@
                                         </div>
 
                                         <div class="two fields">
-                                            <div class="field @if($errors->has('q7')) error @endif">
-                                                <label style="font-size: 14px;">7) Was the document received and recorded in EMR?</label>
+                                            <div class="field @if($errors->has('q6')) error @endif">
+                                                <label style="font-size: 14px;">6) Was the document received and recorded in EMR?</label>
                                                 <div class="ui large left icon input">
-                                                    <input type="text" name="q7"
+                                                    <input type="text" name="q6"
                                                         @if(count($record->colon_cancer_screening) > 0)
-                                                             value="{{ $record->colon_cancer_screening->q7 }}"
+                                                             value="{{ $record->colon_cancer_screening->q6 }}"
                                                         @else
                                                              value=""
                                                         @endif
@@ -192,12 +176,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q8')) error @endif">
-                                                <label style="font-size: 14px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
+                                            <div class="field @if($errors->has('q7')) error @endif">
+                                                <label style="font-size: 14px;">7) Closed loop: appt kept or task acted on/closed by office?</label>
                                                 <div class="ui large left icon input">
-                                                    <input type="text" name="q8"
+                                                    <input type="text" name="q7"
                                                         @if(count($record->colon_cancer_screening) > 0)
-                                                            value="{{ $record->colon_cancer_screening->q8 }}"
+                                                            value="{{ $record->colon_cancer_screening->q7 }}"
                                                         @else
                                                             value=""
                                                         @endif

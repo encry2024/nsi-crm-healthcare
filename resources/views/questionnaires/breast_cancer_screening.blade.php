@@ -32,7 +32,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="field @if($errors->has('q1')) error @endif">
-                                            <label style="font-size: 14px;">1. Date of most Recent Mammogram Date</label>
+                                            <label style="font-size: 14px;">1. What is the date of the most recent Mammogram?</label>
                                             <div class="ui large left icon input">
                                                 <input name="q1" id="v_d"
                                                     @if(count($record->breast_cancer_screening) > 0)
@@ -47,7 +47,7 @@
 
                                         <div class="two fields">
                                             <div class="grouped fields">
-                                                <label for="q2" style="font-size: 14px;">2) Screening up to date?</label>
+                                                <label for="q2" style="font-size: 14px;">2) Is this a date between date range: 1/1/2014-current date?</label>
                                                 <div class="field @if($errors->has('q2')) error @endif">
                                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                         <input type="radio" name="q2" id="q2"
@@ -79,7 +79,7 @@
 
                                             <div class="grouped fields">
                                                 <div class="field @if($errors->has('q3')) error @endif">
-                                                    <label for="q3" style="font-size: 14px;">3) If not up to date, was outreach to patient made?</label>
+                                                    <label for="q3" style="font-size: 14px;">3) If the date is NOT between date range, was outreach to patient made?</label>
                                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                         <input type="radio" name="q3" id="q3"
                                                             @if(count($record->breast_cancer_screening) > 0)
@@ -109,32 +109,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="two fields">
-                                            <div class="field @if($errors->has('q4')) error @endif">
-                                                <label for="q4" style="font-size: 14px;">4) Action</label>
-                                                <div class="ui large left input">
-                                                    <input name="q4" id="q4"
-                                                        @if(count($record->breast_cancer_screening) > 0)
-                                                            value="{{ $record->breast_cancer_screening->q4 }}"
-                                                        @else
-                                                            value=""
-                                                        @endif
-                                                    >
-                                                </div>
-                                            </div>
 
-                                            <div class="field @if($errors->has('q5')) error @endif">
-                                                <label for="q5" style="font-size: 14px;">5) Enter appt date if mammo or office appt made</label>
-                                                <div class="ui large left icon input">
-                                                    <input name="q5" id="appt_date"
-                                                        @if(count($record->breast_cancer_screening) > 0)
-                                                            value="{{ $record->breast_cancer_screening->q5 }}"
-                                                            @else
-                                                            value=""
-                                                        @endif
-                                                    >
-                                                    <i class="calendar icon"></i>
-                                                </div>
+                                        <div class="field @if($errors->has('q4')) error @endif">
+                                            <label for="q4" style="font-size: 14px;">4) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
+                                            <div class="ui large left input">
+                                                <input name="q4" id="q4"
+                                                    @if(count($record->breast_cancer_screening) > 0)
+                                                        value="{{ $record->breast_cancer_screening->q4 }}"
+                                                    @else
+                                                        value=""
+                                                    @endif
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q5')) error @endif">
+                                            <label for="q5" style="font-size: 14px;">5) Enter appt date if appt made</label>
+                                            <div class="ui large left icon input">
+                                                <input name="q5" id="appt_date"
+                                                    @if(count($record->breast_cancer_screening) > 0)
+                                                        value="{{ $record->breast_cancer_screening->q5 }}"
+                                                        @else
+                                                        value=""
+                                                    @endif
+                                                >
+                                                <i class="calendar icon"></i>
                                             </div>
                                         </div>
 

@@ -9,7 +9,7 @@ class Demographics extends Model
 {
     //
     protected $table = 'demographics';
-    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5'];
+    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
 
     public static function storeAnswer($request, $record_id)
     {
@@ -24,6 +24,7 @@ class Demographics extends Model
             $demographics->q3        = $request->get('q3');
             $demographics->q4        = $request->get('q4');
             $demographics->q5        = $request->get('q5');
+            $demographics->q6        = $request->get('q6');
 
             if ($demographics->save()) {
                 // Touch parent model
@@ -41,7 +42,8 @@ class Demographics extends Model
                     'q2' => $request->get('q2'),
                     'q3' => $request->get('q3'),
                     'q4' => $request->get('q4'),
-                    'q5' => $request->get('q5')
+                    'q5' => $request->get('q5'),
+                    'q6' => $request->get('q6')
                 ]
             );
 

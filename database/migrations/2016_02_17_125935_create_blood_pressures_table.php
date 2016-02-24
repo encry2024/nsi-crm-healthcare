@@ -22,6 +22,7 @@ class CreateBloodPressuresTable extends Migration
             $blueprint->string('q4')->nullable();
             $blueprint->string('q5')->nullable();
             $blueprint->string('q6')->nullable();
+            $blueprint->string('q7')->nullable();
             $blueprint->timestamps();
         });
     }

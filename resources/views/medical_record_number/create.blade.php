@@ -183,8 +183,6 @@
             else { document.getElementById('age').value = age; }
 
             //document.getElementById('age').value = age;
-
-
         }
 
         document.getElementById('age').value = "";
