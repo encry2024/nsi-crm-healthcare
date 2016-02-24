@@ -67,7 +67,7 @@
                                 @foreach($record->callback as $callback)
                                     <tr>
                                         <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                        <td>{{ $record->fullName() }}</td>
+                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->fullName() }}</a></td>
                                         <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
                                         </td>
                                     </tr>
