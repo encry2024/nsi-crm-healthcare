@@ -11,7 +11,7 @@
             <div class="sixteen wide column">
                 <div class="ui grid">
                     <br><br>
-                    <div class="eleven wide column">
+                    <div class="ten wide column">
 
                         <h2 class="ui header">
                             <div class="content"><i class="dashboard icon"></i>Dashboard</div>
@@ -47,35 +47,70 @@
                         @include('util.paginator', ['paginator' => $records->appends(Request::only('filter'))])
                     </div>
 
-                    <div class="five wide column">
-                        <h2 class="ui header">
-                            <div class="content">
-                                Callbacks
-                            </div>
-                        </h2>
+                    <div class="six wide column">
+                        <div class="row">
+                            <h2 class="ui header">
+                                <div class="content">
+                                    Callbacks
+                                </div>
+                            </h2>
 
-                        <div class="ui divider"></div>
+                            <div class="ui divider"></div>
 
-                        <table class="ui celled striped table">
-                            <thead>
-                            <tr><th colspan="3">
-                                    History
-                                </th>
-                            </tr></thead>
-                            <tbody>
-                            @foreach(\Illuminate\Support\Facades\Auth::user()->callbacks as $callback)
-                                <tr>
-                                    <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                    <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
-                                    <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{--<button class="ui primary button" id="callback_modal">
-                            Add New Callback
-                        </button>--}}
+                            <table class="ui celled striped table">
+                                <thead>
+                                <tr><th colspan="3">
+                                        History
+                                    </th>
+                                </tr></thead>
+                                <tbody>
+                                @foreach(\Illuminate\Support\Facades\Auth::user()->callbacks as $callback)
+                                    <tr>
+                                        <td><a href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
+                                        <td> {{ $callback->schedule->diffForHumans() }}</td>
+                                        <td>{{ $callback->notes }}</td>
+
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{--<button class="ui primary button" id="callback_modal">
+                                Add New Callback
+                            </button>--}}
+                        </div>
+                        <br>
+                        <div class="row">
+                            <h2 class="ui header">
+                                <div class="content">
+                                    Recent Records
+                                </div>
+                            </h2>
+
+                            <div class="ui divider"></div>
+
+                            <table class="ui celled striped table">
+                                <thead>
+                                <tr><th colspan="3">
+                                        History
+                                    </th>
+                                </tr></thead>
+                                <tbody>
+                                @foreach(\Illuminate\Support\Facades\Auth::user()->records()->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
+                                    <tr>
+                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                                        <td>{{ $record->mrn }}</td>
+                                        <td>{{ $record->btn }}</td>
+
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{--<button class="ui primary button" id="callback_modal">
+                                Add New Callback
+                            </button>--}}
+                        </div>
                     </div>
                 </div>
             </div>

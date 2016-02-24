@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function records()
     {
-        return $this->hasMany(Record::class)->orderBy('created_at');
+        return $this->hasMany(Record::class);
     }
 
     public function callbacks()
