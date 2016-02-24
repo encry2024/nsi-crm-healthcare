@@ -11,7 +11,7 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     Auth::user()->addStatus('IDLE');
 
     $ctr = 0;
-    $records = App\Record::whereUserId(Auth::user()->id)->latest()->paginate(20);
+    $records = App\Record::whereUserId(Auth::user()->id)->orderBy('updated_at')->paginate(20);
     $records->setPath('home');
 
     return view('user.home', compact('records', 'ctr'));

@@ -32,6 +32,10 @@ class DiabetesA1C extends Model
             $diabetes_a1_c->q11       = $request->get('q11');
 
             if ($diabetes_a1_c->save()) {
+                // Touch parent model
+                $record = Record::find($record_id);
+                $record->touch();
+
                 return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
             } else {
                 return redirect()->back()->with('message', 'Answer sheet was not saved. Please review the answers')->with('msg_type', 'negative');
@@ -50,6 +54,10 @@ class DiabetesA1C extends Model
                 'q10' => $request->get('q10'),
                 'q11' => $request->get('q11'),
             ]);
+
+            // Touch parent model
+            $record = Record::find($record_id);
+            $record->touch();
 
             return redirect()->back()->with('message', 'Answer sheet was successfully updated.')->with('msg_type', 'positive');
         }

@@ -23,10 +23,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Patient Name</th>
-                                    <th>Medical Record Number</th>
-                                    <th>BTN/Phone Number</th>
+                                    <th>MRN</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
                                     <th>Call Notes</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -37,8 +37,8 @@
                                     <td>{{ $record->name }}</td>
                                     <td>{{ $record->mrn }}</td>
                                     <td>{{ $record->btn }}</td>
-                                    <td>{{ $record->call_notes }}</td>
-                                    <td>{{ $record->status }}</td>
+                                    <td>{{ $record->gender }}</td>
+                                    <td>{{ (strlen($record->call_notes) > 30) ? substr($record->call_notes, 0, 30) . '...' : $record->call_notes }}</td>
                                     <td><a class="ui button primary small" href="{{ route('record.show', $record->id) }}">view</a></td>
                                 </tr>
                             @endforeach
@@ -63,15 +63,13 @@
                                 </th>
                             </tr></thead>
                             <tbody>
-                            @foreach (\Illuminate\Support\Facades\Auth::user()->records as $record)
-                                @foreach($record->callback as $callback)
-                                    <tr>
-                                        <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
-                                        <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach(\Illuminate\Support\Facades\Auth::user()->callbacks as $callback)
+                                <tr>
+                                    <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
+                                    <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                                    <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

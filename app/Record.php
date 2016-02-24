@@ -20,7 +20,7 @@ class Record extends Eloquent
         ['name' => 'hrm', 'description' => 'High Risk Meds']
     );
 
-    protected $fillable = ['name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn'];
+    protected $fillable = ['name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn', 'created_at', 'updated_at'];
 
     public function history() {
         return $this->hasMany('App\History')->orderBy('created_at');
@@ -145,6 +145,9 @@ class Record extends Eloquent
         // Insert record history
         if($request->get('disposition') != '') {
             $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
+
+            // Redirect to dashboard
+            return redirect('home');
         }
 
         return redirect()->back()->with('message', 'Record successfully updated');

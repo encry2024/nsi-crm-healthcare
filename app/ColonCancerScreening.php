@@ -33,6 +33,10 @@ class ColonCancerScreening extends Model
             $colon_cancer_screening->q8        = $request->get('q8');
 
             if ($colon_cancer_screening->save()) {
+                // Touch parent model
+                $record = Record::find($record_id);
+                $record->touch();
+
                 return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
             } else {
                 return redirect()->back()->with('message', 'Answer sheet was not saved. Please review the answers')->with('msg_type', 'negative');
@@ -48,6 +52,10 @@ class ColonCancerScreening extends Model
                 'q7' => $request->get('q7'),
                 'q8' => $request->get('q8'),
             ]);
+
+            // Touch parent model
+            $record = Record::find($record_id);
+            $record->touch();
 
             return redirect()->back()->with('message', 'Answer sheet was successfully updated.')->with('msg_type', 'positive');
         }
