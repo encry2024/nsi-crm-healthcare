@@ -34,7 +34,7 @@
                             @foreach ($records as $record)
                                 <tr>
                                     <td>{{ ((($records->currentPage() - 1) * $records->perPage()) + ($ctr++) + 1) }}</td>
-                                    <td>{{ $record->fullName() }}</td>
+                                    <td>{{ $record->name }}</td>
                                     <td>{{ $record->mrn }}</td>
                                     <td>{{ $record->btn }}</td>
                                     <td>{{ $record->call_notes }}</td>
@@ -67,7 +67,7 @@
                                 @foreach($record->callback as $callback)
                                     <tr>
                                         <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->fullName() }}</a></td>
+                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
                                         <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
                                         </td>
                                     </tr>

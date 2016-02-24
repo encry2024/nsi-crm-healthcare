@@ -43,7 +43,7 @@ get('record_query/{query}', function ($query)
         foreach ($records as $record) {
             $json['items'][] = array(
                 'title' => 'Medical Record Number# ' . $record->mrn,
-                'description' => 'Patient\s Name: ' . $record->fullName() . '<br>' . 'Reference Number# ' . $record->reference_no,
+                'description' => 'Patient\s Name: ' . $record->name . '<br>' . 'Reference Number# ' . $record->reference_no,
                 'html_url' => route('record.show', $record->id)
             );
         }

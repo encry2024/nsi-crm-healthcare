@@ -15,21 +15,11 @@
 
             <div class="ui divider"></div>
 
-            <div class="two fields">
-                <div class="field @if($errors->has('first_name')) error @endif">
-                    <label><i class="write icon"></i> First name</label>
-                    <div class="ui small left icon input">
-                        <input type="text" name="first_name" value="{{ $record->first_name }}" placeholder="First name" value="{{ Input::old('first_name') }}">
-                        <i class="info icon"></i>
-                    </div>
-                </div>
-
-                <div class="field @if($errors->has('last_name')) error @endif">
-                    <label><i class="write icon"></i> Last name</label>
-                    <div class="ui small left icon input">
-                        <input type="text" name="last_name" value="{{ $record->last_name }}" placeholder="Last name" value="{{ Input::old('last_name') }}">
-                        <i class="info icon"></i>
-                    </div>
+            <div class="field @if($errors->has('name')) error @endif">
+                <label><i class="write icon"></i> Name</label>
+                <div class="ui small left icon input">
+                    <input type="text" name="name" value="{{ $record->name }}" placeholder="Name" value="{{ Input::old('name') }}">
+                    <i class="info icon"></i>
                 </div>
             </div>
 

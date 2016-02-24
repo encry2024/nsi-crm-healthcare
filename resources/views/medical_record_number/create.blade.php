@@ -56,18 +56,10 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="ui form">
-                                <div class="field @if($errors->has('first_name')) error @endif">
-                                    <label>First name <i class="asterisk icon"></i> </label>
+                                <div class="field @if($errors->has('name')) error @endif">
+                                    <label>Name <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
-                                        <input type="text" name="first_name" placeholder="First name" value="{{ Input::old('first_name') }}">
-                                        <i class="info icon"></i>
-                                    </div>
-                                </div>
-
-                                <div class="field @if($errors->has('last_name')) error @endif">
-                                    <label>Last name <i class="asterisk icon"></i> </label>
-                                    <div class="ui left icon input">
-                                        <input type="text" name="last_name" placeholder="Last name" value="{{ Input::old('last_name') }}">
+                                        <input type="text" name="name" placeholder="Name" value="{{ Input::old('name') }}">
                                         <i class="info icon"></i>
                                     </div>
                                 </div>
@@ -76,6 +68,14 @@
                                     <label>BTN/Phone Number <i class="asterisk icon"></i> </label>
                                     <div class="ui left icon input">
                                         <input type="text" name="btn" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
+                                        <i class="phone icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field @if($errors->has('rn')) error @endif">
+                                    <label>Name of Care Innovations - RN <i class="asterisk icon"></i> </label>
+                                    <div class="ui left icon input">
+                                        <input type="text" name="rn" placeholder="Name of Care Innovations - RN" value="{{ Input::old('rn') }}">
                                         <i class="phone icon"></i>
                                     </div>
                                 </div>
