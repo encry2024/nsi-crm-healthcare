@@ -14,6 +14,11 @@
         autoclose: true
     });
 
+    $("#most_recent_bp").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
     $("#a1c").datepicker({
         format: 'MM dd, yyyy',
         autoclose: true
@@ -38,6 +43,7 @@
         format: 'MM dd, yyyy',
         autoclose: true
     });
+
     $("#pneumax").datepicker({
         format: 'MM dd, yyyy',
         autoclose: true

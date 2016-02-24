@@ -19,6 +19,8 @@ class CreateHighRiskMedsTable extends Migration
             $blueprint->string('q1')->nullable();
             $blueprint->string('q2')->nullable();
             $blueprint->string('q3')->nullable();
+            $blueprint->string('q4')->nullable();
+            $blueprint->string('q5')->nullable();
             $blueprint->timestamps();
         });
     }

@@ -27,6 +27,8 @@ class CreateOthersTable extends Migration
             $blueprint->string('q9')->nullable();
             $blueprint->string('q10')->nullable();
             $blueprint->string('q11')->nullable();
+            $blueprint->string('q12')->nullable();
+            $blueprint->string('q13')->nullable();
             $blueprint->timestamps();
         });
     }

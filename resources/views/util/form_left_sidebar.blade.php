@@ -32,6 +32,23 @@
                 </select>
             </div>
 
+            <div class="fields">
+                <div class="field @if($errors->has('date_of_birth')) error @endif">
+                    <label><i class="write icon"></i> Date of Birth </label>
+                    <div class="ui small left icon input">
+                        <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob" onchange="_calculateAge()" readonly>
+                        <i class="calendar icon"></i>
+                    </div>
+                </div>
+
+                <div class="six wide field @if($errors->has('age')) error @endif">
+                    <label><i class="lock icon"></i> Age </label>
+                    <div class="ui small left input">
+                        <input name="age" value="{{ $record->age }}" placeholder="Age" id="age" readonly>
+                    </div>
+                </div>
+            </div>
+
             <div class="two fields">
                 <div class="field @if($errors->has('btn')) error @endif">
                     <label><i class="write icon"></i> Phone Number </label>
@@ -68,14 +85,6 @@
                 </div>
             </div>
 
-            <div class="field @if($errors->has('date_of_birth')) error @endif">
-                <label><i class="write icon"></i> Date of Birth </label>
-                <div class="ui small left icon input">
-                    <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob" readonly>
-                    <i class="calendar icon"></i>
-                </div>
-            </div>
-
             <div class="field">
                 <label><i class="write icon"></i> Call Disposition </label>
                 <div class="ui selection dropdown">
@@ -103,3 +112,15 @@
 
     </form>
 </div>
+
+<script>
+    function _calculateAge() {
+        var dob = document.getElementById('dob').value;
+        var age = moment().diff(moment(dob, 'MMMM DD, YYYY'), 'years');
+
+        if (age == "NaN") { document.getElementById('age').value = ""; }
+        else { document.getElementById('age').value = age; }
+
+        //document.getElementById('age').value = age;
+    }
+</script>

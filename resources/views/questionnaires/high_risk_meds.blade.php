@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
-                                            <label for="q3" style="font-size: 16px;">11) Was task acted on/closed by Pharmacist?</label>
+                                            <label for="q3" style="font-size: 16px;">3) Was task acted on/closed by Pharmacist?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                 <input type="radio" name="q3" id="q3"
                                                    @if(count($record->high_risk_meds) > 0)
@@ -118,6 +118,32 @@
                                                 @endif
                                                 >
                                                 <label>No</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q4')) error @endif">
+                                            <label style="font-size: 16px;">4) If Yes, task Pharmacist</label>
+                                            <div class="ui big left input">
+                                                <input type="text" name="q4"
+                                                       @if(count($record->blood_pressure) > 0)
+                                                       value="{{ $record->blood_pressure->q4 }}"
+                                                       @else
+                                                       value=""
+                                                        @endif
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q5')) error @endif">
+                                            <label style="font-size: 16px;">5) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
+                                            <div class="ui big left input">
+                                                <input type="text" name="q5"
+                                                       @if(count($record->blood_pressure) > 0)
+                                                       value="{{ $record->blood_pressure->q5 }}"
+                                                       @else
+                                                       value=""
+                                                        @endif
+                                                >
                                             </div>
                                         </div>
 

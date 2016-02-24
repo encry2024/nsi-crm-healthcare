@@ -82,7 +82,7 @@
                                             </div>
 
                                             <div class="field @if($errors->has('q3')) error @endif">
-                                                <label for="q3" style="font-size: 15px;">3. SMG PCP (In Patient Care Team)</label>
+                                                <label for="q3" style="font-size: 15px;">3.If NO, who is listed as PCP in PCT (Patient Care Team)</label>
                                                 <div class="ui large left input">
                                                     <input name="q3" id="q3"
                                                         @if(count($record->demographic) > 0)
@@ -94,12 +94,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q4')) error @endif">
-                                                <label for="q4" style="font-size: 15px;">4. Did patient Request to NOT be contacted?</label>
+                                            <div class="field @if($errors->has('q6')) error @endif">
+                                                <label for="q6" style="font-size: 15px;">4. OK to call?</label>
                                                 <div class="ui large left input">
-                                                    <input name="q4" id="q4"
+                                                    <input name="q6" id="q6"
                                                         @if(count($record->demographic) > 0)
-                                                            value="{{ $record->demographic->q4 }}"
+                                                            value="{{ $record->demographic->q6 }}"
                                                         @else
                                                             value=""
                                                         @endif
@@ -107,8 +107,21 @@
                                                 </div>
                                             </div>
 
+                                            <div class="field @if($errors->has('q4')) error @endif">
+                                                <label for="q4" style="font-size: 15px;">5. Is there a preferred time of the day that patient would like to be called? If yes, Please provide the time.</label>
+                                                <div class="ui large left input">
+                                                    <input name="q4" id="q4"
+                                                       @if(count($record->demographic) > 0)
+                                                       value="{{ $record->demographic->q4 }}"
+                                                       @else
+                                                       value=""
+                                                       @endif
+                                                    >
+                                                </div>
+                                            </div>
+
                                             <div class="field @if($errors->has('q5')) error @endif">
-                                                <label style="font-size: 15px;">5. Date of Chart review</label>
+                                                <label style="font-size: 15px;">6. Date of initial chart review</label>
                                                 <div class="ui large left icon input">
                                                     <input name="q5" id="date_chart_review"
                                                         @if(count($record->demographic) > 0)
