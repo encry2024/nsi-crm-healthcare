@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use DateTime;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -28,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'status'];
+    protected $fillable = ['name', 'email', 'password', 'status', 'status_date'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -43,15 +44,33 @@ class User extends Model implements AuthenticatableContract,
 
     public function records()
     {
-        return $this->hasMany(Record::class)->orderBy('created_at');
+        return $this->hasMany(Record::class);
+    }
+
+    public function callbacks()
+    {
+        return $this->hasMany('App\Callback')->orderBy('schedule');
     }
 
     public function addStatus($status, $record_id = NULL) {
         if($this->status == $status) return;
 
+        // Get first the current user status infos before update
+        $status_date = new DateTime($this->status_date);
+
+        $now = new DateTime();
+
         // Update user status
         $this->status = $status;
+        $this->status_date = $now;
         $this->save();
+
+        //update duration of recent status
+        $recentStatus = Status::where('user_id', $this->id)->orderBy('id', 'DESC')->first();
+        if($recentStatus) {
+            $recentStatus->duration = $now->getTimestamp() - $status_date->getTimestamp();
+            $recentStatus->save();
+        }
 
         // Add status entry to status table
         $this->statuses()->save(new Status(['status' => $status, 'record_id' => $record_id]));

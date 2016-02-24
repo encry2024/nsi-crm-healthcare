@@ -11,7 +11,7 @@
             <div class="sixteen wide column">
                 <div class="ui grid">
                     <br><br>
-                    <div class="eleven wide column">
+                    <div class="ten wide column">
 
                         <h2 class="ui header">
                             <div class="content"><i class="dashboard icon"></i>Dashboard</div>
@@ -23,10 +23,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Patient Name</th>
-                                    <th>Medical Record Number</th>
-                                    <th>BTN/Phone Number</th>
+                                    <th>MRN</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
                                     <th>Call Notes</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -34,11 +34,11 @@
                             @foreach ($records as $record)
                                 <tr>
                                     <td>{{ ((($records->currentPage() - 1) * $records->perPage()) + ($ctr++) + 1) }}</td>
-                                    <td>{{ $record->fullName() }}</td>
+                                    <td>{{ $record->name }}</td>
                                     <td>{{ $record->mrn }}</td>
                                     <td>{{ $record->btn }}</td>
-                                    <td>{{ $record->call_notes }}</td>
-                                    <td>{{ $record->status }}</td>
+                                    <td>{{ $record->gender }}</td>
+                                    <td>{{ (strlen($record->call_notes) > 30) ? substr($record->call_notes, 0, 30) . '...' : $record->call_notes }}</td>
                                     <td><a class="ui button primary small" href="{{ route('record.show', $record->id) }}">view</a></td>
                                 </tr>
                             @endforeach
@@ -47,37 +47,70 @@
                         @include('util.paginator', ['paginator' => $records->appends(Request::only('filter'))])
                     </div>
 
-                    <div class="five wide column">
-                        <h2 class="ui header">
-                            <div class="content">
-                                Callbacks
-                            </div>
-                        </h2>
+                    <div class="six wide column">
+                        <div class="row">
+                            <h2 class="ui header">
+                                <div class="content">
+                                    Callbacks
+                                </div>
+                            </h2>
 
-                        <div class="ui divider"></div>
+                            <div class="ui divider"></div>
 
-                        <table class="ui celled striped table">
-                            <thead>
-                            <tr><th colspan="3">
-                                    History
-                                </th>
-                            </tr></thead>
-                            <tbody>
-                            @foreach (\Illuminate\Support\Facades\Auth::user()->records as $record)
-                                @foreach($record->callback as $callback)
+                            <table class="ui celled striped table">
+                                <thead>
+                                <tr><th colspan="3">
+                                        History
+                                    </th>
+                                </tr></thead>
+                                <tbody>
+                                @foreach(\Illuminate\Support\Facades\Auth::user()->callbacks as $callback)
                                     <tr>
-                                        <td>{{ $callback->schedule->toDayDateTimeString() }}</td>
-                                        <td>{{ $record->fullName() }}</td>
-                                        <td class="right aligned"> {{ $callback->schedule->diffForHumans() }}
-                                        </td>
+                                        <td><a href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
+                                        <td> {{ $callback->schedule->diffForHumans() }}</td>
+                                        <td>{{ $callback->notes }}</td>
+
+
                                     </tr>
                                 @endforeach
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{--<button class="ui primary button" id="callback_modal">
-                            Add New Callback
-                        </button>--}}
+                                </tbody>
+                            </table>
+                            {{--<button class="ui primary button" id="callback_modal">
+                                Add New Callback
+                            </button>--}}
+                        </div>
+                        <br>
+                        <div class="row">
+                            <h2 class="ui header">
+                                <div class="content">
+                                    Recent Records
+                                </div>
+                            </h2>
+
+                            <div class="ui divider"></div>
+
+                            <table class="ui celled striped table">
+                                <thead>
+                                <tr><th colspan="3">
+                                        History
+                                    </th>
+                                </tr></thead>
+                                <tbody>
+                                @foreach(\Illuminate\Support\Facades\Auth::user()->records()->where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
+                                    <tr>
+                                        <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                                        <td>{{ $record->mrn }}</td>
+                                        <td>{{ $record->btn }}</td>
+
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{--<button class="ui primary button" id="callback_modal">
+                                Add New Callback
+                            </button>--}}
+                        </div>
                     </div>
                 </div>
             </div>

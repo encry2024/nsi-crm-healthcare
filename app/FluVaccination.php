@@ -26,6 +26,10 @@ class FluVaccination extends Model
             $flu_vaccination->q6        = $request->get('q6');
 
             if ($flu_vaccination->save()) {
+                // Touch parent model
+                $record = Record::find($record_id);
+                $record->touch();
+
                 return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
             } else {
                 return redirect()->back()->with('message', 'Answer sheet was not saved. Please review the answers')->with('msg_type', 'negative');
@@ -38,6 +42,10 @@ class FluVaccination extends Model
                 'q4' => $request->get('q4'),
                 'q5' => $request->get('q5')
             ]);
+
+            // Touch parent model
+            $record = Record::find($record_id);
+            $record->touch();
 
             return redirect()->back()->with('message', 'Answer sheet was successfully updated.')->with('msg_type', 'positive');
         }

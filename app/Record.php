@@ -20,8 +20,7 @@ class Record extends Eloquent
         ['name' => 'hrm', 'description' => 'High Risk Meds']
     );
 
-    protected $fillable = ['first_name', 'last_name', 'reference_no',
-        'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender'];
+    protected $fillable = ['name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn', 'created_at', 'updated_at'];
 
     public function history() {
         return $this->hasMany('App\History')->orderBy('created_at');
@@ -29,11 +28,6 @@ class Record extends Eloquent
 
     public function getList() {
         return $this->list;
-    }
-
-    public function fullName()
-    {
-        return $this->first_name . ' ' . $this->last_name;
     }
 
     public function callback() {
@@ -101,17 +95,14 @@ class Record extends Eloquent
         $btn = str_replace(' ', '', $request->get('btn')); // Replaces all spaces with hyphens.
         $stripped_btn = preg_replace('/[^A-Za-z0-9\-]/', '', $btn); // Removes special chars.
 
-        $first_name = ucfirst(strtolower($request->get('first_name')));
-        $last_name = ucfirst(strtolower($request->get('last_name')));
-
         if (count($record) == 0) {
             $record = new Record();
             $record->user_id = Auth::user()->id;
-            $record->first_name = $first_name;
-            $record->last_name = $last_name;
+            $record->name = $request->get('name');;
             $record->mrn = $request->get('mrn');
             $record->age = $request->get('age');
             $record->btn = $stripped_btn;
+            $record->rn = $request->get('rn');
             $record->insurance = $request->get('insurance');
             $record->pcp = $request->get('pcp');
             $record->gender = $request->get('gender');
@@ -142,18 +133,21 @@ class Record extends Eloquent
     public static function updateRecord($request, $record)
     {
         $record->update([
-            'first_name'    => $request->get('first_name'),
-            'last_name'     => $request->get('last_name'),
+            'name'    => $request->get('name'),
             'btn'           => $request->get('btn'),
             'reference_no'  => $request->get('reference_no'),
             'date_of_birth' => date('Y-m-d', strtotime($request->get('date_of_birth'))),
             'call_notes'    => $request->get('call_notes'),
-            'last_disposition'  => $request->get('disposition')
+            'last_disposition'  => $request->get('disposition'),
+            'rn'  => $request->get('rn')
         ]);
 
         // Insert record history
         if($request->get('disposition') != '') {
             $record->history()->save(new History(['disposition_id' => $request->get('disposition')]));
+
+            // Redirect to dashboard
+            return redirect('home');
         }
 
         return redirect()->back()->with('message', 'Record successfully updated');

@@ -25,6 +25,10 @@ class BloodPressure extends Model
             $blood_pressure->q6        = $request->get('q6');
 
             if ($blood_pressure->save()) {
+                // Touch parent model
+                $record = Record::find($record_id);
+                $record->touch();
+
                 return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
             } else {
                 return redirect()->back()->with('message', 'Answer sheet was not saved. Please review the answers')->with('msg_type', 'negative');
@@ -38,6 +42,10 @@ class BloodPressure extends Model
                 'q5' => $request->get('q5'),
                 'q6' => $request->get('q6')
             ]);
+
+            // Touch parent model
+            $record = Record::find($record_id);
+            $record->touch();
 
             return redirect()->back()->with('message', 'Answer sheet was successfully updated.')->with('msg_type', 'positive');
         }

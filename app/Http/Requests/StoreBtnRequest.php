@@ -24,8 +24,7 @@ class StoreBtnRequest extends Request
     public function rules()
     {
         return [
-            'first_name'    => 'required',
-            'last_name'     => 'required',
+            'name'    => 'required',
             'btn'           => 'required|min:8|max:12',
             'mrn'           => 'required|unique:records',
             'gender'        => 'required',
@@ -42,8 +41,7 @@ class StoreBtnRequest extends Request
             'btn.max'       => 'Maximum btn/Phone Number is 12',
             'date_of_birth' => 'Please provide Date of Birth',
             'call_notes'    => 'Please provide Call Notes',
-            'first_name.required' => 'Please provide Patient\'s First name',
-            'last_name.required' => 'Please provide Patient\'s Last name',
+            'name.required' => 'Please provide Patient\'s name',
             'mrn.required'  => 'Medical Record Number is missing',
             'mrn.unique'    => 'Medical Record Number is already existing',
             'gender.required' => 'Please provide the patient\'s gender',

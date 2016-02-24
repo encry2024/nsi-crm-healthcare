@@ -23,6 +23,10 @@ class HighRiskMeds extends Model
             $high_risk_meds->q3        = $request->get('q3');
 
             if ($high_risk_meds->save()) {
+                // Touch parent model
+                $record = Record::find($record_id);
+                $record->touch();
+
                 return redirect()->back()->with('message', 'Answer sheet was successfully saved.')->with('msg_type', 'positive');
             } else {
                 return redirect()->back()->with('message', 'Answer sheet was not saved. Please review the answers')->with('msg_type', 'negative');
@@ -33,6 +37,10 @@ class HighRiskMeds extends Model
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3')
             ]);
+
+            // Touch parent model
+            $record = Record::find($record_id);
+            $record->touch();
 
             return redirect()->back()->with('message', 'Answer sheet was successfully updated.')->with('msg_type', 'positive');
         }
