@@ -18,6 +18,40 @@
                         </h2>
                         <div class="ui divider"></div>
 
+                        <div class="ui grid">
+                        <div class="row">
+                            <div class="ten wide column">
+                                <div class="ui inverted grey segment">
+                                    <form action="{{ route('/home') }}" method="GET" style="margin: 0; !important">
+                                    <div class="ui inverted small form">
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label> Gender </label>
+                                                <select class="ui dropdown aaaa" name="gender">
+                                                    <option value="">All</option>
+                                                    <option {{ request('gender') =='M' ? 'selected':'' }} value="M">Male</option>
+                                                    <option {{ request('gender') =='F' ? 'selected':'' }} value="F">Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="field">
+                                                <label>Age</label>
+                                                <div class="two fields">
+                                                    <div class="field">
+                                                        <input placeholder="from..." type="text" name="age_from" value="{{ request('age_from') }}">
+                                                    </div>
+                                                    <div class="field">
+                                                        <input placeholder="to..." type="text" name="age_to" value="{{ request('age_to') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="ui submit black button">Submit</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                         <table class="ui compact table striped">
                             <thead>
                                 <tr>
@@ -119,4 +153,7 @@
 @stop
 
 @section('scripts')
+    <script>
+        $('.aaaa').dropdown();
+    </script>
 @stop
