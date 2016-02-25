@@ -25,6 +25,7 @@
                                     <th>Patient Name</th>
                                     <th>MRN</th>
                                     <th>Gender</th>
+                                    <th>Age</th>
                                     <th>Disposition</th>
                                     <th>Call Notes</th>
                                     <th>Actions</th>
@@ -37,6 +38,7 @@
                                     <td>{{ $record->name }}</td>
                                     <td>{{ $record->mrn }}</td>
                                     <td>{{ $record->gender }}</td>
+                                    <td>{{ $record->age }}</td>
                                     <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
                                     <td>{{ (strlen($record->call_notes) > 30) ? substr($record->call_notes, 0, 30) . '...' : $record->call_notes }}</td>
                                     <td><a class="ui button primary small" href="{{ route('record.show', $record->id) }}">view</a></td>
