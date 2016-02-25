@@ -16,9 +16,32 @@
         <script src="{{ URL::to('/') }}/semantic/dist/momentjs.js"></script>
 
         @yield('content')
+        <div class="ui dimmer">
+            <div class="content">
+                <div class="center">
+                    <h2 class="ui inverted icon header">
+                        <i class="coffee icon"></i>
+                        You are now on break
+                    </h2>
+                </div>
+            </div>
+        </div>
         @yield('scripts')
 
         <script>
+            $('.break').click(function(){
+                $('body').dimmer('show');
+                $.get( "{{ URL::to('/') }}/user/update_status_break/{{ \Illuminate\Support\Facades\Auth::user()->id }}/BREAK");
+            });
+
+            $('body').dimmer("setting",{
+                onHide: function(){
+                    // $.get( "{{ URL::to('/') }}/user/update_status_break/{{ \Illuminate\Support\Facades\Auth::user()->id }}/IDLE");
+                    // Redirect to Dashboard
+                    window.location.replace("{{ URL::to('/home') }}")
+                }
+            });
+
             $.fn.search.settings.templates = {
             message: function (response, type) {
                 $('.results').empty();

@@ -80,6 +80,11 @@ get('user/update_status/{record}/{status}', function($record, $status) {
     return;
 });
 
+get('user/update_status_break/{user}/{status}', function($user, $status) {
+    $user->addStatus($status);
+    return;
+});
+
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 

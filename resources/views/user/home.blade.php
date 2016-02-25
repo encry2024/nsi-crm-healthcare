@@ -24,8 +24,8 @@
                                     <th></th>
                                     <th>Patient Name</th>
                                     <th>MRN</th>
-                                    <th>Phone</th>
                                     <th>Gender</th>
+                                    <th>Disposition</th>
                                     <th>Call Notes</th>
                                     <th>Actions</th>
                                 </tr>
@@ -36,8 +36,8 @@
                                     <td>{{ ((($records->currentPage() - 1) * $records->perPage()) + ($ctr++) + 1) }}</td>
                                     <td>{{ $record->name }}</td>
                                     <td>{{ $record->mrn }}</td>
-                                    <td>{{ $record->btn }}</td>
                                     <td>{{ $record->gender }}</td>
+                                    <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
                                     <td>{{ (strlen($record->call_notes) > 30) ? substr($record->call_notes, 0, 30) . '...' : $record->call_notes }}</td>
                                     <td><a class="ui button primary small" href="{{ route('record.show', $record->id) }}">view</a></td>
                                 </tr>
@@ -99,10 +99,8 @@
                                 @foreach(\Illuminate\Support\Facades\Auth::user()->records()->where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
                                     <tr>
                                         <td><a href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
-                                        <td>{{ $record->mrn }}</td>
-                                        <td>{{ $record->btn }}</td>
-
-
+                                        <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
+                                        <td> {{ $record->updated_at->diffForHumans() }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
