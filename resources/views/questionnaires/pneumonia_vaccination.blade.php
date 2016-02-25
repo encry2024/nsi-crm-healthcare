@@ -159,7 +159,7 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q8')) error @endif">
-                                            <label for="q8" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                            <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
                                             <div class="ui large left input">
                                                 <input name="q8" id="q8"
                                                        @if(count($record->pneumonia_vaccination) > 0)
@@ -172,7 +172,7 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q9')) error @endif">
-                                            <label for="q9" style="font-size: 16px;">5) If done outside SMG, did you request document from outside provider or patient?</label>
+                                            <label for="q9" style="font-size: 16px;">7) If done outside SMG, did you request document from outside provider or patient?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                 <input type="radio" name="q9" id="q9"
                                                        @if(count($record->pneumonia_vaccination) > 0)
@@ -203,7 +203,7 @@
                                         <div class="two fields">
                                             <div class="grouped fields">
                                                 <div class="field @if($errors->has('q6')) error @endif">
-                                                    <label for="q6" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
+                                                    <label for="q6" style="font-size: 16px;">8) Was document received and recorded in EMR?</label>
                                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                         <input type="radio" name="q6" id="q6"
                                                            @if(count($record->pneumonia_vaccination) > 0)
@@ -233,7 +233,7 @@
 
                                             <div class="grouped fields">
                                                 <div class="field @if($errors->has('q7')) error @endif">
-                                                    <label for="q7" style="font-size: 16px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient?</label>
+                                                    <label for="q7" style="font-size: 16px;">9) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient?</label>
                                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                         <input type="radio" name="q7" id="q7"
                                                            @if(count($record->pneumonia_vaccination) > 0)
