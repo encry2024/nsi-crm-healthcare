@@ -31,13 +31,11 @@
         <script>
             $('.break').click(function(){
                 $('body').dimmer('show');
-                $.get( "{{ URL::to('/') }}/user/update_status_break/{{ \Illuminate\Support\Facades\Auth::user()->id }}/BREAK");
+                $.get( "{{ URL::to('/') }}/user/update_status_break/{{ isset(\Illuminate\Support\Facades\Auth::user()->id)?\Illuminate\Support\Facades\Auth::user()->id:"" }}/BREAK");
             });
 
             $('body').dimmer("setting",{
                 onHide: function(){
-                    // $.get( "{{ URL::to('/') }}/user/update_status_break/{{ \Illuminate\Support\Facades\Auth::user()->id }}/IDLE");
-                    // Redirect to Dashboard
                     window.location.replace("{{ URL::to('/home') }}")
                 }
             });
