@@ -182,4 +182,8 @@ class Record extends Eloquent
 
         return redirect()->back()->with('message', 'Checklist successfully updated')->with('msg_type', 'success');
     }
+
+    public function getLastDisposition() {
+        return History::where('record_id', $this->id)->orderBy('created_at', 'DESC')->first();
+    }
 }

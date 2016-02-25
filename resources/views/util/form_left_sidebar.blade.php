@@ -87,7 +87,7 @@
 
             <div class="field">
                 <label><i class="write icon"></i> Call Disposition </label>
-                <div class="ui selection dropdown">
+                <div class="ui selection dropdown disposition">
                     <input type="hidden" name="disposition">
                     <i class="dropdown icon"></i>
                     <div class="default text">Call Disposition</div>
@@ -123,4 +123,8 @@
 
         //document.getElementById('age').value = age;
     }
+
+    $('.disposition')
+            .dropdown('set selected', {{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition_id:0 }})
+    ;
 </script>
