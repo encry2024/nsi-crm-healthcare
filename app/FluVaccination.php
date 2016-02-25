@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class FluVaccination extends Model
 {
     //
-    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7'];
 
     public static function storeFluVaccination($request, $record_id)
     {
@@ -24,6 +24,7 @@ class FluVaccination extends Model
             $flu_vaccination->q4        = $request->get('q4');
             $flu_vaccination->q5        = $request->get('q5');
             $flu_vaccination->q6        = $request->get('q6');
+            $flu_vaccination->q7        = $request->get('q7');
 
             if ($flu_vaccination->save()) {
                 // Touch parent model
@@ -40,7 +41,9 @@ class FluVaccination extends Model
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
-                'q5' => $request->get('q5')
+                'q5' => $request->get('q5'),
+                'q6' => $request->get('q6'),
+                'q7' => $request->get('q7')
             ]);
 
             // Touch parent model

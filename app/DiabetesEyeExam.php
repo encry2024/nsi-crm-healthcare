@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class DiabetesEyeExam extends Model
 {
     //
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8','q9','q10','q11'];
+    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15','q16','q17','q18'];
 
     public static function storeDiabetesEyeExam($request, $record_id)
     {
@@ -29,6 +29,13 @@ class DiabetesEyeExam extends Model
             $diabetes_eye_exam->q9        = $request->get('q9');
             $diabetes_eye_exam->q10       = $request->get('q10');
             $diabetes_eye_exam->q11       = $request->get('q11');
+            $diabetes_eye_exam->q12       = $request->get('q12');
+            $diabetes_eye_exam->q13       = $request->get('q13');
+            $diabetes_eye_exam->q14       = $request->get('q14');
+            $diabetes_eye_exam->q15       = $request->get('q15');
+            $diabetes_eye_exam->q16       = $request->get('q16');
+            $diabetes_eye_exam->q17       = $request->get('q17');
+            $diabetes_eye_exam->q18       = $request->get('q18');
 
             if ($diabetes_eye_exam->save()) {
                 // Touch parent model
@@ -52,6 +59,13 @@ class DiabetesEyeExam extends Model
                 'q9' => $request->get('q9'),
                 'q10' => $request->get('q10'),
                 'q11' => $request->get('q11'),
+                'q12' => $request->get('q12'),
+                'q13' => $request->get('q13'),
+                'q14' => $request->get('q14'),
+                'q15' => $request->get('q15'),
+                'q16' => $request->get('q16'),
+                'q17' => $request->get('q17'),
+                'q18' => $request->get('q18')
             ]);
 
             // Touch parent model

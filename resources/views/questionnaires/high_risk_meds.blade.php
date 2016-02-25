@@ -35,7 +35,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="field @if($errors->has('q1')) error @endif">
-                                            <label for="q1" style="font-size: 16px;">1) Is patient on High Risk Med?</label>
+                                            <label for="q1" style="font-size: 16px;">1) Refer to the High Risk Medication List.  Is the patient on High Risk Med?</label>
                                             <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                 <input type="radio" name="q1" id="q1"
                                                    @if(count($record->high_risk_meds) > 0)
@@ -63,70 +63,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <label for="q2" style="font-size: 16px;">2) If on High Risk Med, was Pharmacist tasked?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q2" id="q2"
-                                                   @if(count($record->high_risk_meds) > 0)
-                                                       @if ($record->high_risk_meds->q2 == "Yes")
-                                                       checked="checked"
-                                                       @else
-                                                       @endif
-                                                   @endif
-                                                value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q2')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q2" id="q2" value="No"
-                                                @if(count($record->high_risk_meds) > 0)
-                                                    @if ($record->high_risk_meds->q2 == "No")
-                                                    checked="checked"
-                                                    @else
-                                                    @endif
-                                                @endif
-                                                >
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q3')) error @endif">
-                                            <label for="q3" style="font-size: 16px;">3) Was task acted on/closed by Pharmacist?</label>
-                                            <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                <input type="radio" name="q3" id="q3"
-                                                   @if(count($record->high_risk_meds) > 0)
-                                                       @if ($record->high_risk_meds->q3 == "Yes")
-                                                       checked="checked"
-                                                       @else
-                                                       @endif
-                                                   @endif
-                                                value="Yes">
-                                                <label>Yes</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="field @if($errors->has('q3')) error @endif">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="q3" id="q3" value="No"
-                                                @if(count($record->high_risk_meds) > 0)
-                                                    @if ($record->high_risk_meds->q3 == "No")
-                                                    checked="checked"
-                                                    @else
-                                                    @endif
-                                                @endif
-                                                >
-                                                <label>No</label>
-                                            </div>
-                                        </div>
-
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <label style="font-size: 16px;">4) If Yes, task Pharmacist</label>
                                             <div class="ui big left input">
                                                 <input type="text" name="q4"
-                                                       @if(count($record->blood_pressure) > 0)
-                                                       value="{{ $record->blood_pressure->q4 }}"
+                                                       @if(count($record->high_risk_meds) > 0)
+                                                       value="{{ $record->high_risk_meds->q4 }}"
                                                        @else
                                                        value=""
                                                         @endif
@@ -138,8 +80,8 @@
                                             <label style="font-size: 16px;">5) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
                                             <div class="ui big left input">
                                                 <input type="text" name="q5"
-                                                       @if(count($record->blood_pressure) > 0)
-                                                       value="{{ $record->blood_pressure->q5 }}"
+                                                       @if(count($record->high_risk_meds) > 0)
+                                                       value="{{ $record->high_risk_meds->q5 }}"
                                                        @else
                                                        value=""
                                                         @endif

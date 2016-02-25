@@ -111,7 +111,7 @@
 
 
                                         <div class="field @if($errors->has('q4')) error @endif">
-                                            <label for="q4" style="font-size: 14px;">4) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
+                                            <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
                                             <div class="ui large left input">
                                                 <input name="q4" id="q4"
                                                     @if(count($record->breast_cancer_screening) > 0)
