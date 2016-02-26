@@ -33,6 +33,7 @@
                 <div class="ui divider"></div>
                 <a class="item">Profile</a>
                 <a class="item">Settings</a>--}}
+                <a class="item break" href="#">Take a Break</a>
                 <a class="item" href="{{ route('create_user') }}">Create User</a>
                 <a class="item" href="{{ url('/auth/logout') }}">Logout</a>
             </div>

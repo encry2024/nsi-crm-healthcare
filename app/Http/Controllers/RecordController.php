@@ -11,6 +11,7 @@ use App\Http\Requests\StoreBtnRequest;
 use App\Disposition;
 use App\Checklist;
 use Illuminate\Support\Facades\Auth;
+use App\History;
 
 class RecordController extends Controller
 {

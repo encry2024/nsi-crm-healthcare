@@ -10,9 +10,31 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     // Update user status to IDLE
     Auth::user()->addStatus('IDLE');
 
+    $records = App\Record::whereUserId(Auth::user()->id);
+
+    if(!request('gender')) {
+        $setPath = "home";
+    } else {
+        $setPath = "home?";
+    }
+    if(request('gender')) {
+        $records = $records->where('gender', request('gender'));
+        $setPath.="&gender=" . request('gender') . "&";
+    }
+
+    if(request('age_from')) {
+        $records = $records->where('age', '>=', request('age_from'));
+        $setPath.="&age_from=" . request('age_from') . "&";
+    }
+
+    if(request('age_to')) {
+        $records = $records->where('age', '<=', request('age_to'));
+        $setPath.="&age_to=" . request('age_to') . "&";
+    }
+
     $ctr = 0;
-    $records = App\Record::whereUserId(Auth::user()->id)->orderBy('updated_at')->paginate(20);
-    $records->setPath('home');
+    $records = $records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
+    $records->setPath($setPath);
 
     return view('user.home', compact('records', 'ctr'));
 }]);
@@ -77,6 +99,11 @@ get('user/update_status/{record}/{status}', function($record, $status) {
     $user = App\User::find($record->user_id);
 
     $user->addStatus($status, $record->id);
+    return;
+});
+
+get('user/update_status_break/{user}/{status}', function($user, $status) {
+    $user->addStatus($status);
     return;
 });
 
