@@ -10,7 +10,7 @@ class Demographics extends Model
     //
     protected $table = 'demographics';
     protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
-
+    //date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')),
     public static function storeAnswer($request, $record_id)
     {
         $demographics            = Demographics::whereRecordId($record_id)->first();
@@ -24,7 +24,7 @@ class Demographics extends Model
             $demographics->q3        = $request->get('q3');
             $demographics->q4        = $request->get('q4');
             $demographics->q5        = $request->get('q5');
-            $demographics->q6        = $request->get('q6');
+            $demographics->q6        = date('H:i', strtotime($request->get('dem_hour') . ':' . $request->get('dem_minute')));
 
             if ($demographics->save()) {
                 // Touch parent model
@@ -43,7 +43,7 @@ class Demographics extends Model
                     'q3' => $request->get('q3'),
                     'q4' => $request->get('q4'),
                     'q5' => $request->get('q5'),
-                    'q6' => $request->get('q6')
+                    'q6' => date('H:i', strtotime($request->get('dem_hour') . ':' . $request->get('dem_minute')))
                 ]
             );
 

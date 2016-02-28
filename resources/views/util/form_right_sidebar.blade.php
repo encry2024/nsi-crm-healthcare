@@ -1,4 +1,4 @@
-<div class="row">
+{{--<div class="row">
     <div class="ui vertical fluid right tabular menu" style="width: 81.5% !important;">
         <a class="item {{Request::route()->getName()=='record.show'?'active':''}}" href="{{ route('record.show', $record->id) }}">
             Demographics
@@ -31,8 +31,30 @@
             Other
         </a>
     </div>
-</div>
+</div>--}}
 <div class="row">
+    <div class="ui vertical fluid menu">
+        <div class="item">
+            <div class="ui toggle checkbox">
+                <input type="radio" name="status" value="BCW" {!! Auth::user()->status == 'BCW'?'checked="checked"':'' !!}>
+                <label>BCW</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="ui toggle checkbox">
+                <input type="radio" name="status" value="INCALL" {!! Auth::user()->status == 'INCALL'?'checked="checked"':'' !!}>
+                <label>IN-CALL</label>
+            </div>
+        </div>
+
+        <div class="bordered item">
+            <div class="ui toggle checkbox">
+                <input type="radio" name="status" value="ACW" {!! Auth::user()->status == 'ACW'?'checked="checked"':'' !!}>
+                <label>ACW</label>
+            </div>
+        </div>
+    </div>
     <div class="ui secondary raised orange segment">
         <form class="" action="{{ url('record/' . $record->id . '/checklist') }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
