@@ -45,7 +45,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="ui submit black button">Submit</button>
+                                        <button class="ui submit black button">Filter</button>
+                                        <a href="{{ route('/home') }}" class="ui button black">Clear Filter</a>
                                     </div>
                                     </form>
                                 </div>
