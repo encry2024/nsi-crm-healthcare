@@ -29,6 +29,10 @@
         @yield('scripts')
 
         <script>
+            $('.ui.radio.checkbox')
+                    .checkbox()
+            ;
+
             $('.break').click(function(){
                 $('body').dimmer('show');
                 $.get( "{{ URL::to('/') }}/user/update_status_break/{{ isset(\Illuminate\Support\Facades\Auth::user()->id)?\Illuminate\Support\Facades\Auth::user()->id:"" }}/BREAK");

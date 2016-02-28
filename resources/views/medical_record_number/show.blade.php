@@ -7,8 +7,9 @@
 
 
 @section('content')
-    <div class="ui padded grid">
-        <div class="sixteen wide column grid " >
+    <div class="ui padded centered grid">
+        <div class="sixteen wide column grid">
+
             @include('util.messages')
             <div class="ui grid">
                 <div class="four wide column">
@@ -29,7 +30,7 @@
                             </div>
                             <div class="row">
                                 <div class="ui basic segment">
-                                    <form action="{{ route('submit_demographics', $record->id) }}" class="ui form" method="POST">
+                                    <form action="{{ route('submit_demographics', $record->id) }}" class="ui equal width form" method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                             <div class="field @if($errors->has('q1')) error @endif">
@@ -82,7 +83,7 @@
                                             </div>
 
                                             <div class="field @if($errors->has('q3')) error @endif">
-                                                <label for="q3" style="font-size: 15px;">3.If NO, who is listed as PCP in PCT (Patient Care Team)</label>
+                                                <label for="q3" style="font-size: 15px;">3. If NO, who is listed as PCP in PCT (Patient Care Team)</label>
                                                 <div class="ui large left input">
                                                     <input name="q3" id="q3"
                                                         @if(count($record->demographic) > 0)
@@ -94,45 +95,79 @@
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q6')) error @endif">
-                                                <label for="q6" style="font-size: 15px;">4. OK to call?</label>
-                                                <div class="ui large left input">
-                                                    <input name="q6" id="q6"
+                                        <div class="inline fields">
+                                            <div class="field @if($errors->has('q4')) error @endif">
+                                                <label for="q4" style="font-size: 15px;">4. Ok to call?</label>
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q4" id="q4"
                                                         @if(count($record->demographic) > 0)
-                                                            value="{{ $record->demographic->q6 }}"
-                                                        @else
-                                                            value=""
+                                                            @if ($record->demographic->q4 == "yes")
+                                                                checked="checked"
+                                                            @else
+                                                            @endif
                                                         @endif
-                                                    >
+                                                        value="yes">
+                                                    <label>Yes</label>
                                                 </div>
                                             </div>
 
                                             <div class="field @if($errors->has('q4')) error @endif">
-                                                <label for="q4" style="font-size: 15px;">5. Is there a preferred time of the day that patient would like to be called? If yes, Please provide the time.</label>
-                                                <div class="ui large left input">
-                                                    <input name="q4" id="q4"
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q4" id="q4"
                                                        @if(count($record->demographic) > 0)
-                                                       value="{{ $record->demographic->q4 }}"
-                                                       @else
-                                                       value=""
+                                                           @if ($record->demographic->q4 == "no")
+                                                                checked="checked"
+                                                           @else
+                                                           @endif
                                                        @endif
-                                                    >
+                                                       value="no">
+                                                    <label>No</label>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="field @if($errors->has('q5')) error @endif">
-                                                <label style="font-size: 15px;">6. Date of initial chart review</label>
-                                                <div class="ui large left icon input">
-                                                    <input name="q5" id="date_chart_review"
-                                                        @if(count($record->demographic) > 0)
-                                                            value="{{ $record->demographic->q5 }}"
-                                                        @else
-                                                            value=""
-                                                        @endif
-                                                    readonly>
-                                                    <i class="calendar icon"></i>
+                                        <div class="field">
+                                            <label for="q6" style="font-size: 15px;">5. Is there a preferred time of the day that patient would like to be called? If yes, Please provide the time.</label>
+                                            @if(count($record->demographic) == 0)
+                                            @else
+                                                @if ($record->demographic->q6 != NULL)
+                                                <label><span class="ui label green">Scheduled Time: {{ $record->demographic->q6 }}</span></label>
+                                                @else
+                                                @endif
+                                            @endif
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <label>Hour <i class="asterisk icon"></i> </label>
+                                                    <select class="ui dropdown" name="dem_hour">
+                                                        @for($i=0;$i<=23;$i++)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div class="field">
+                                                    <label>Minutes <i class="asterisk icon"></i> </label>
+                                                    <select class="ui dropdown" name="dem_minute">
+                                                    @for($i=0;$i<=59;$i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q5')) error @endif">
+                                            <label style="font-size: 15px;">6. Date of initial chart review</label>
+                                            <div class="ui large left icon input">
+                                                <input name="q5" id="date_chart_review"
+                                                    @if(count($record->demographic) > 0)
+                                                        value="{{ $record->demographic->q5 }}"
+                                                    @else
+                                                        value=""
+                                                    @endif
+                                                readonly>
+                                                <i class="calendar icon"></i>
+                                            </div>
+                                        </div>
 
                                         <div class="ui divider"></div>
 
