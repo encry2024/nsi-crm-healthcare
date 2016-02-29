@@ -56,10 +56,6 @@
             Welcome,&nbsp;&nbsp;&nbsp;
             <i class="user icon"></i> {{ Auth::user()->name }} <i class="dropdown icon"></i>
             <div class="menu">
-                {{--<a class="item" href="{{ route('user.create') }}">Create User</a>
-                <div class="ui divider"></div>
-                <a class="item">Profile</a>
-                <a class="item">Settings</a>--}}
                 <a class="item break" href="#">Take a Break</a>
                 <a class="item" href="{{ route('create_user') }}">Create User</a>
                 <a class="item" href="{{ url('/auth/logout') }}">Logout</a>
