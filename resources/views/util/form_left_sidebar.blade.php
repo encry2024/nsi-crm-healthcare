@@ -99,6 +99,14 @@
                 </div>
             </div>
 
+            <div class="field @if($errors->has('date_of_birth')) error @endif">
+                <label><i class="write icon"></i> Update Date and Time </label>
+                <div class="ui small left icon input">
+                    <input name="update_timestamp" value="{{ date('F d, Y', strtotime($record->update_timestamp)) }}" placeholder="Update date and time" id="update_timestamp" readonly>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+
             <div class="field @if($errors->has('call_notes')) error @endif">
                 <label><i class="write icon"></i> Call Note </label>
                 <div class="ui small left icon input">

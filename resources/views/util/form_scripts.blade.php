@@ -4,6 +4,11 @@
         autoclose: true
     });
 
+    $("#update_timestamp").datepicker({
+        format: 'MM dd, yyyy',
+        autoclose: true
+    });
+
     $("#v_d").datepicker({
         format: 'MM dd, yyyy',
         autoclose: true

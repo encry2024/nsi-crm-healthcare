@@ -16,7 +16,7 @@
                 </div>
                 <div class="twelve wide column">
                     <div class="ui grid">
-                        <div class="twelve wide column">
+                        <div class="eleven wide column">
                             <div class="row">
                                 <h2 class="header">
                                     <div class="content">
@@ -28,12 +28,6 @@
                             <div class="row">
                                 <div class="ui divider"></div>
                             </div>
-
-                            {{--@if (count($record->colon_cancer_screening) == 0)
-                                {{ Input::old('q1') }}
-                            @else
-                                {{ $record->colon_cancer_screening->q1 }}
-                            @endif--}}
 
                             <div class="row">
                                 <div class="ui basic segment">
@@ -200,7 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="four wide column">
+                        <div class="five wide column">
                             @include('util.form_right_sidebar')
                         </div>
                     </div>

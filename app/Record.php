@@ -20,7 +20,7 @@ class Record extends Eloquent
         ['name' => 'hrm', 'description' => 'High Risk Meds']
     );
 
-    protected $fillable = ['name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'reference_no', 'date_of_birth', 'call_notes', 'btn', 'last_disposition', 'insurance', 'pcp', 'gender', 'rn', 'created_at', 'updated_at', 'update_timestamp'];
 
     public function history() {
         return $this->hasMany('App\History')->orderBy('created_at');
@@ -140,6 +140,7 @@ class Record extends Eloquent
             'age'           => $request->get('age'),
             'call_notes'    => $request->get('call_notes'),
             'last_disposition'  => $request->get('disposition'),
+            'update_timestamp' => date('Y-m-d', strtotime($request->get('update_timestamp'))),
             'rn'  => $request->get('rn')
         ]);
 
@@ -170,14 +171,14 @@ class Record extends Eloquent
     }
 
     public function updateChecklist(Request $request) {
-        $checklists = $request->get('checklist');
+        $checklists = $request->all();
+        unset($checklists['_token']);
 
-        // Reset all checklist to 0
-        Checklist::where('record_id', $this->id)->update(array('checked' => 0));
 
         // Update each submitted checklist to 1
-        foreach($checklists as $checklist) {
-            Checklist::where('record_id', $this->id)->where('name', $checklist)->update(array('checked' => 1));
+        foreach($checklists as $index => $value) {
+            $temp = explode("_", $index);
+            Checklist::where('id', $temp[1])->update(array('value' => $value));
         }
 
         return redirect()->back()->with('message', 'Checklist successfully updated')->with('msg_type', 'success');
