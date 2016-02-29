@@ -26,13 +26,30 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="ui form">
                 <div class="field">
-                    <label>Pending Items</label>
+                    <label><h3>Tasks</h3></label>
                 </div>
                 @foreach($record->checklist as $checklist)
                     <div class="inline field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" id="check-{{ $checklist->id }}" name="checklist[]" value="{{ $checklist->name }}" @if($checklist->checked != 0) checked="checked" @endif>
-                            <label style="cursor: pointer;" for="check-{{ $checklist->id }}">{{ $checklist->description }}</label>
+                        <label style="cursor: pointer;">{{ $checklist->description }}</label>
+                        <div class="inline fields">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="rid_{{ $checklist->id }}" @if($checklist->value == 'completed') checked="checked" @endif tabindex="0"class="hidden" value="completed">
+                                    <label>Completed</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="rid_{{ $checklist->id }}" @if($checklist->value == 'pended') checked="checked" @endif tabindex="0" class="hidden" value="pended">
+                                    <label>Pended</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="rid_{{ $checklist->id }}" @if($checklist->value == 'na') checked="checked" @endif tabindex="0" class="hidden" value="na">
+                                    <label>NA</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach

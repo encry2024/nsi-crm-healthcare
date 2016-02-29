@@ -16,7 +16,7 @@
                 </div>
                 <div class="twelve wide column">
                     <div class="ui grid">
-                        <div class="twelve wide column">
+                        <div class="eleven wide column">
                             <form method="POST" action="{{ route('submit_diabetes_eye_exam', $record->id) }}" class="ui form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="row">
@@ -191,7 +191,7 @@
                             </form>
                         </div>
 
-                        <div class="four wide column">
+                        <div class="five wide column">
                             @include('util.form_right_sidebar')
                         </div>
                     </div>
