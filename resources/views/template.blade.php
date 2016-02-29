@@ -29,9 +29,24 @@
         @yield('scripts')
 
         <script>
-            $('.ui.radio.checkbox')
-                    .checkbox()
+            $('.ui.dropdown').dropdown();
+
+            @if (isset($record))
+            $('.toggle.checkbox')
+                    .checkbox({
+                        // check all children
+                        onChecked: function() {
+                            $.get( "{{ URL::to('/') }}/user/update_status/{{ $record->id }}/" + $(this).val());
+                        },
+                        // uncheck all children
+                        onUnchecked: function() {
+
+                        }
+                    })
             ;
+            @endif
+
+            $('.ui.radio.checkbox').checkbox();
 
             $('.break').click(function(){
                 $('body').dimmer('show');
