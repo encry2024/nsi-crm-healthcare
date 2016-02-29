@@ -102,7 +102,11 @@
             <div class="field @if($errors->has('date_of_birth')) error @endif">
                 <label><i class="write icon"></i> Update Date and Time </label>
                 <div class="ui small left icon input">
-                    <input name="update_timestamp" value="{{ date('F d, Y', strtotime($record->update_timestamp)) }}" placeholder="Update date and time" id="update_timestamp" readonly>
+                    <input name="update_timestamp" value="
+                    @if ($record->update_timestamp != NULL)
+                        {{ date('F d, Y', strtotime($record->update_timestamp)) }}
+                    @endif
+                    " placeholder="Update date and time" id="update_timestamp" readonly>
                     <i class="calendar icon"></i>
                 </div>
             </div>
