@@ -33,15 +33,31 @@
 
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 14px;">1. What is the date of the most recent Mammogram?</label>
-                                            <div class="ui large left icon input">
-                                                <input name="q1" id="v_d"
-                                                    @if(count($record->breast_cancer_screening) > 0)
-                                                        value="{{ $record->breast_cancer_screening->q1 }}"
-                                                    @else
-                                                        value=""
-                                                    @endif
-                                                >
-                                                <i class="calendar icon"></i>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="ui large left icon input">
+                                                        <input name="q1" id="v_d"
+                                                            @if(count($record->breast_cancer_screening) > 0)
+                                                                value="{{ $record->breast_cancer_screening->q1 }}"
+                                                            @else
+                                                                value=""
+                                                            @endif
+                                                        >
+                                                        <i class="calendar icon"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui large left input">
+                                                        <input name="q1_a"
+                                                               @if(count($record->breast_cancer_screening) > 0)
+                                                               value="{{ $record->breast_cancer_screening->q1_a }}"
+                                                               @else
+                                                               value=""
+                                                               @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -112,14 +128,74 @@
 
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                            <div class="ui large left input">
-                                                <input name="q4" id="q4"
-                                                    @if(count($record->breast_cancer_screening) > 0)
-                                                        value="{{ $record->breast_cancer_screening->q4 }}"
-                                                    @else
-                                                        value=""
-                                                    @endif
-                                                >
+                                            <div class="two fields">
+                                                <div class="grouped fields">
+                                                    <div class="inline fields">
+                                                        <div class="field">
+                                                            <div class="ui radio checkbox">
+                                                                <input type="radio" name="q4_a" value="Successful"
+                                                                @if(count($record->breast_cancer_screening) > 0)
+                                                                    @if ($record->breast_cancer_screening->q4_a == "Successful")
+                                                                    checked="checked"
+                                                                    @else
+                                                                    @endif
+                                                                @endif
+                                                                >
+                                                                <label>Successful</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <div class="ui radio checkbox">
+                                                                <input type="radio" name="q4_a" value="Pending"
+                                                                @if(count($record->breast_cancer_screening) > 0)
+                                                                    @if ($record->breast_cancer_screening->q4_a == "Pending")
+                                                                        checked="checked"
+                                                                    @else
+                                                                    @endif
+                                                                @endif
+                                                                >
+                                                                <label>Pending</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <div class="ui radio checkbox">
+                                                                <input type="radio" name="q4_a" value="Call Back"
+                                                                @if(count($record->breast_cancer_screening) > 0)
+                                                                    @if ($record->breast_cancer_screening->q4_a == "Call Back")
+                                                                    checked="checked"
+                                                                    @else
+                                                                    @endif
+                                                                @endif
+                                                                >
+                                                                <label>Call Back</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <div class="ui radio checkbox">
+                                                                <input type="radio" name="q4_a" value="N/A"
+                                                                @if(count($record->breast_cancer_screening) > 0)
+                                                                    @if ($record->breast_cancer_screening->q4_a == "N/A")
+                                                                    checked="checked"
+                                                                    @else
+                                                                    @endif
+                                                                @endif
+                                                                >
+                                                                <label>N/A</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <div class="ui large left input">
+                                                        <input name="q4" id="q4"
+                                                            @if(count($record->breast_cancer_screening) > 0)
+                                                                value="{{ $record->breast_cancer_screening->q4 }}"
+                                                            @else
+                                                                value=""
+                                                            @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

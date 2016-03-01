@@ -9,7 +9,7 @@ class BreastCancerScreening extends Model
 {
     //
     protected $table = 'breast_cancer_screenings';
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8'];
+    protected $fillable = ['q1','q1_a','q2','q3','q4','q4_a','q5','q6','q7','q8'];
 
 
     public static function storeBreastCancerScreening($request, $record_id)
@@ -21,9 +21,11 @@ class BreastCancerScreening extends Model
             $breast_cancer_screening->record_id = $record_id;
             $breast_cancer_screening->user_id   = Auth::user()->id;
             $breast_cancer_screening->q1        = $request->get('q1');
+            $breast_cancer_screening->q1_a        = $request->get('q1_a');
             $breast_cancer_screening->q2        = $request->get('q2');
             $breast_cancer_screening->q3        = $request->get('q3');
             $breast_cancer_screening->q4        = $request->get('q4');
+            $breast_cancer_screening->q4_a        = $request->get('q4_a');
             $breast_cancer_screening->q5        = $request->get('q5');
             $breast_cancer_screening->q6        = $request->get('q6');
             $breast_cancer_screening->q7        = $request->get('q7');
@@ -41,9 +43,11 @@ class BreastCancerScreening extends Model
         } else {
             $breast_cancer_screening->update([
                 'q1' => $request->get('q1'),
+                'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
+                'q4_a' => $request->get('q4_a'),
                 'q5' => $request->get('q5'),
                 'q6' => $request->get('q6'),
                 'q7' => $request->get('q7'),

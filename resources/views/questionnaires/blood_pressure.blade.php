@@ -34,63 +34,78 @@
                                     <form method="POST" action="{{ route('submit_blood_pressure', $record->id) }}" class="ui form">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                        <div class="two fields">
-                                            <div class="grouped fields">
-                                                <div class="field @if($errors->has('q1')) error @endif">
-                                                    <label for="q1" style="font-size: 16px;">1) Does the patient have a diagnosis of hypertension or a history of hypertension?</label>
-                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                        <input type="radio" name="q1" id="q1"
-                                                           @if(count($record->blood_pressure) > 0)
-                                                               @if ($record->blood_pressure->q1 == "Yes")
-                                                                   checked="checked"
-                                                               @else
-                                                               @endif
-                                                           @endif
-                                                        value="Yes">
-                                                        <label>Yes</label>
-                                                    </div>
-                                                </div>
 
-                                                <div class="field @if($errors->has('q1')) error @endif">
-                                                    <div class="ui radio checkbox">
-                                                        <input type="radio" name="q1" id="q1"
-                                                           @if(count($record->blood_pressure) > 0)
-                                                               @if ($record->blood_pressure->q1 == "No")
-                                                                   checked="checked"
-                                                               @else
-                                                               @endif
+                                        <div class="grouped fields">
+                                            <div class="field @if($errors->has('q1')) error @endif">
+                                                <label for="q1" style="font-size: 16px;">1) Does the patient have a diagnosis of hypertension or a history of hypertension?</label>
+                                                <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                    <input type="radio" name="q1" id="q1"
+                                                       @if(count($record->blood_pressure) > 0)
+                                                           @if ($record->blood_pressure->q1 == "Yes")
+                                                               checked="checked"
+                                                           @else
                                                            @endif
-                                                         value="No">
-                                                        <label>No</label>
-                                                    </div>
+                                                       @endif
+                                                    value="Yes">
+                                                    <label>Yes</label>
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q2')) error @endif">
-                                                <label style="font-size: 16px;">2) Most Recent BP reading</label>
-                                                <div class="ui big left input">
-                                                    <input type="text" name="q2"
+                                            <div class="field @if($errors->has('q1')) error @endif">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q1" id="q1"
                                                        @if(count($record->blood_pressure) > 0)
-                                                            value="{{ $record->blood_pressure->q2 }}"
-                                                       @else
-                                                            value=""
+                                                           @if ($record->blood_pressure->q1 == "No")
+                                                               checked="checked"
+                                                           @else
+                                                           @endif
                                                        @endif
-                                                    >
+                                                     value="No">
+                                                    <label>No</label>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q2')) error @endif">
+                                            <label style="font-size: 16px;">2) What is the most recent BP reading? </label>
+                                            <div class="ui big left input">
+                                                <input type="text" name="q2"
+                                                   @if(count($record->blood_pressure) > 0)
+                                                   value="{{ $record->blood_pressure->q2 }}"
+                                                   @else
+                                                   value=""
+                                                   @endif
+                                                >
                                             </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q7')) error @endif">
                                             <label style="font-size: 16px;">3) What is the date of the most recent BP from an office visit?</label>
-                                            <div class="ui big left icon input">
-                                                <input type="text" name="q7" id="most_recent_bp"
-                                                   @if(count($record->blood_pressure) > 0)
-                                                   value="{{ $record->blood_pressure->q7 }}"
-                                                   @else
-                                                   value=""
-                                                   @endif
-                                                >
-                                                <i class="calendar icon"></i>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="ui big left icon input">
+                                                        <input type="text" name="q7" id="most_recent_bp"
+                                                           @if(count($record->blood_pressure) > 0)
+                                                           value="{{ $record->blood_pressure->q7 }}"
+                                                           @else
+                                                           value=""
+                                                           @endif
+                                                        >
+                                                        <i class="calendar icon"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui big left input">
+                                                        <input type="text" name="q7_a"
+                                                           @if(count($record->blood_pressure) > 0)
+                                                           value="{{ $record->blood_pressure->q7_a }}"
+                                                           @else
+                                                           value=""
+                                                           @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -160,14 +175,77 @@
 
                                         <div class="field @if($errors->has('q5')) error @endif">
                                             <label style="font-size: 16px;">6) What was the result of the outreach?</label>
-                                            <div class="ui big left input">
-                                                <input type="text" name="q5"
-                                                   @if(count($record->blood_pressure) > 0)
-                                                        value="{{ $record->blood_pressure->q5 }}"
-                                                   @else
-                                                        value=""
-                                                   @endif
-                                                >
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="grouped fields">
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q5_a" value="Successful"
+                                                                           @if(count($record->blood_pressure) > 0)
+                                                                           @if ($record->blood_pressure->q5_a == "Successful")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Successful</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q5_a" value="Pending"
+                                                                           @if(count($record->blood_pressure) > 0)
+                                                                           @if ($record->blood_pressure->q5_a == "Pending")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Pending</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q5_a" value="Call Back"
+                                                                           @if(count($record->blood_pressure) > 0)
+                                                                           @if ($record->blood_pressure->q5_a == "Call Back")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Call Back</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q5_a" value="N/A"
+                                                                           @if(count($record->blood_pressure) > 0)
+                                                                           @if ($record->blood_pressure->q5_a == "N/A")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>N/A</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui big left input">
+                                                        <input type="text" name="q5"
+                                                           @if(count($record->blood_pressure) > 0)
+                                                                value="{{ $record->blood_pressure->q5 }}"
+                                                           @else
+                                                                value=""
+                                                           @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
