@@ -36,6 +36,7 @@ class DiabetesA1CController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        DiabetesA1C::unguard();
         $store_diabetes_a1_c = DiabetesA1C::storeDiabetesA1C($request, $record_id);
 
         return $store_diabetes_a1_c;

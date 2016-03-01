@@ -37,6 +37,7 @@ class PneumoniaVaccinationController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        PneumoniaVaccination::unguard();
         $store_pneumonia_vaccination = PneumoniaVaccination::storePneumoniaVaccination($request, $record_id);
 
         return $store_pneumonia_vaccination;

@@ -21,7 +21,9 @@ class FluVaccination extends Model
             $flu_vaccination->q1        = $request->get('q1');
             $flu_vaccination->q1_a        = $request->get('q1_a');
             $flu_vaccination->q2        = $request->get('q2');
+            $flu_vaccination->q2_a        = $request->get('q2_a');
             $flu_vaccination->q3        = $request->get('q3');
+            $flu_vaccination->q3_a        = $request->get('q3_a');
             $flu_vaccination->q4        = $request->get('q4');
             $flu_vaccination->q5        = $request->get('q5');
             $flu_vaccination->q6        = $request->get('q6');
@@ -42,7 +44,9 @@ class FluVaccination extends Model
                 'q1' => $request->get('q1'),
                 'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
+                'q2_a' => $request->get('q2_a'),
                 'q3' => $request->get('q3'),
+                'q3_a' => $request->get('q3_a'),
                 'q4' => $request->get('q4'),
                 'q5' => $request->get('q5'),
                 'q6' => $request->get('q6'),

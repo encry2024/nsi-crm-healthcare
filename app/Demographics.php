@@ -22,10 +22,13 @@ class Demographics extends Model
             $demographics->q1        = $request->get('q1');
             $demographics->q1_a        = $request->get('q1_a');
             $demographics->q2        = $request->get('q2');
+            $demographics->q2_a        = $request->get('q2_a');
             $demographics->q3        = $request->get('q3');
             $demographics->q4        = $request->get('q4');
+            $demographics->q4_a        = $request->get('q4_a');
             $demographics->q5        = $request->get('q5');
-            $demographics->q6        = date('H:i', strtotime($request->get('dem_hour') . ':' . $request->get('dem_minute')));
+            $demographics->q6        = $request->get('q6');
+            $demographics->q6_a        = $request->get('q6_a');
 
             if ($demographics->save()) {
                 // Touch parent model
@@ -42,10 +45,13 @@ class Demographics extends Model
                     'q1' => $request->get('q1'),
                     'q1_a' => $request->get('q1_a'),
                     'q2' => $request->get('q2'),
+                    'q2_a' => $request->get('q2_a'),
                     'q3' => $request->get('q3'),
                     'q4' => $request->get('q4'),
+                    'q4_a' => $request->get('q4_a'),
                     'q5' => $request->get('q5'),
-                    'q6' => date('H:i', strtotime($request->get('dem_hour') . ':' . $request->get('dem_minute')))
+                    'q6' => $request->get('q6'),
+                    'q6_a' => $request->get('q6_a')
                 ]
             );
 

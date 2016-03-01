@@ -37,6 +37,7 @@ class DiabetesEyeExamController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        DiabetesEyeExam::unguard();
         $store_diabetes_eye_exam = DiabetesEyeExam::storeDiabetesEyeExam($request, $record_id);
 
         return $store_diabetes_eye_exam;

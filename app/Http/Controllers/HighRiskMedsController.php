@@ -37,6 +37,7 @@ class HighRiskMedsController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        HighRiskMeds::unguard();
         $store_high_risk_meds = HighRiskMeds::storeHighRiskMeds($request, $record_id);
 
         return $store_high_risk_meds;

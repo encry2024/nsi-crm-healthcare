@@ -34,6 +34,7 @@ class FluVaccinationController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        FluVaccination::unguard();
         $store_flu_vaccination = FluVaccination::storeFluVaccination($request, $record_id);
 
         return $store_flu_vaccination;

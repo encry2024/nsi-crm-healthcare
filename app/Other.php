@@ -30,7 +30,9 @@ class Other extends Model
             $other->q10       = $request->get('q10');
             $other->q11       = $request->get('q11');
             $other->q12       = $request->get('q12');
+            $other->q12_a       = $request->get('q12_a');
             $other->q13       = $request->get('q13');
+            $other->q13_a       = $request->get('q13_a');
 
             if ($other->save()) {
                 // Touch parent model
@@ -55,7 +57,9 @@ class Other extends Model
                 'q10' => $request->get('q10'),
                 'q11' => $request->get('q11'),
                 'q12' => $request->get('q12'),
-                'q13' => $request->get('q13')
+                'q12_a' => $request->get('q12_a'),
+                'q13' => $request->get('q13'),
+                'q13_a' => $request->get('q13_a')
             ]);
 
             // Touch parent model

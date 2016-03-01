@@ -96,6 +96,17 @@
                                                     <label>No</label>
                                                 </div>
                                             </div>
+                                            <div class="field">
+                                                <div class="ui large left input">
+                                                    <input name="q2_a" id="q2_a"
+                                                           @if(count($record->demographic) > 0)
+                                                           value="{{ $record->demographic->q2_a }}"
+                                                           @else
+                                                           value=""
+                                                            @endif
+                                                    >
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
@@ -140,33 +151,63 @@
                                                     <label>No</label>
                                                 </div>
                                             </div>
+
+                                            <div class="field">
+                                                <div class="ui large left input">
+                                                    <input name="q4_a" id="q4_a"
+                                                           @if(count($record->demographic) > 0)
+                                                           value="{{ $record->demographic->q4_a }}"
+                                                           @else
+                                                           value=""
+                                                            @endif
+                                                    >
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="field">
                                             <label for="q6" style="font-size: 15px;">5. Is there a preferred time of the day that patient would like to be called? If yes, Please provide the time.</label>
-                                            @if(count($record->demographic) == 0)
-                                            @else
-                                                @if ($record->demographic->q6 != NULL)
-                                                <label><span class="ui label green">Scheduled Time: {{ $record->demographic->q6 }}</span></label>
-                                                @else
-                                                @endif
-                                            @endif
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <label>Hour <i class="asterisk icon"></i> </label>
-                                                    <select class="ui dropdown" name="dem_hour">
-                                                        @for($i=0;$i<=23;$i++)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                        @endfor
-                                                    </select>
+                                            <div class="inline fields">
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q6" id="q6"
+                                                               @if(count($record->demographic) > 0)
+                                                               @if ($record->demographic->q6 == "no")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                               @endif
+                                                               value="no">
+                                                        <label>No</label>
+                                                    </div>
                                                 </div>
+
+                                                <div class="field @if($errors->has('q6')) error @endif">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="q6" id="q6"
+                                                               @if(count($record->demographic) > 0)
+                                                               @if ($record->demographic->q6 == "yes")
+                                                               checked="checked"
+                                                               @else
+                                                               @endif
+                                                               @endif
+                                                               value="yes">
+                                                        <label>Yes / Time</label>
+                                                    </div>
+                                                </div>
+
+
+
                                                 <div class="field">
-                                                    <label>Minutes <i class="asterisk icon"></i> </label>
-                                                    <select class="ui dropdown" name="dem_minute">
-                                                    @for($i=0;$i<=59;$i++)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
-                                                    @endfor
-                                                    </select>
+                                                    <div class="ui large left input">
+                                                        <input name="q6_a" id="q6_a"
+                                                               @if(count($record->demographic) > 0)
+                                                               value="{{ $record->demographic->q6_a }}"
+                                                               @else
+                                                               value=""
+                                                                @endif
+                                                        >
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
