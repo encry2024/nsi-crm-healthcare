@@ -36,15 +36,31 @@
 
                                         <div class="field @if($errors->has('q1')) error @endif">
                                             <label style="font-size: 16px;">1) What is the date of most recent pneumovax for patients 65 or older (N/A if pt < 65) </label>
-                                            <div class="ui big left icon input">
-                                                <input name="q1" id="v_d"
-                                                   @if(count($record->pneumonia_vaccination) > 0)
-                                                   value="{{ $record->pneumonia_vaccination->q1 }}"
-                                                   @else
-                                                   value=""
-                                                   @endif
-                                                >
-                                                <i class="calendar icon"></i>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="ui big left icon input">
+                                                        <input name="q1" id="v_d"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                           value="{{ $record->pneumonia_vaccination->q1 }}"
+                                                           @else
+                                                           value=""
+                                                           @endif
+                                                        >
+                                                        <i class="calendar icon"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui big left input">
+                                                        <input name="q1_a"
+                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                           value="{{ $record->pneumonia_vaccination->q1_a }}"
+                                                           @else
+                                                           value=""
+                                                           @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -160,14 +176,77 @@
 
                                         <div class="field @if($errors->has('q8')) error @endif">
                                             <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
-                                            <div class="ui large left input">
-                                                <input name="q8" id="q8"
-                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                       value="{{ $record->pneumonia_vaccination->q8 }}"
-                                                       @else
-                                                       value=""
-                                                        @endif
-                                                >
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="grouped fields">
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q8_a" value="Successful"
+                                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                                           @if ($record->pneumonia_vaccination->q8_a == "Successful")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Successful</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q8_a" value="Pending"
+                                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                                           @if ($record->pneumonia_vaccination->q8_a == "Pending")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Pending</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q8_a" value="Call Back"
+                                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                                           @if ($record->pneumonia_vaccination->q8_a == "Call Back")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Call Back</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q8_a" value="N/A"
+                                                                           @if(count($record->pneumonia_vaccination) > 0)
+                                                                           @if ($record->pneumonia_vaccination->q8_a == "N/A")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>N/A</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui large left input">
+                                                        <input name="q8" id="q8"
+                                                               @if(count($record->pneumonia_vaccination) > 0)
+                                                               value="{{ $record->pneumonia_vaccination->q8 }}"
+                                                               @else
+                                                               value=""
+                                                               @endif
+                                                        >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

@@ -168,48 +168,109 @@
                                             </div>
                                         </div>
 
-                                        <div class="two fields">
-                                            <div class="grouped fields">
-                                                <div class="field @if($errors->has('q7')) error @endif">
-                                                    <label for="q7" style="font-size: 16px;">7) If out of range (>8%) or not done in past 6 months, was outreach made?</label>
-                                                    <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
-                                                        <input type="radio" name="q7" id="q7"
-                                                           @if(count($record->diabetes_a1_c) > 0)
-                                                               @if ($record->diabetes_a1_c->q7 == "Yes")
-                                                               checked="checked"
-                                                               @else
-                                                               @endif
+                                        <div class="grouped fields">
+                                            <div class="field @if($errors->has('q7')) error @endif">
+                                                <label for="q7" style="font-size: 16px;">7) If out of range (>8%) or not done in past 6 months, was outreach made?</label>
+                                                <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                    <input type="radio" name="q7" id="q7"
+                                                       @if(count($record->diabetes_a1_c) > 0)
+                                                           @if ($record->diabetes_a1_c->q7 == "Yes")
+                                                           checked="checked"
+                                                           @else
                                                            @endif
-                                                        value="Yes">
-                                                        <label>Yes</label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="field @if($errors->has('q7')) error @endif">
-                                                    <div class="ui radio checkbox">
-                                                        <input type="radio" name="q7" id="q7" value="No"
-                                                        @if(count($record->diabetes_a1_c) > 0)
-                                                            @if ($record->diabetes_a1_c->q7 == "No")
-                                                            checked="checked"
-                                                            @else
-                                                            @endif
-                                                        @endif
-                                                        >
-                                                        <label>No</label>
-                                                    </div>
+                                                       @endif
+                                                    value="Yes">
+                                                    <label>Yes</label>
                                                 </div>
                                             </div>
 
-                                            <div class="field @if($errors->has('q9')) error @endif">
-                                                <label style="font-size: 16px;">8) What was the result of the outreach?</label>
-                                                <div class="ui big left input">
-                                                    <input type="text" name="q9"
+                                            <div class="field @if($errors->has('q7')) error @endif">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q7" id="q7" value="No"
+                                                    @if(count($record->diabetes_a1_c) > 0)
+                                                        @if ($record->diabetes_a1_c->q7 == "No")
+                                                        checked="checked"
+                                                        @else
+                                                        @endif
+                                                    @endif
+                                                    >
+                                                    <label>No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field @if($errors->has('q9')) error @endif">
+                                            <label style="font-size: 16px;">8) What was the result of the outreach?</label>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <div class="grouped fields">
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q9_a" value="Successful"
+                                                                           @if(count($record->diabetes_a1_c) > 0)
+                                                                           @if ($record->diabetes_a1_c->q9_a == "Successful")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Successful</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q9_a" value="Pending"
+                                                                           @if(count($record->diabetes_a1_c) > 0)
+                                                                           @if ($record->diabetes_a1_c->q9_a == "Pending")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Pending</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q9_a" value="Call Back"
+                                                                           @if(count($record->diabetes_a1_c) > 0)
+                                                                           @if ($record->diabetes_a1_c->q9_a == "Call Back")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>Call Back</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <input type="radio" name="q9_a" value="N/A"
+                                                                           @if(count($record->diabetes_a1_c) > 0)
+                                                                           @if ($record->diabetes_a1_c->q9_a == "N/A")
+                                                                           checked="checked"
+                                                                    @else
+                                                                            @endif
+                                                                            @endif
+                                                                    >
+                                                                    <label>N/A</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <div class="ui big left input">
+                                                        <input type="text" name="q9"
                                                            @if(count($record->diabetes_a1_c) > 0)
                                                            value="{{ $record->diabetes_a1_c->q9 }}"
                                                            @else
                                                            value=""
-                                                            @endif
-                                                    >
+                                                           @endif
+                                                        >
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BloodPressure extends Model
 {
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q7'];
+    protected $fillable = ['q1','q2','q3','q4','q5','q5_a','q6','q7','q7_a'];
 
     public static function storeBloodPressure($request, $record_id)
     {
@@ -22,8 +22,10 @@ class BloodPressure extends Model
             $blood_pressure->q3        = $request->get('q3');
             $blood_pressure->q4        = $request->get('q4');
             $blood_pressure->q5        = $request->get('q5');
+            $blood_pressure->q5_a        = $request->get('q5_a');
             $blood_pressure->q6        = $request->get('q6');
             $blood_pressure->q7        = $request->get('q7');
+            $blood_pressure->q7_a        = $request->get('q7_a');
 
             if ($blood_pressure->save()) {
                 // Touch parent model
@@ -41,8 +43,10 @@ class BloodPressure extends Model
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
                 'q5' => $request->get('q5'),
+                'q5_a' => $request->get('q5_a'),
                 'q6' => $request->get('q6'),
-                'q7' => $request->get('q7')
+                'q7' => $request->get('q7'),
+                'q7_a' => $request->get('q7_a')
             ]);
 
             // Touch parent model

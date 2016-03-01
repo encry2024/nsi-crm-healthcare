@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class DiabetesA1C extends Model
 {
     protected $table = 'diabetes_a1cs';
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8','q9','q10','q11'];
+    protected $fillable = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q9_a','q10','q11'];
 
     //
     public static function storeDiabetesA1C($request, $record_id)
@@ -28,6 +28,7 @@ class DiabetesA1C extends Model
             $diabetes_a1_c->q7        = $request->get('q7');
             $diabetes_a1_c->q8        = $request->get('q8');
             $diabetes_a1_c->q9        = $request->get('q9');
+            $diabetes_a1_c->q9_a        = $request->get('q9_a');
             $diabetes_a1_c->q10       = $request->get('q10');
             $diabetes_a1_c->q11       = $request->get('q11');
 
@@ -51,6 +52,7 @@ class DiabetesA1C extends Model
                 'q7' => $request->get('q7'),
                 'q8' => $request->get('q8'),
                 'q9' => $request->get('q9'),
+                'q9_a' => $request->get('q9_a'),
                 'q10' => $request->get('q10'),
                 'q11' => $request->get('q11'),
             ]);

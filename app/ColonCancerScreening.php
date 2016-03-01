@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class ColonCancerScreening extends Model
 {
     //
-    protected $fillable = ['q1','q2','q3','q4','q5','q6','q6','q7','q8'];
+    protected $fillable = ['q1','q1_a','q2','q3','q4','q4_a','q5','q6','q7','q8'];
 
     public function record()
     {
@@ -24,9 +24,11 @@ class ColonCancerScreening extends Model
             $colon_cancer_screening->record_id = $record_id;
             $colon_cancer_screening->user_id   = Auth::user()->id;
             $colon_cancer_screening->q1        = $request->get('q1');
+            $colon_cancer_screening->q1_a      = $request->get('q1_a');
             $colon_cancer_screening->q2        = $request->get('q2');
             $colon_cancer_screening->q3        = $request->get('q3');
             $colon_cancer_screening->q4        = $request->get('q4');
+            $colon_cancer_screening->q4_a        = $request->get('q4_a');
             $colon_cancer_screening->q5        = $request->get('q5');
             $colon_cancer_screening->q6        = $request->get('q6');
             $colon_cancer_screening->q7        = $request->get('q7');
@@ -44,9 +46,11 @@ class ColonCancerScreening extends Model
         } else {
             $colon_cancer_screening->update([
                 'q1' => $request->get('q1'),
+                'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
+                'q4_a' => $request->get('q4_a'),
                 'q5' => $request->get('q5'),
                 'q6' => $request->get('q6'),
                 'q7' => $request->get('q7'),

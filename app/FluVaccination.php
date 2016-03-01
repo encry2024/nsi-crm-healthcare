@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class FluVaccination extends Model
 {
     //
-    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7'];
+    protected $fillable = ['q1', 'q1_a', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q7_a'];
 
     public static function storeFluVaccination($request, $record_id)
     {
@@ -19,12 +19,14 @@ class FluVaccination extends Model
             $flu_vaccination->record_id = $record_id;
             $flu_vaccination->user_id   = Auth::user()->id;
             $flu_vaccination->q1        = $request->get('q1');
+            $flu_vaccination->q1_a        = $request->get('q1_a');
             $flu_vaccination->q2        = $request->get('q2');
             $flu_vaccination->q3        = $request->get('q3');
             $flu_vaccination->q4        = $request->get('q4');
             $flu_vaccination->q5        = $request->get('q5');
             $flu_vaccination->q6        = $request->get('q6');
             $flu_vaccination->q7        = $request->get('q7');
+            $flu_vaccination->q7_a        = $request->get('q7_a');
 
             if ($flu_vaccination->save()) {
                 // Touch parent model
@@ -38,12 +40,14 @@ class FluVaccination extends Model
         } else {
             $flu_vaccination->update([
                 'q1' => $request->get('q1'),
+                'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
                 'q5' => $request->get('q5'),
                 'q6' => $request->get('q6'),
-                'q7' => $request->get('q7')
+                'q7' => $request->get('q7'),
+                'q7_a' => $request->get('q7_a')
             ]);
 
             // Touch parent model

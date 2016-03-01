@@ -9,7 +9,7 @@ class Demographics extends Model
 {
     //
     protected $table = 'demographics';
-    protected $fillable = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+    protected $fillable = ['q1', 'q1_a','q2', 'q3', 'q4', 'q5', 'q6'];
     //date('Y-m-d H:i:s', strtotime($request->get('callback_date') . ' ' . $request->get('callback_hour') . ':' . $request->get('callback_minute') . ':00')),
     public static function storeAnswer($request, $record_id)
     {
@@ -20,6 +20,7 @@ class Demographics extends Model
             $demographics->record_id = $record_id;
             $demographics->user_id   = Auth::user()->id;
             $demographics->q1        = $request->get('q1');
+            $demographics->q1_a        = $request->get('q1_a');
             $demographics->q2        = $request->get('q2');
             $demographics->q3        = $request->get('q3');
             $demographics->q4        = $request->get('q4');
@@ -39,6 +40,7 @@ class Demographics extends Model
             $demographics->update(
                 [
                     'q1' => $request->get('q1'),
+                    'q1_a' => $request->get('q1_a'),
                     'q2' => $request->get('q2'),
                     'q3' => $request->get('q3'),
                     'q4' => $request->get('q4'),

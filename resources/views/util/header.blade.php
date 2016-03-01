@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-
+{{--
 @if(isset($record))
 <div class="ui menu attached inverted blue">
     <a class="item {{Request::route()->getName()=='record.show'?'active':''}}" href="{{ route('record.show', $record->id) }}">
@@ -97,4 +97,4 @@
         Other
     </a>
 </div>
-@endif
+@endif--}}
