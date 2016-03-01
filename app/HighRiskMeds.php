@@ -19,9 +19,11 @@ class HighRiskMeds extends Model
             $high_risk_meds->record_id = $record_id;
             $high_risk_meds->user_id   = Auth::user()->id;
             $high_risk_meds->q1        = $request->get('q1');
+            $high_risk_meds->q1_a        = $request->get('q1_a');
             $high_risk_meds->q2        = $request->get('q2');
             $high_risk_meds->q3        = $request->get('q3');
             $high_risk_meds->q4        = $request->get('q4');
+            $high_risk_meds->q4_a        = $request->get('q4_a');
             $high_risk_meds->q5        = $request->get('q5');
 
             if ($high_risk_meds->save()) {
@@ -36,9 +38,11 @@ class HighRiskMeds extends Model
         } else {
             $high_risk_meds->update([
                 'q1' => $request->get('q1'),
+                'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
                 'q4' => $request->get('q4'),
+                'q4_a' => $request->get('q4_a'),
                 'q5' => $request->get('q5')
             ]);
 

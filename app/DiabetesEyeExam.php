@@ -36,7 +36,9 @@ class DiabetesEyeExam extends Model
             $diabetes_eye_exam->q15       = $request->get('q15');
             $diabetes_eye_exam->q15_a     = $request->get('q15_a');
             $diabetes_eye_exam->q16       = $request->get('q16');
+            $diabetes_eye_exam->q16_a       = $request->get('q16_a');
             $diabetes_eye_exam->q17       = $request->get('q17');
+            $diabetes_eye_exam->q17_a       = $request->get('q17_a');
             $diabetes_eye_exam->q18       = $request->get('q18');
 
             if ($diabetes_eye_exam->save()) {
@@ -50,6 +52,7 @@ class DiabetesEyeExam extends Model
             }
         } else {
             $diabetes_eye_exam->update([
+                'q1' => $request->get('q1'),
                 'q1' => $request->get('q1'),
                 'q2' => $request->get('q2'),
                 'q3' => $request->get('q3'),
@@ -68,7 +71,9 @@ class DiabetesEyeExam extends Model
                 'q15' => $request->get('q15'),
                 'q15_a' => $request->get('q15_a'),
                 'q16' => $request->get('q16'),
+                'q16_a' => $request->get('q16_a'),
                 'q17' => $request->get('q17'),
+                'q17_a' => $request->get('q17_a'),
                 'q18' => $request->get('q18')
             ]);
 

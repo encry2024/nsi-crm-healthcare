@@ -37,6 +37,7 @@ class BreastCancerScreeningController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        BreastCancerScreening::unguard();
         $store_breast_cancer_screening = BreastCancerScreening::storeBreastCancerScreening($request, $record_id);
 
         return $store_breast_cancer_screening;

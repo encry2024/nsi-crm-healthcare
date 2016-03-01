@@ -36,6 +36,7 @@ class BloodPressureController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        BloodPressure::unguard();
         $store_blood_pressure = BloodPressure::storeBloodPressure($request, $record_id);
 
         return $store_blood_pressure;

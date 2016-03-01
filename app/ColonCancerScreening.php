@@ -26,7 +26,9 @@ class ColonCancerScreening extends Model
             $colon_cancer_screening->q1        = $request->get('q1');
             $colon_cancer_screening->q1_a      = $request->get('q1_a');
             $colon_cancer_screening->q2        = $request->get('q2');
+            $colon_cancer_screening->q2_a        = $request->get('q2_a');
             $colon_cancer_screening->q3        = $request->get('q3');
+            $colon_cancer_screening->q3_a        = $request->get('q3_a');
             $colon_cancer_screening->q4        = $request->get('q4');
             $colon_cancer_screening->q4_a        = $request->get('q4_a');
             $colon_cancer_screening->q5        = $request->get('q5');
@@ -48,7 +50,9 @@ class ColonCancerScreening extends Model
                 'q1' => $request->get('q1'),
                 'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
+                'q2_a' => $request->get('q2_a'),
                 'q3' => $request->get('q3'),
+                'q3_a' => $request->get('q3_a'),
                 'q4' => $request->get('q4'),
                 'q4_a' => $request->get('q4_a'),
                 'q5' => $request->get('q5'),

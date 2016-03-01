@@ -23,7 +23,9 @@ class BreastCancerScreening extends Model
             $breast_cancer_screening->q1        = $request->get('q1');
             $breast_cancer_screening->q1_a        = $request->get('q1_a');
             $breast_cancer_screening->q2        = $request->get('q2');
+            $breast_cancer_screening->q2_a        = $request->get('q2_a');
             $breast_cancer_screening->q3        = $request->get('q3');
+            $breast_cancer_screening->q3_a        = $request->get('q3_a');
             $breast_cancer_screening->q4        = $request->get('q4');
             $breast_cancer_screening->q4_a        = $request->get('q4_a');
             $breast_cancer_screening->q5        = $request->get('q5');
@@ -45,7 +47,9 @@ class BreastCancerScreening extends Model
                 'q1' => $request->get('q1'),
                 'q1_a' => $request->get('q1_a'),
                 'q2' => $request->get('q2'),
+                'q2_a' => $request->get('q2_a'),
                 'q3' => $request->get('q3'),
+                'q3_a' => $request->get('q3_a'),
                 'q4' => $request->get('q4'),
                 'q4_a' => $request->get('q4_a'),
                 'q5' => $request->get('q5'),

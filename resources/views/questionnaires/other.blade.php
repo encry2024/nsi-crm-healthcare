@@ -36,9 +36,8 @@
 
                                         <div class="field @if($errors->has('q3')) error @endif">
                                             <label for="q3" style="font-size: 16px;">1) Date of 2nd Chart review:   If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
-                                            <div class="ui big left icon input">
-                                                <i class="calendar icon"></i>
-                                                <input name="q3" id="prev_sched_appts"
+                                            <div class="ui big left input">
+                                                <input name="q3"
                                                    @if(count($record->other) > 0)
                                                    value="{{ $record->other->q3 }}"
                                                    @else
@@ -50,7 +49,7 @@
 
                                         <div class="grouped fields">
                                             <div class="field @if($errors->has('q12')) error @endif">
-                                                <label for="q12" style="font-size: 16px;">2) Patient Satisfaction: Was this call helpful? (Y/N)</label>
+                                                <label for="q12" style="font-size: 16px;">2) Patient Satisfaction: Was this the best time to have called you?</label>
                                                 <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                     <input type="radio" name="q12" id="q12"
                                                            @if(count($record->other) > 0)
@@ -77,94 +76,61 @@
                                                     <label>No</label>
                                                 </div>
                                             </div>
+
+                                            <div class="field">
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q12_a"
+                                                           @if(count($record->other) > 0)
+                                                           value="{{ $record->other->q12_a }}"
+                                                           @else
+                                                           value=""
+                                                            @endif
+                                                    >
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="field @if($errors->has('q13')) error @endif">
-                                            <label style="font-size: 16px;">3) Ratings</label>
-                                            <select class="ui dropdown" name="q13">
-                                                <option value="" >Ratings</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "1")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="1">1</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "2")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="2">2</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "3")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="3">3</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "4")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="4">4</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "5")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="5">5</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "6")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="6">6</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "7")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="7">7</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "8")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="8">8</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "9")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="9">9</option>
-                                                <option
-                                                        @if(count($record->other) > 0)
-                                                        @if ($record->other->q13 == "10")
-                                                        selected
-                                                        @else
-                                                        @endif
-                                                        @endif
-                                                        value="10">10</option>
-                                            </select>
+                                        <div class="grouped fields">
+                                            <div class="field @if($errors->has('q13')) error @endif">
+                                                <label for="q13" style="font-size: 16px;">3) Patient Satisfaction: Was this the best time to have called you?</label>
+                                                <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
+                                                    <input type="radio" name="q13" id="q13"
+                                                           @if(count($record->other) > 0)
+                                                           @if ($record->other->q13 == "Yes")
+                                                           checked="checked"
+                                                           @else
+                                                           @endif
+                                                           @endif
+                                                           value="Yes">
+                                                    <label>Yes</label>
+                                                </div>
+                                            </div>
 
+                                            <div class="field @if($errors->has('q13')) error @endif">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="q13" id="q13" value="No"
+                                                           @if(count($record->other) > 0)
+                                                           @if ($record->other->q13 == "No")
+                                                           checked="checked"
+                                                    @else
+                                                            @endif
+                                                            @endif
+                                                    >
+                                                    <label>No</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="field">
+                                                <div class="ui big left input">
+                                                    <input type="text" name="q13_a"
+                                                           @if(count($record->other) > 0)
+                                                           value="{{ $record->other->q13_a }}"
+                                                           @else
+                                                           value=""
+                                                            @endif
+                                                    >
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="field @if($errors->has('q11')) error @endif">

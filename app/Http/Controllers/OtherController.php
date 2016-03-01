@@ -35,6 +35,7 @@ class OtherController extends Controller
 
     public function store(Request $request, $record_id)
     {
+        Other::unguard();
         $store_other = Other::storeOther($request, $record_id);
 
         return $store_other;
