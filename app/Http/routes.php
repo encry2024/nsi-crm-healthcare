@@ -36,7 +36,10 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     $records = $records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
     $records->setPath($setPath);
 
-    return view('user.home', compact('records', 'ctr'));
+    // get callbacks with filters
+    $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
+
+    return view('user.home', compact('records', 'ctr', 'callbacks'));
 }]);
 
 Route::get('create/user', ['as' => 'create_user', 'uses' => 'UserController@create']);
