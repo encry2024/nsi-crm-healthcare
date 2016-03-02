@@ -17,13 +17,7 @@
                 <div class="twelve wide column">
                     <div class="ui grid">
                         <div class="eleven wide column">
-                            <div class="row">
-                                <h2 class="header">
-                                    <div class="content">
-                                        Colon Cancer Screening
-                                    </div>
-                                </h2>
-                            </div>
+                            @include('util.page_title')
 
                             <div class="row">
                                 <div class="ui divider"></div>

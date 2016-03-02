@@ -139,3 +139,4 @@ Route::get('record/{record}/callbacks', 'RecordController@showCallbacks')->name(
 Route::post('record/{record}/callbacks','RecordController@addCallback')->name('addcallback');
 Route::get('record/{record}/history', 'RecordController@showHistory')->name('history');
 Route::post('record/{record}/checklist', 'RecordController@updateChecklist')->name('checklist');
+Route::post('record/{record}/store_state', 'RecordController@storeState')->name('store_state');

@@ -19,13 +19,7 @@
                         <div class="eleven wide column">
                             <form method="POST" action="{{ route('submit_diabetes_eye_exam', $record->id) }}" class="ui form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <div class="row">
-                                    <h2 class="header">
-                                        <div class="content">
-                                            Diabetes: Eye Exam
-                                        </div>
-                                    </h2>
-                                </div>
+                                @include('util.page_title')
 
                                 <div class="row">
                                     <div class="ui divider"></div>
