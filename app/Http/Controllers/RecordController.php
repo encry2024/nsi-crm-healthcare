@@ -145,12 +145,17 @@ class RecordController extends Controller
         $checklist = Checklist::where('record_id', $request->get('record_id'))->where('name', $request->get('page_id'))->first();
         $patient = Record::find($request->get('record_id'));
 
+        $patient->update([
+            'update_timestamp' => date('F d, Y')
+        ]);
+
         $update_checklist = Checklist::where('record_id', $request->get('record_id'))->where('name', $request->get('page_id'))->update([
             'record_id' => $request->get('record_id'),
             'name' => $request->get('page_id'),
             'description' => $request->get('page_name'),
             'value' => $request->get('task')
         ]);
+
 
         return redirect()->back()->with('message', $request->get('page_name') . ' ' . 'status was successfully updated')->with('msg_type', 'success');
     }
