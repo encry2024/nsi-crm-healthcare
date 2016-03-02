@@ -17,15 +17,10 @@
                 <div class="twelve wide column">
                     <div class="ui grid">
                         <div class="eleven wide column">
+                            @include('util.page_title')
                             <div class="row">
-                                <h2 class="header">
-                                    <div class="content">
-                                        Breast Cancer Screening
-                                    </div>
-                                </h2>
-                                <div class="ui divider"></div>
+                            <div class="ui divider"></div>
                             </div>
-
                             <div class="row">
                                 <div class="ui basic segment">
                                     <form action="{{ route('submit_breast_cancer_screening', $record->id) }}" method="POST" class="ui form">

@@ -33,17 +33,29 @@
 
             @if (isset($record))
             $('.toggle.checkbox')
-                    .checkbox({
-                        // check all children
-                        onChecked: function() {
-                            $.get( "{{ URL::to('/') }}/user/update_status/{{ $record->id }}/" + $(this).val());
-                        },
-                        // uncheck all children
-                        onUnchecked: function() {
+                .checkbox({
+                    // check all children
+                    onChecked: function() {
+                        $.get( "{{ URL::to('/') }}/user/update_status/{{ $record->id }}/" + $(this).val());
+                    },
+                    // uncheck all children
+                    onUnchecked: function() {
 
-                        }
-                    })
+                    }
+                })
             ;
+            @endif
+
+            @if (isset($record))
+            $('.ui.dropdown.task_button')
+                    .popup()
+            ;
+
+            $('.ui.dropdown.task_button').dropdown({
+                onChange: function(value, text, choice) {
+                    document.update_state_form.submit();
+                }
+            });
             @endif
 
             $('.ui.radio.checkbox').checkbox();
