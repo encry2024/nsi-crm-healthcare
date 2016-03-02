@@ -20,7 +20,7 @@
                             <div class="row">
                                 <h2 class="header">
                                     <div class="content">
-                                        Diabetes: Eye Exam
+                                        Diabetes: A1C
                                     </div>
                                 </h2>
                                 <div class="ui divider"></div>
