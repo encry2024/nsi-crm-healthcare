@@ -101,13 +101,11 @@
                                     </th>
                                 </tr></thead>
                                 <tbody>
-                                @foreach(\Illuminate\Support\Facades\Auth::user()->callbacks as $callback)
+                                @foreach($callbacks as $callback)
                                     <tr>
                                         <td><a href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
                                         <td> {{ $callback->schedule->diffForHumans() }}</td>
                                         <td>{{ $callback->notes }}</td>
-
-
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -71,7 +71,7 @@
 
                                         <div class="grouped fields">
                                             <div class="field @if($errors->has('q2')) error @endif">
-                                                <label for="q2" style="font-size: 16px;">2) Patient satisfaction:  Was this call helpful? (Y/N)</label>
+                                                <label for="q2" style="font-size: 16px;">2) Was the office visit date between July-Dec. 2015?</label>
                                                 <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                     <input type="radio" name="q2" id="q2" value="Yes"
                                                            @if(count($record->diabetes_a1_c) > 0)

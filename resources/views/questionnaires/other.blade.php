@@ -43,7 +43,7 @@
 
                                         <div class="grouped fields">
                                             <div class="field @if($errors->has('q12')) error @endif">
-                                                <label for="q12" style="font-size: 16px;">2) Patient Satisfaction: Was this the best time to have called you?</label>
+                                                <label for="q12" style="font-size: 16px;">2) Patient satisfaction:  Was this call helpful? (y/N)</label>
                                                 <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                                     <input type="radio" name="q12" id="q12"
                                                            @if(count($record->other) > 0)
