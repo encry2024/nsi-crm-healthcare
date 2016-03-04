@@ -145,76 +145,50 @@
 
                                         <div class="field @if($errors->has('q4')) error @endif">
                                             <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                            <div class="fields">
-                                                <div class="grouped fields">
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q4" value="Successful"
-                                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                                       @if ($record->colon_cancer_screening->q4 == "Successful")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Successful</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q4" value="Pending"
-                                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                                       @if ($record->colon_cancer_screening->q4 == "Pending")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Pending</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q4" value="Call Back"
-                                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                                       @if ($record->colon_cancer_screening->q4 == "Call Back")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Call Back</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q4" value="Voicemail"
-                                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                                       @if ($record->colon_cancer_screening->q4 == "Voicemail")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Voicemail</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q4" value="No Action Needed"
-                                                                       @if(count($record->colon_cancer_screening) > 0)
-                                                                       @if ($record->colon_cancer_screening->q4 == "No Action Needed")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>No Action Needed</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="q4">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">
+                                                    @if(count($record->colon_cancer_screening) != 0)
+                                                        @if ($record->colon_cancer_screening->q4 == "Patient Transferred")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Scheduled Appointment")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Patient Refused")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "NPC")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Pending")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Call back")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Voicemail")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "No answer")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Disconnected Number")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Do Not Call")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Privacy Manager")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @endif
+                                                    @endif
                                                 </div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="Patient Transferred">Patient Transferred</div>
+                                                    <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
+                                                    <div class="item" data-value="Patient Refused">Patient Refused</div>
+                                                    <div class="item" data-value="NPC">NPC</div>
+                                                    <div class="item" data-value="Pending">Pending</div>
+                                                    <div class="item" data-value="Call back">Call back</div>
+                                                    <div class="item" data-value="Voicemail">Voicemail</div>
+                                                    <div class="item" data-value="No answer">No answer</div>
+                                                    <div class="item" data-value="Disconnected Number">Disconnected Number</div>
+                                                    <div class="item" data-value="Do Not Call">Do Not Call</div>
+                                                    <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                </div>
+                                            </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui large left input">
@@ -227,7 +201,6 @@
                                                     >
                                                 </div>
                                             </div>
-                                        </div>
 
                                         <div class="grouped fields">
                                             <div class="field @if($errors->has('q5')) error @endif">
