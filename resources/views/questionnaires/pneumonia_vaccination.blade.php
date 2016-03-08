@@ -175,6 +175,14 @@
                                                             {{ $record->pneumonia_vaccination->q8 }}
                                                         @elseif ($record->pneumonia_vaccination->q8 == "Privacy Manager")
                                                             {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Deceased")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Different PCP")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Up-to-date")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Done Outside SMG")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -190,6 +198,10 @@
                                                     <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                                     <div class="item" data-value="Do Not Call">Do Not Call</div>
                                                     <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                    <div class="item" data-value="Deceased">Deceased</div>
+                                                    <div class="item" data-value="Different PCP">Different PCP</div>
+                                                    <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                                    <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                                 </div>
                                             </div>
                                             <div class="field">
