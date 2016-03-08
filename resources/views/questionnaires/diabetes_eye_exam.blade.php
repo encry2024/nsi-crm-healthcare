@@ -151,75 +151,48 @@
 
                                         <div class="field @if($errors->has('q15')) error @endif">
                                             <label for="q15" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                            <div class="fields">
-                                                <div class="grouped fields">
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q15" value="Successful"
-                                                                       @if(count($record->diabetes_eye_exam) > 0)
-                                                                       @if ($record->diabetes_eye_exam->q15 == "Successful")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Successful</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q15" value="Pending"
-                                                                       @if(count($record->diabetes_eye_exam) > 0)
-                                                                       @if ($record->diabetes_eye_exam->q15 == "Pending")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Pending</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q15" value="Call Back"
-                                                                       @if(count($record->diabetes_eye_exam) > 0)
-                                                                       @if ($record->diabetes_eye_exam->q15 == "Call Back")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Call Back</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q15" value="Voicemail"
-                                                                       @if(count($record->diabetes_eye_exam) > 0)
-                                                                       @if ($record->diabetes_eye_exam->q15 == "Voicemail")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Voicemail</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q15" value="No Action Needed"
-                                                                       @if(count($record->diabetes_eye_exam) > 0)
-                                                                       @if ($record->diabetes_eye_exam->q15 == "No Action Needed")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>No Action Needed</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="q15">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">
+                                                    @if(count($record->diabetes_eye_exam) != 0)
+                                                        @if ($record->diabetes_eye_exam->q15 == "Patient Transferred")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Scheduled Appointment")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Patient Refused")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "NPC")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Pending")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Call back")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Voicemail")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "No answer")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Disconnected Number")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Do Not Call")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Privacy Manager")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="Patient Transferred">Patient Transferred</div>
+                                                    <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
+                                                    <div class="item" data-value="Patient Refused">Patient Refused</div>
+                                                    <div class="item" data-value="NPC">NPC</div>
+                                                    <div class="item" data-value="Pending">Pending</div>
+                                                    <div class="item" data-value="Call back">Call back</div>
+                                                    <div class="item" data-value="Voicemail">Voicemail</div>
+                                                    <div class="item" data-value="No answer">No answer</div>
+                                                    <div class="item" data-value="Disconnected Number">Disconnected Number</div>
+                                                    <div class="item" data-value="Do Not Call">Do Not Call</div>
+                                                    <div class="item" data-value="Privacy Manager">Privacy Manager</div>
                                                 </div>
                                             </div>
                                             <div class="field">

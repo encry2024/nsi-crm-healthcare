@@ -147,76 +147,49 @@
                                         </div>
 
                                         <div class="field @if($errors->has('q8')) error @endif">
-                                            <label for="q8" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                            <div class="fields">
-                                                <div class="grouped fields">
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q8" value="Successful"
-                                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                                       @if ($record->pneumonia_vaccination->q8 == "Successful")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Successful</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q8" value="Pending"
-                                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                                       @if ($record->pneumonia_vaccination->q8 == "Pending")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Pending</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q8" value="Call Back"
-                                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                                       @if ($record->pneumonia_vaccination->q8 == "Call Back")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Call Back</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q8" value="Voicemail"
-                                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                                       @if ($record->pneumonia_vaccination->q8 == "Voicemail")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>Voicemail</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="ui radio checkbox">
-                                                                <input type="radio" name="q8" value="No Action Needed"
-                                                                       @if(count($record->pneumonia_vaccination) > 0)
-                                                                       @if ($record->pneumonia_vaccination->q8 == "No Action Needed")
-                                                                       checked="checked"
-                                                                @else
-                                                                        @endif
-                                                                        @endif
-                                                                >
-                                                                <label>No Action Needed</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="q8">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">
+                                                    @if(count($record->pneumonia_vaccination) != 0)
+                                                        @if ($record->pneumonia_vaccination->q8 == "Patient Transferred")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Scheduled Appointment")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Patient Refused")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "NPC")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Pending")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Call back")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Voicemail")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "No answer")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Disconnected Number")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Do Not Call")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @elseif ($record->pneumonia_vaccination->q8 == "Privacy Manager")
+                                                            {{ $record->pneumonia_vaccination->q8 }}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="Patient Transferred">Patient Transferred</div>
+                                                    <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
+                                                    <div class="item" data-value="Patient Refused">Patient Refused</div>
+                                                    <div class="item" data-value="NPC">NPC</div>
+                                                    <div class="item" data-value="Pending">Pending</div>
+                                                    <div class="item" data-value="Call back">Call back</div>
+                                                    <div class="item" data-value="Voicemail">Voicemail</div>
+                                                    <div class="item" data-value="No answer">No answer</div>
+                                                    <div class="item" data-value="Disconnected Number">Disconnected Number</div>
+                                                    <div class="item" data-value="Do Not Call">Do Not Call</div>
+                                                    <div class="item" data-value="Privacy Manager">Privacy Manager</div>
                                                 </div>
                                             </div>
                                             <div class="field">
