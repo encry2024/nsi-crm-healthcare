@@ -146,7 +146,7 @@ class RecordController extends Controller
         $patient = Record::find($request->get('record_id'));
 
         $patient->update([
-            'update_timestamp' => date('F d, Y')
+            'update_timestamp' => date('Y-m-d')
         ]);
 
         $update_checklist = Checklist::where('record_id', $request->get('record_id'))->where('name', $request->get('page_id'))->update([
