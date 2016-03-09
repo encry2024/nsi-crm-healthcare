@@ -88,7 +88,7 @@
                         <tbody>
                         @foreach($callbacks as $callback)
                             <tr>
-                                <td><a style="font-weight: bold" ref="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
+                                <td><a style="font-weight: bold" href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
                                 <td> {{ $callback->schedule->diffForHumans() }}</td>
                                 <td>{{ $callback->notes }}</td>
                             </tr>
