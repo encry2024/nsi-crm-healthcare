@@ -153,32 +153,23 @@
 
 @section('scripts')
     <script>
+        $('#search_patient').click(function(){
+            $(this).val('');
+        });
+
         $.fn.search.settings.templates = {
             category: function(response) {
                 $('.results').empty();
-                console.log(response);
                 $.each(response.results, function (index, item) {
                     $.each(item.results, function (indx, itm) {
-                        if(itm.url == '#') {
-                            $('.results').append(
-                                '<div class="result">' +
-                                '<div class="message empty">' +
-                                '<div class="title">' + itm.title + '</div>' +
-                                '<div class="description">' + itm.description + '</div>'+
-                                '</div>'+
-                                '</div>'
-                            );
-                        } else {
-                            $('.results').append(
-                                    '<a class="result" href="' + itm.url + '">' +
-                                    '<div class="content">' +
-                                    '<div class="title">' + itm.title + '</div>' +
-                                    '<div class="description">' + itm.description + '</div>'+
-                                    '</div>'+
-                                    '</a>'
-                            );
-                        }
-
+                        $('.results').append(
+                            '<a class="result" href="' + itm.url + '">' +
+                            '<div class="content">' +
+                            '<div class="title">' + itm.title + '</div>' +
+                            '<div class="description">' + itm.description + '</div>'+
+                            '</div>'+
+                            '</a>'
+                        );
                     })
                 })
             },
@@ -230,5 +221,7 @@
                     },
                 }
             });
+
+
     </script>
 @stop
