@@ -27,7 +27,7 @@
                                         <div class="two fields">
                                             <div class="field">
                                                 <label> Gender </label>
-                                                <select class="ui dropdown aaaa" name="gender">
+                                                <select class="ui dropdown" name="gender">
                                                     <option value="">All</option>
                                                     <option {{ request('gender') =='M' ? 'selected':'' }} value="M">Male</option>
                                                     <option {{ request('gender') =='F' ? 'selected':'' }} value="F">Female</option>
@@ -153,6 +153,82 @@
 
 @section('scripts')
     <script>
-        $('.aaaa').dropdown();
+        $.fn.search.settings.templates = {
+            category: function(response) {
+                $('.results').empty();
+                console.log(response);
+                $.each(response.results, function (index, item) {
+                    $.each(item.results, function (indx, itm) {
+                        if(itm.url == '#') {
+                            $('.results').append(
+                                '<div class="result">' +
+                                '<div class="message empty">' +
+                                '<div class="title">' + itm.title + '</div>' +
+                                '<div class="description">' + itm.description + '</div>'+
+                                '</div>'+
+                                '</div>'
+                            );
+                        } else {
+                            $('.results').append(
+                                    '<a class="result" href="' + itm.url + '">' +
+                                    '<div class="content">' +
+                                    '<div class="title">' + itm.title + '</div>' +
+                                    '<div class="description">' + itm.description + '</div>'+
+                                    '</div>'+
+                                    '</a>'
+                            );
+                        }
+
+                    })
+                })
+            },
+        }
+
+        $('.ui.search')
+            .search({
+                debug: true,
+                type: 'category',
+                minCharacters: 2,
+                cache: false,
+                apiSettings   : {
+                    url: '{{ URL::to('/') }}/record_query/{query}',
+                    onResponse: function(patientSource) {
+                        var
+                                response = {
+                                    results : {}
+                                };
+
+                        if(patientSource.items === undefined) {
+                            // no results
+
+                            return response;
+                        }
+                        // translate GitHub API response to work with search
+                        $.each(patientSource.items, function(index, item) {
+                            var language = item.language || 'Unknown',
+                                    maxResults = 8
+                                    ;
+
+                            // create new language category
+                            if(response.results[language] === undefined) {
+                                response.results[language] = {
+                                    name    : language,
+                                    results : []
+                                };
+                            }
+
+                            // add result to category
+                            response.results[language].results.push({
+                                title           : item.title,
+                                description     : item.description,
+                                url             : item.html_url
+                            });
+                        });
+
+
+                        return response;
+                    },
+                }
+            });
     </script>
 @stop

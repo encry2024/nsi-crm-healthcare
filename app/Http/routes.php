@@ -81,8 +81,8 @@ get('record_query/{query}', function ($query)
         return $json;
     } else {
         $json['items'][] = array(
-            'title' => "$query doesn't exist",
-            'description' => 'It seems that medical record number doesn\'t exist in our database. Click here to add this.',
+            'title' => "\"$query\" doesn't exist",
+            'description' => 'Record doesn\'t exist in our database.',
             'html_url' => '#'
         );
 
