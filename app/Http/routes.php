@@ -67,7 +67,7 @@ get('record_query/{query}', function ($query)
         $subquery->where('mrn', 'LIKE', '%'.$query.'%')
             ->orWhere('name', 'LIKE', '%'.$query.'%')
             ->orWhere('btn', 'LIKE', '%'.$query.'%');
-    })->where('user_id', Auth::user()->id)->get();
+    })->get();
 
     if (count($records) > 0) {
         foreach ($records as $record) {
