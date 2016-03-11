@@ -172,6 +172,14 @@
                                                             {{ $record->colon_cancer_screening->q4 }}
                                                         @elseif ($record->colon_cancer_screening->q4 == "Privacy Manager")
                                                             {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Deceased")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Different PCP")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Up-to-date")
+                                                            {{ $record->colon_cancer_screening->q4 }}
+                                                        @elseif ($record->colon_cancer_screening->q4 == "Done Outside SMG")
+                                                            {{ $record->colon_cancer_screening->q4 }}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -187,6 +195,10 @@
                                                     <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                                     <div class="item" data-value="Do Not Call">Do Not Call</div>
                                                     <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                    <div class="item" data-value="Deceased">Deceased</div>
+                                                    <div class="item" data-value="Different PCP">Different PCP</div>
+                                                    <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                                    <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                                 </div>
                                             </div>
                                             </div>

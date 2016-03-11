@@ -319,6 +319,14 @@
                                                             {{ $record->diabetes_a1_c->q9 }}
                                                         @elseif ($record->diabetes_a1_c->q9 == "Privacy Manager")
                                                             {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Deceased")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Different PCP")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Up-to-date")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Done Outside SMG")
+                                                            {{ $record->diabetes_a1_c->q9 }}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -334,6 +342,10 @@
                                                     <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                                     <div class="item" data-value="Do Not Call">Do Not Call</div>
                                                     <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                    <div class="item" data-value="Deceased">Deceased</div>
+                                                    <div class="item" data-value="Different PCP">Different PCP</div>
+                                                    <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                                    <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                                 </div>
                                             </div>
                                             <div class="field">
