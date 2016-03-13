@@ -284,7 +284,7 @@
                                         <div class="ui divider"></div>
 
                                         <div class="actions">
-                                            <button class="ui button primary fluid">Submit</button>
+                                            <button class="ui button primary fluid disabled">Submit</button>
                                         </div>
                                     </form>
                                 </div>
