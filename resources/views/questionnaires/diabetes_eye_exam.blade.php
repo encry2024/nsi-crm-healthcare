@@ -449,6 +449,14 @@
                                                             {{ $record->diabetes_eye_exam->q15 }}
                                                         @elseif ($record->diabetes_eye_exam->q15 == "Privacy Manager")
                                                             {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Deceased")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Different PCP")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Up-to-date")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
+                                                        @elseif ($record->diabetes_eye_exam->q15 == "Done Outside SMG")
+                                                            {{ $record->diabetes_eye_exam->q15 }}
                                                         @endif
                                                     @endif
                                                 </div>
@@ -464,6 +472,10 @@
                                                     <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                                     <div class="item" data-value="Do Not Call">Do Not Call</div>
                                                     <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                    <div class="item" data-value="Deceased">Deceased</div>
+                                                    <div class="item" data-value="Different PCP">Different PCP</div>
+                                                    <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                                    <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                                 </div>
                                             </div>
                                             <div class="field">

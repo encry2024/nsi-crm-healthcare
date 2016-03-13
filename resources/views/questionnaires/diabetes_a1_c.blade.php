@@ -665,6 +665,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+<<<<<<< HEAD
 
                                             <div class="disabled field @if($errors->has('q9')) error @endif">
                                                 <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
@@ -722,6 +723,66 @@
                                                                 @endif
                                                         >
                                                     </div>
+=======
+                                        </div>
+
+                                        <div class="field @if($errors->has('q9')) error @endif">
+                                            <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="q9">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">
+                                                    @if(count($record->diabetes_a1_c) != 0)
+                                                        @if ($record->diabetes_a1_c->q9 == "Patient Transferred")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Scheduled Appointment")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Patient Refused")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "NPC")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Pending")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Call back")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Voicemail")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "No answer")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Disconnected Number")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Do Not Call")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Privacy Manager")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Deceased")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Different PCP")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Up-to-date")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @elseif ($record->diabetes_a1_c->q9 == "Done Outside SMG")
+                                                            {{ $record->diabetes_a1_c->q9 }}
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="Patient Transferred">Patient Transferred</div>
+                                                    <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
+                                                    <div class="item" data-value="Patient Refused">Patient Refused</div>
+                                                    <div class="item" data-value="NPC">NPC</div>
+                                                    <div class="item" data-value="Pending">Pending</div>
+                                                    <div class="item" data-value="Call back">Call back</div>
+                                                    <div class="item" data-value="Voicemail">Voicemail</div>
+                                                    <div class="item" data-value="No answer">No answer</div>
+                                                    <div class="item" data-value="Disconnected Number">Disconnected Number</div>
+                                                    <div class="item" data-value="Do Not Call">Do Not Call</div>
+                                                    <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                                    <div class="item" data-value="Deceased">Deceased</div>
+                                                    <div class="item" data-value="Different PCP">Different PCP</div>
+                                                    <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                                    <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
+>>>>>>> 13d72f2bb4dca531bcfc8cbde5482d46a8e6a4b7
                                                 </div>
                                             </div>
 

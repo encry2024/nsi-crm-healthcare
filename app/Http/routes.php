@@ -12,29 +12,21 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
 
     $records = App\Record::whereUserId(Auth::user()->id);
 
-    if(!request('gender')) {
-        $setPath = "home";
-    } else {
-        $setPath = "home?";
-    }
-    if(request('gender')) {
+    if(!empty(request('gender'))) {
         $records = $records->where('gender', request('gender'));
-        $setPath.="&gender=" . request('gender') . "&";
     }
 
-    if(request('age_from')) {
+    if(!empty(request('age_from'))) {
         $records = $records->where('age', '>=', request('age_from'));
-        $setPath.="&age_from=" . request('age_from') . "&";
     }
 
-    if(request('age_to')) {
+    if(!empty(request('age_to'))) {
         $records = $records->where('age', '<=', request('age_to'));
-        $setPath.="&age_to=" . request('age_to') . "&";
     }
 
     $ctr = 0;
     $records = $records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-    $records->setPath($setPath);
+    $records->setPath("home?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
 
     // get callbacks with filters
     $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
@@ -81,8 +73,8 @@ get('record_query/{query}', function ($query)
         return $json;
     } else {
         $json['items'][] = array(
-            'title' => "$query doesn't exist",
-            'description' => 'It seems that medical record number doesn\'t exist in our database. Click here to add this.',
+            'title' => "\"$query\" doesn't exist",
+            'description' => 'Record doesn\'t exist in our database.',
             'html_url' => '#'
         );
 
