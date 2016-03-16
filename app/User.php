@@ -77,4 +77,9 @@ class User extends Model implements AuthenticatableContract,
 
         return;
     }
+
+    public function userType()
+    {
+        return $this->type();
+    }
 }

@@ -88,6 +88,11 @@ class Record extends Eloquent
         return $this->hasOne(Other::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function storeRecord($request)
     {
         $record = Record::whereBtn($request->get('btn'))->first();

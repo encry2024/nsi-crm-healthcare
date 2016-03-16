@@ -6,6 +6,28 @@ Route::get('/', function () {
     return redirect()->to('/home');
 });
 
+
+Route::group(['prefix' => 'admin'], function () {
+
+   Route::get('/dashboard', function () {
+       // Fetch all records (Admin type)
+       $ctr = 0;
+
+       $all_records = App\Record::with(['user' => function ($query) {
+           $query->where('type', '=', 'agent');
+       }]);
+       $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
+       $all_records->setPath('home');
+
+       $callbacks = App\Callback::with(['user' => function($query) {
+           $query->where('type', '=', 'agent');
+       }])->where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
+
+       return view('auth.dashboard', compact('ctr', 'all_records', 'callbacks'));
+   });
+
+});
+
 Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     // Update user status to IDLE
     Auth::user()->addStatus('IDLE');
@@ -31,7 +53,7 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
     // get callbacks with filters
     $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
 
-    return view('user.home', compact('records', 'ctr', 'callbacks'));
+    return view('user.home', compact('records', 'ctr', 'callbacks', 'all_records'));
 }]);
 
 Route::get('create/user', ['as' => 'create_user', 'uses' => 'UserController@create']);
@@ -105,8 +127,6 @@ get('user/update_status_break/{user}/{status}', function($user, $status) {
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 
-
-
 // Questionnaires
 Route::get('{record_id}/questionnaire/breast_cancer_screening', ['as' => 'bcs',  'uses' => 'BreastCancerScreeningController@showBreastCancerScreeningView']);
 Route::get('{record_id}/questionnaire/colon_cancer_screening',  ['as' => 'ccs',  'uses' => 'ColonCancerScreeningController@showColonCancerScreeningView']);
@@ -117,6 +137,7 @@ Route::get('{record_id}/questionnaire/diabetes_A1_C',           ['as' => 'da1c',
 Route::get('{record_id}/questionnaire/diabetes_eye_exam',       ['as' => 'dee',  'uses' => 'DiabetesEyeExamController@showDiabetesEyeExamView']);
 Route::get('{record_id}/questionnaires/high_risk_meds',         ['as' => 'hrm',  'uses' => 'HighRiskMedsController@showHighRiskMedsView']);
 Route::get('{record_id}/questionnaire/others',                  ['as' => 'o',    'uses' => 'OtherController@showOtherView']);
+
 
 // POST
 Route::post('{record_id}/save_answer/demographics',             ['as' => 'submit_demographics',            'uses' => 'DemographicsController@store']);
