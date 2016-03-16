@@ -13,4 +13,9 @@ class Callback extends Model
     public function record() {
         return $this->belongsTo('App\Record');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
