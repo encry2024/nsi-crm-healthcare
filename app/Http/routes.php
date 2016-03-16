@@ -6,18 +6,16 @@ Route::get('/', function () {
     return redirect()->to('/home');
 });
 
-
+// Fetch all records (Admin type)
 Route::group(['prefix' => 'admin'], function () {
 
    Route::get('/dashboard', function () {
-       // Fetch all records (Admin type)
        $ctr = 0;
-
        $all_records = App\Record::with(['user' => function ($query) {
            $query->where('type', '=', 'agent');
        }]);
        $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-       $all_records->setPath('home');
+       $all_records->setPath('dashboard');
 
        $callbacks = App\Callback::with(['user' => function($query) {
            $query->where('type', '=', 'agent');
