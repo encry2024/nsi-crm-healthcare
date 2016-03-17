@@ -665,8 +665,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-<<<<<<< HEAD
-
                                             <div class="disabled field @if($errors->has('q9')) error @endif">
                                                 <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
                                                 <div class="ui selection dropdown">
