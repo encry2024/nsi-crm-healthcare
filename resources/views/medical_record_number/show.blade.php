@@ -7,8 +7,8 @@
 
 @if ($record->user_id == Auth::user()->id)
 @section('content')
-    <div class="ui padded relaxed stackable grid">
-        <div class="ui three column row">
+    <div class="ui padded  grid">
+        <div class="ui doubling stackable three column row">
             @include('util.messages')
             <div class="four wide column">
                 @include('util.form_left_sidebar')
@@ -113,8 +113,9 @@
                             </div>
 
                             <div class="inline fields">
+
                                 <div class="field @if($errors->has('q4')) error @endif">
-                                    <label for="q4" style="font-size: 15px;">4. Ok to call?</label>
+                                    <label for="q4" style="font-size: 14px;">4. Ok to call?</label>
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="q4" id="q4"
                                             @if(count($record->demographic) > 0)
@@ -143,7 +144,7 @@
                                 </div>
 
                                 <div class="field">
-                                    <div class="ui large left input">
+                                    <div class="ui sixteen wide large left input">
                                         <input name="q4_a" id="q4_a"
                                                @if(count($record->demographic) > 0)
                                                value="{{ $record->demographic->q4_a }}"

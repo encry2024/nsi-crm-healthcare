@@ -1,6 +1,6 @@
-<div class="ui secondary raised orange stackable segment">
-    <div class="ui container">
-    <form class="ui small form" action="{{ route('record.update', $record->id) }}" method="POST">
+<div class="ui secondary raised orange segment">
+    <form class="ui relaxed padded stackable form" action="{{ route('record.update', $record->id) }}" method="POST">
+        <div class="ui container">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PATCH">
 
@@ -31,21 +31,21 @@
             </select>
         </div>
 
-        <div class="field">
-            <div class="two fields">
-                <div class="field @if($errors->has('date_of_birth')) error @endif">
-                    <label><i class="write icon"></i> Date of Birth </label>
-                    <div class="ui fluid small left icon input">
-                        <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob" onchange="_calculateAge()" readonly>
-                        <i class="calendar icon"></i>
-                    </div>
-                </div>
 
-                <div class="field @if($errors->has('age')) error @endif">
-                    <label><i class="lock icon"></i> Age </label>
-                    <div class="ui small left input">
-                        <input name="age" value="{{ $record->age }}" placeholder="Age" id="age" readonly>
-                    </div>
+        <div class="two fields">
+
+            <div class="field @if($errors->has('date_of_birth')) error @endif">
+                <label><i class="write icon"></i> Date of Birth </label>
+                <div class="ui fluid small left icon input">
+                    <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob" onchange="_calculateAge()" readonly>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+
+            <div class="field @if($errors->has('age')) error @endif">
+                <label><i class="lock icon"></i> Age </label>
+                <div class="ui small left input">
+                    <input name="age" value="{{ $record->age }}" placeholder="Age" id="age" readonly>
                 </div>
             </div>
         </div>
@@ -125,10 +125,11 @@
         </div>
 
         <button class="ui button fluid">Update and Dispose</button>
-
+        </div>
     </form>
 </div>
-</div>
+
+
 <script>
     function _calculateAge() {
         var dob = document.getElementById('dob').value;
