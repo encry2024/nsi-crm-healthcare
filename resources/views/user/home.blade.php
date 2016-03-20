@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="ui relaxed padded grid">
+    <div class="ui padded stackable grid">
         <div class="ui doubling two column row">
             <div class="column">
                 <h2 class="ui header">
