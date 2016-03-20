@@ -14,6 +14,7 @@ Route::group(['prefix' => 'admin'], function () {
        $all_records = App\Record::with(['user' => function ($query) {
            $query->where('type', '=', 'agent');
        }]);
+
        $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
        $all_records->setPath('dashboard');
 
@@ -135,7 +136,6 @@ Route::get('{record_id}/questionnaire/diabetes_A1_C',           ['as' => 'da1c',
 Route::get('{record_id}/questionnaire/diabetes_eye_exam',       ['as' => 'dee',  'uses' => 'DiabetesEyeExamController@showDiabetesEyeExamView']);
 Route::get('{record_id}/questionnaires/high_risk_meds',         ['as' => 'hrm',  'uses' => 'HighRiskMedsController@showHighRiskMedsView']);
 Route::get('{record_id}/questionnaire/others',                  ['as' => 'o',    'uses' => 'OtherController@showOtherView']);
-
 
 // POST
 Route::post('{record_id}/save_answer/demographics',             ['as' => 'submit_demographics',            'uses' => 'DemographicsController@store']);
