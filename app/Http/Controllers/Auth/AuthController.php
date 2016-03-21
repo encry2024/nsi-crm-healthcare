@@ -64,7 +64,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     public function getLogout(){
         Auth::user()->addStatus('LOGOUT');
         Auth::logout();
