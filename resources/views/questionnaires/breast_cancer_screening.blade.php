@@ -7,7 +7,7 @@
 
 @if ($record->user_id == Auth::user()->id)
     @section('content')
-        <div class="ui padded relaxed grid">
+        <div class="ui padded grid">
             <div class="ui doubling stackable three column row" >
                 @include('util.messages')
                 <div class="four wide column">
@@ -315,8 +315,8 @@
     @stop
 @else
     @section('content')
-        <div class="ui padded relaxed doubling stackable grid">
-            <div class="three column row">
+        <div class="ui padded grid">
+            <div class="ui three doubling stackable column row">
                 @include('util.messages')
                 <div class="four wide column">
                     @include('util.form_left_sidebar')

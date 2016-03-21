@@ -5,8 +5,8 @@
 @stop
 
 @section('content')
-    <div class="ui padded stackable grid">
-        <div class="ui doubling two column row">
+    <div class="ui padded grid">
+        <div class="ui doubling stackable two column row">
             <div class="column">
                 <h2 class="ui header">
                     <div class="content"><i class="dashboard icon"></i>Dashboard</div>
@@ -41,16 +41,16 @@
                             </div>
                         </form>
                     </div>
-                    <table class="ui table striped unstackable small">
+                    <table class="ui tablet unstackable striped small table ">
                         <thead>
-                        <tr>
-                            <th class="one wide"></th>
-                            <th class="six wide">Patient Name</th>
-                            <th class="three wide">MRN</th>
-                            <th class="one wide">Gender</th>
-                            <th class="one wide">Age</th>
-                            <th class="five wide">Disposition</th>
-                        </tr>
+                            <tr>
+                                <th class="one wide"></th>
+                                <th class="six wide">Patient Name</th>
+                                <th class="three wide">MRN</th>
+                                <th class="one wide">Gender</th>
+                                <th class="one wide">Age</th>
+                                <th class="five wide">Disposition</th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach ($records as $record)
