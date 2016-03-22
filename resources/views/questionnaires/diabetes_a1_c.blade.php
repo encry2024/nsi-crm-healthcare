@@ -8,8 +8,8 @@
 @if($record->user_id == Auth::user()->id)
     @section('content')
         <div class="ui padded grid">
+            @include('util.messages')
             <div class="ui doubling stackable three column row">
-                @include('util.messages')
                 <div class="four wide column">
                     @include('util.form_left_sidebar')
                 </div>
@@ -316,6 +316,14 @@
                                                     {{ $record->diabetes_a1_c->q9 }}
                                                 @elseif ($record->diabetes_a1_c->q9 == "Privacy Manager")
                                                     {{ $record->diabetes_a1_c->q9 }}
+                                                @elseif ($record->diabetes_a1_c->q9 == "Deceased")
+                                                    {{ $record->diabetes_a1_c->q9 }}
+                                                @elseif ($record->diabetes_a1_c->q9 == "Different PCP")
+                                                    {{ $record->diabetes_a1_c->q9 }}
+                                                @elseif ($record->diabetes_a1_c->q9 == "Up-to-date")
+                                                    {{ $record->diabetes_a1_c->q9 }}
+                                                @elseif ($record->diabetes_a1_c->q9 == "Done Outside SMG")
+                                                    {{ $record->diabetes_a1_c->q9 }}
                                                 @endif
                                             @endif
                                         </div>
@@ -331,6 +339,10 @@
                                             <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                             <div class="item" data-value="Do Not Call">Do Not Call</div>
                                             <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                            <div class="item" data-value="Deceased">Deceased</div>
+                                            <div class="item" data-value="Different PCP">Different PCP</div>
+                                            <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                            <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                         </div>
                                     </div>
                                     <div class="field">
@@ -383,7 +395,7 @@
                 <div class="four wide column">
                     @include('util.form_left_sidebar')
                 </div>
-                <div class="nine wide column"   >
+                <div class="nine wide column">
                     @include('util.page_title')
                     <div class="row">
                         <div class="ui divider"></div>

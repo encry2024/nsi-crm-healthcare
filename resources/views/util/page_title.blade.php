@@ -19,7 +19,7 @@
             <input type="hidden" name="page_id" value="{{ \Illuminate\Support\Facades\Request::route()->getName() }}">
             <input type="hidden" name="page_name" value="Breast Cancer Screening">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -51,6 +51,9 @@
                         </div>
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
+                        </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
                         </div>
                     </div>
                 </div>
@@ -70,7 +73,7 @@
             <input type="hidden" name="page_id" value="{{ \Illuminate\Support\Facades\Request::route()->getName() }}">
             <input type="hidden" name="page_name" value="Colon Cancer Screening">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -103,6 +106,9 @@
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
                         </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,7 +127,7 @@
             <input type="hidden" name="page_id" value="iv">
             <input type="hidden" name="page_name" value="Flu Vaccine">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 @foreach($record->checklist as $record_checklist)
                     @if ($record_checklist->name == 'iv')
@@ -152,6 +158,9 @@
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
                         </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
+                        </div>
                     </div>
                 </div>
             </div>
@@ -170,7 +179,7 @@
             <input type="hidden" name="page_id" value="{{ \Illuminate\Support\Facades\Request::route()->getName() }}">
             <input type="hidden" name="page_name" value="Pneumonia Vaccine">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -203,6 +212,9 @@
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
                         </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,7 +233,7 @@
             <input type="hidden" name="page_id" value="chbp">
             <input type="hidden" name="page_name" value="Blood Pressure">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -254,6 +266,9 @@
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
                         </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,7 +287,7 @@
             <input type="hidden" name="page_id" value="hapc">
             <input type="hidden" name="page_name" value="Diabetes: A1C">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -305,6 +320,9 @@
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
                         </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,7 +341,7 @@
             <input type="hidden" name="page_id" value="{{ \Illuminate\Support\Facades\Request::route()->getName() }}">
             <input type="hidden" name="page_name" value="Diabetes: Eye Exam">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -355,6 +373,9 @@
                         </div>
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
+                        </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
                         </div>
                     </div>
                 </div>
@@ -374,7 +395,7 @@
             <input type="hidden" name="page_id" value="{{ \Illuminate\Support\Facades\Request::route()->getName() }}">
             <input type="hidden" name="page_name" value="High Risk Meds">
 
-            <div class="ui right floated small floating dropdown button task_button" data-content="Task Status">
+            <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
                 @foreach($record->checklist as $record_checklist)
@@ -406,6 +427,9 @@
                         </div>
                         <div class="item" data-value="For Confirmation">
                             For Confirmation
+                        </div>
+                        <div class="item" data-value="NPC Pending">
+                            NPC Pending
                         </div>
                     </div>
                 </div>

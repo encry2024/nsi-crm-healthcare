@@ -5,11 +5,11 @@
     @include('util.header')
 @stop
 
-@if ($record->user_id == Auth::user()->id))
+@if ($record->user_id == Auth::user()->id)
     @section('content')
+        @include('util.messages')
         <div class="ui padded grid">
             <div class="ui doubling stackable three column row">
-                @include('util.messages')
                 <div class="four wide column">
                     @include('util.form_left_sidebar')
                 </div>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
 
-                            <div class="grouped disabled fields">
+                            <div class="grouped fields">
                                 <div class="field @if($errors->has('q17')) error @endif">
                                     <label>2) Is this a date between date range: 1/1/2015-current date?</label>
                                     <div class="ui radio checkbox">
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="grouped disabled fields">
+                            <div class="grouped fields">
                                 <div class="field @if($errors->has('q16')) error @endif">
                                     <label>3)If the date is NOT between date range, was outreach to patient made?</label>
                                     <div class="ui radio checkbox">
@@ -170,6 +170,14 @@
                                                 {{ $record->diabetes_eye_exam->q15 }}
                                             @elseif ($record->diabetes_eye_exam->q15 == "Privacy Manager")
                                                 {{ $record->diabetes_eye_exam->q15 }}
+                                            @elseif ($record->diabetes_eye_exam->q15 == "Deceased")
+                                                {{ $record->diabetes_eye_exam->q15 }}
+                                            @elseif ($record->diabetes_eye_exam->q15 == "Different PCP")
+                                                {{ $record->diabetes_eye_exam->q15 }}
+                                            @elseif ($record->diabetes_eye_exam->q15 == "Up-to-date")
+                                                {{ $record->diabetes_eye_exam->q15 }}
+                                            @elseif ($record->diabetes_eye_exam->q15 == "Done Outside SMG")
+                                                {{ $record->diabetes_eye_exam->q15 }}
                                             @endif
                                         @endif
                                     </div>
@@ -185,6 +193,10 @@
                                         <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                         <div class="item" data-value="Do Not Call">Do Not Call</div>
                                         <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                        <div class="item" data-value="Deceased">Deceased</div>
+                                        <div class="item" data-value="Different PCP">Different PCP</div>
+                                        <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                        <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                     </div>
                                 </div>
                                 <div class="field">
