@@ -179,7 +179,6 @@ class Record extends Eloquent
         $checklists = $request->all();
         unset($checklists['_token']);
 
-
         // Update each submitted checklist to 1
         foreach($checklists as $index => $value) {
             $temp = explode("_", $index);
