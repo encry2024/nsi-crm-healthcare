@@ -47,6 +47,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Record::class);
     }
 
+    public function records_2nd_list()
+    {
+        return $this->hasMany(Record2ndList::class);
+    }
+
     public function callbacks()
     {
         return $this->hasMany('App\Callback')->orderBy('schedule');

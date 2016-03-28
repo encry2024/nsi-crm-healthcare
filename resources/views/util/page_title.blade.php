@@ -1,5 +1,12 @@
 <div class="row">
-    @if (Request::route()->getName() == 'record.show')
+    @if (Request::route()->getName() == 'demo_2nd_questionnaire')
+        <h2 class="ui left floated header">
+            <div class="content">
+                Demographics 2nd Questionnaire
+            </div>
+        </h2>
+        <br>
+    @elseif (Request::route()->getName() == 'record.show')
         <h2 class="ui left floated header">
             <div class="content">
                 Demographics
