@@ -1,3 +1,4 @@
+clear
 <?php
 
 use Illuminate\Database\Schema\Blueprint;

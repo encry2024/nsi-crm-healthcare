@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{ ((($all_records->currentPage() - 1) * $all_records->perPage()) + ($ctr++) + 1) }}</td>
                             <td>{{ $record->user->name }}</td>
-                            <td><a style="font-weight: bold" href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                            <td><a style="font-weight: bold" href="{{ route('admin_demographics', $record->id) }}">{{ $record->name }}</a></td>
                             <td>{{ $record->mrn }}</td>
                             <td>{{ $record->gender }}</td>
                             <td>{{ $record->age }}</td>

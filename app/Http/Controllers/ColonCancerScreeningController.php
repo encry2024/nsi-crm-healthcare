@@ -41,4 +41,15 @@ class ColonCancerScreeningController extends Controller
 
         return $store_colon_cancer_screening;
     }
+
+    public static function showColonCancerScreening($record_id)
+    {
+        $record = Record::find($record_id);
+        $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        return view('admin.colon_cancer_screening', compact('record', 'dispositions'));
+    }
 }

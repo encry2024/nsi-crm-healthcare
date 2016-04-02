@@ -111,7 +111,7 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="3">
+                        <tr><th colspan="4">
                                 History
                             </th>
                         </tr></thead>
@@ -121,6 +121,7 @@
                                 <td><a style="font-weight: bold" href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
                                 <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
                                 <td> {{ $record->updated_at->diffForHumans() }}</td>
+                                <td>{{ $record->lists->name }}</td>
                             </tr>
                         @endforeach
                         </tbody>

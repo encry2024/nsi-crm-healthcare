@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Record;
+use App\Callback;
 
 class UserController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -92,5 +96,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showDashboard()
+    {
+        $show_dashboard = User::showAdminDashboard();
+
+        return $show_dashboard;
     }
 }

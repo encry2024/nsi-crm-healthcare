@@ -41,10 +41,6 @@ class Authenticate
             } else {
                 return redirect()->guest('auth/login');
             }
-        } elseif (! $this->auth->guest() ) {
-            if (Auth::user()->type == "admin") {
-                return redirect()->to('admin/dashboard');
-            }
         }
 
         return $next($request);
