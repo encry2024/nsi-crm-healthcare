@@ -20,6 +20,20 @@ class Demographics2ndQtController extends Controller
     {
         $record = Record2ndList::find($records_2nd_list_id);
 
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        // Check if there are checklist entries for this record
+        if(count($record->checklist) != count($record->getList())) {
+            // Delete first all related checklist
+            Checklist::where('record_id', $record->id)->delete();
+
+            // Generate list for this record
+            foreach($record->getList() as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
+        }
+
         return view('questionnaires.demographics_2', compact('record'));
     }
 

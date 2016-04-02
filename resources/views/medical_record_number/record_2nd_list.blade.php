@@ -47,10 +47,10 @@
                     <thead>
                         <tr>
                             <th class="one wide"></th>
-                            <th class="six wide">Patient Name</th>
+                            <th class="four wide">Patient Name</th>
                             <th class="three wide">Appt Date</th>
-                            <th class="one wide">Appt Start</th>
-                            <th class="one wide">Notes</th>
+                            <th class="two wide">Appt Start</th>
+                            <th class="two wide">Notes</th>
                             <th class="five wide">Appt Note</th>
                         </tr>
                     </thead>

@@ -10,6 +10,21 @@ class Record2ndList extends Eloquent
     //
     protected $table = 'records_2nd_lists';
 
+    private $list = array(
+        ['name' => 'bcs', 'description' => 'Breast Cancer Screening'],
+        ['name' => 'ccs', 'description' => 'Colorectal Cancer Screening'],
+        ['name' => 'iv', 'description' => 'Influenza Vaccine'],
+        ['name' => 'pv', 'description' => 'Pneumonia Vaccine'],
+        ['name' => 'chbp', 'description' => 'Controlling High Blood Pressure'],
+        ['name' => 'hapc', 'description' => 'Hemoglobin A1C Poor Control'],
+        ['name' => 'dee', 'description' => 'Diabetic Eye Exam'],
+        ['name' => 'hrm', 'description' => 'High Risk Meds']
+    );
+
+    public function getList() {
+        return $this->list;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'records_2nd_list_id');

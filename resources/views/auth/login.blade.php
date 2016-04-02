@@ -3,7 +3,7 @@
 
 @section('header')
     <div class="ui menu borderless inverted right aligned" style="border-radius: 0rem !important;">
-        <div class="header item">NSI :: Lead Scheduler</div>
+        <div class="header item">NSI :: CRM Healthcare</div>
         <div class="right menu">
             <div class="right item">Welcome, <i class="user icon"></i> Guest </div>
         </div>
