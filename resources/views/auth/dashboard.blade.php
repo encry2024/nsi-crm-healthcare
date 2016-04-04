@@ -12,7 +12,35 @@
                     <div class="content"><i class="dashboard icon"></i>Dashboard</div>
                 </h2>
                 <div class="ui divider"></div>
-
+                <div class="ui inverted grey segment">
+                    <form action="{{ route('admin_dashboard') }}" method="GET" style="margin: 0; !important">
+                        <div class="ui inverted small form">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label> Gender </label>
+                                    <select class="ui dropdown" name="gender">
+                                        <option value="">All</option>
+                                        <option {{ request('gender') =='M' ? 'selected':'' }} value="M">Male</option>
+                                        <option {{ request('gender') =='F' ? 'selected':'' }} value="F">Female</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Age</label>
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <input placeholder="from..." type="text" name="age_from" value="{{ request('age_from') }}">
+                                        </div>
+                                        <div class="field">
+                                            <input placeholder="to..." type="text" name="age_to" value="{{ request('age_to') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ui submit button">Filter</button>
+                            <a href="{{ route('admin_dashboard') }}" class="ui button">Clear Filter</a>
+                        </div>
+                    </form>
+                </div>
                 <table class="ui table striped unstackable small">
                     <thead>
                     <tr>
@@ -62,7 +90,7 @@
                         @foreach($callbacks as $callback)
                             <tr>
                                 <td>{{ $callback->user->name }}</td>
-                                <td>{{ $record->lists->name }}</td>
+                                <td>{{ $callback->record->lists->name }}</td>
                                 <td><a style="font-weight: bold" href="{{ route('admin_demographics', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
                                 <td>{{ $callback->schedule->diffForHumans() }}</td>
                                 <td>{{ $callback->notes }}</td>

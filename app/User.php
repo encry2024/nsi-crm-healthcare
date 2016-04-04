@@ -90,10 +90,23 @@ class User extends Model implements AuthenticatableContract,
 
     public static function showAdminDashboard()
     {
+
         $ctr = 0;
         $all_records = Record::with(['user' => function ($query) {
             $query->where('type', '=', 'agent');
         }]);
+
+        if(!empty(request('gender'))) {
+            $all_records = $all_records->where('gender', request('gender'));
+        }
+
+        if(!empty(request('age_from'))) {
+            $all_records = $all_records->where('age', '>=', request('age_from'));
+        }
+
+        if(!empty(request('age_to'))) {
+            $all_records = $all_records->where('age', '<=', request('age_to'));
+        }
 
         $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
         $all_records->setPath('dashboard');
