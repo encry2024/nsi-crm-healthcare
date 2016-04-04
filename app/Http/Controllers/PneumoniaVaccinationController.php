@@ -42,4 +42,15 @@ class PneumoniaVaccinationController extends Controller
 
         return $store_pneumonia_vaccination;
     }
+
+    public function showPneumoniaVaccination($record_id)
+    {
+        $record = Record::find($record_id);
+        $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        return view('admin.pneumonia_vaccination', compact('record', 'dispositions'));
+    }
 }

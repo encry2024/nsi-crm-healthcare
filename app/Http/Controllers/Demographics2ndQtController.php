@@ -6,22 +6,35 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Record;
-use App\Callback;
+use App\Demographics2ndQt;
+use App\Record2ndList;
 
-class UserController extends Controller
+class Demographics2ndQtController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($records_2nd_list_id)
     {
-        //
+        $record = Record2ndList::find($records_2nd_list_id);
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        // Check if there are checklist entries for this record
+        if(count($record->checklist) != count($record->getList())) {
+            // Delete first all related checklist
+            Checklist::where('record_id', $record->id)->delete();
+
+            // Generate list for this record
+            foreach($record->getList() as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
+        }
+
+        return view('questionnaires.demographics_2', compact('record'));
     }
 
     /**
@@ -31,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -40,17 +53,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $record_2nd_list_id)
     {
-        $newUser = new User();
-        $newUser->name = $request->get('name');
-        $newUser->email = $request->get('email');
-        $newUser->password = bcrypt($request->get('password'));
-        $newUser->type = 'agent';
+        $store_dem_2nd_qt = Demographics2ndQt::storeAnswer($request, $record_2nd_list_id);
 
-        $newUser->save();
-
-        return redirect()->back()->with('message', 'User was successfully saved');
+        return $store_dem_2nd_qt;
     }
 
     /**
@@ -96,12 +103,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function showDashboard()
-    {
-        $show_dashboard = User::showAdminDashboard();
-
-        return $show_dashboard;
     }
 }

@@ -41,4 +41,15 @@ class DiabetesA1CController extends Controller
 
         return $store_diabetes_a1_c;
     }
+
+    public function showDiabetesA1C($record_id)
+    {
+        $record = Record::find($record_id);
+        $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        return view('admin.diabetes_a1_c', compact('record', 'dispositions'));
+    }
 }

@@ -3,35 +3,39 @@
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return redirect()->to('/home');
+    return redirect()->to('/home/list/1');
+});
+
+Route::get('/home', function() {
+   if(Auth::user()->type = 'admin') {
+       return redirect()->to('admin/dashboard');
+   } else {
+       return redirect()->to('/');
+   }
 });
 
 // Fetch all records (Admin type)
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'check_auth_type'], function () {
 
-   Route::get('/dashboard', function () {
-       $ctr = 0;
-       $all_records = App\Record::with(['user' => function ($query) {
-           $query->where('type', '=', 'agent');
-       }]);
-
-       $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-       $all_records->setPath('dashboard');
-
-       $callbacks = App\Callback::with(['user' => function($query) {
-           $query->where('type', '=', 'agent');
-       }])->where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
-
-       return view('auth.dashboard', compact('ctr', 'all_records', 'callbacks'));
-   });
+    Route::get('/dashboard', 'UserController@showDashboard')->name('admin_dashboard');
+    Route::get('record/{record_id}/demographics', 'RecordController@showRecordDemographics')->name('admin_demographics');
+    Route::get('record/{record_id}/breast_cancer_screening', 'BreastCancerScreeningController@showBreastCancerScreening')->name('admin_bcs');
+    Route::get('record/{record_id}/colon_cancer_screening', 'ColonCancerScreeningController@showColonCancerScreening')->name('admin_ccs');
+    Route::get('record/{record_id}/flu_vaccination', 'FluVaccinationController@showFluVaccination')->name('admin_fv');
+    Route::get('record/{record_id}/pneumonia_vaccination', 'PneumoniaVaccinationController@showPneumoniaVaccination')->name('admin_pv');
+    Route::get('record/{record_id}/blood_pressure', 'BloodPressureController@showBloodPressure')->name('admin_bp');
+    Route::get('record/{record_id}/diabetes_a1_c', 'DiabetesA1CController@showDiabetesA1C')->name('admin_da1c');
+    Route::get('record/{record_id}/diabetes_eye_exam', 'DiabetesEyeExamController@showDiabetesEyeExam')->name('admin_dee');
+    Route::get('record/{record_id}/high_risk_meds', 'HighRiskMedsController@showHighRiskMeds')->name('admin_hrm');
+    Route::get('record/{record_id}/other', 'OtherController@showOther')->name('admin_o');
 
 });
 
-Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
+Route::get('/home/list/1', ['middleware' => 'auth', 'as' => '/home', function () {
     // Update user status to IDLE
     Auth::user()->addStatus('IDLE');
 
-    $records = App\Record::whereUserId(Auth::user()->id);
+    $records = App\Record::whereUserId(Auth::user()->id)->whereListId(1);
 
     if(!empty(request('gender'))) {
         $records = $records->where('gender', request('gender'));
@@ -47,7 +51,7 @@ Route::get('/home', ['middleware' => 'auth', 'as' => '/home', function () {
 
     $ctr = 0;
     $records = $records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-    $records->setPath("home?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
+    $records->setPath("?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
 
     // get callbacks with filters
     $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
@@ -109,7 +113,6 @@ get('record/show/{record_id}', ['as' => 'show_record', function($record) {
     return view('medical_record_number.show', compact('record'));
 }]);
 
-
 // Ajax for updating status
 get('user/update_status/{record}/{status}', function($record, $status) {
     $user = App\User::find($record->user_id);
@@ -125,6 +128,8 @@ get('user/update_status_break/{user}/{status}', function($user, $status) {
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+Route::bind('records_2nd_list', function($id) { return App\Record2ndList::whereId($id)->first(); });
+Route::resource('records_2nd_list', 'Record2ndListController');
 
 // Questionnaires
 Route::get('{record_id}/questionnaire/breast_cancer_screening', ['as' => 'bcs',  'uses' => 'BreastCancerScreeningController@showBreastCancerScreeningView']);
@@ -136,6 +141,8 @@ Route::get('{record_id}/questionnaire/diabetes_A1_C',           ['as' => 'da1c',
 Route::get('{record_id}/questionnaire/diabetes_eye_exam',       ['as' => 'dee',  'uses' => 'DiabetesEyeExamController@showDiabetesEyeExamView']);
 Route::get('{record_id}/questionnaires/high_risk_meds',         ['as' => 'hrm',  'uses' => 'HighRiskMedsController@showHighRiskMedsView']);
 Route::get('{record_id}/questionnaire/others',                  ['as' => 'o',    'uses' => 'OtherController@showOtherView']);
+Route::get('{records_2nd_list_id}/questionnaire/demographics_2nd_part', 'Demographics2ndQtController@index')->name('demo_2nd_questionnaire');
+// Route::get('{records_2nd_list_id}');
 
 // POST
 Route::post('{record_id}/save_answer/demographics',             ['as' => 'submit_demographics',            'uses' => 'DemographicsController@store']);
@@ -148,9 +155,13 @@ Route::post('{record_id}/save_answer/diabetes_A1_C',            ['as' => 'submit
 Route::post('{record_id}/save_answer/diabetes_eye_exam',        ['as' => 'submit_diabetes_eye_exam',       'uses' => 'DiabetesEyeExamController@store']);
 Route::post('{record_id}/save_answer/high_risk_meds',           ['as' => 'submit_high_risk_meds',          'uses' => 'HighRiskMedsController@store']);
 Route::post('{record_id}/save_answer/others',                   ['as' => 'submit_others',                  'uses' => 'OtherController@store']);
+Route::post('{record_2nd_list_id}/save_answer/demographics_2nd_qt', 'Demographics2ndQtController@store')->name('submit_demographics_2nd_questionnaire');
 
 Route::get('record/{record}/callbacks', 'RecordController@showCallbacks')->name('callbacks');
 Route::post('record/{record}/callbacks','RecordController@addCallback')->name('addcallback');
 Route::get('record/{record}/history', 'RecordController@showHistory')->name('history');
 Route::post('record/{record}/checklist', 'RecordController@updateChecklist')->name('checklist');
 Route::post('record/{record}/store_state', 'RecordController@storeState')->name('store_state');
+
+// Records 2nd Patient List
+Route::get('home/list/2', 'RecordController@getList2')->name('record_list_2');

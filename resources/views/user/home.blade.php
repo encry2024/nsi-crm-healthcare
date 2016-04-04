@@ -12,6 +12,8 @@
                     <div class="content"><i class="dashboard icon"></i>Dashboard</div>
                 </h2>
                 <div class="ui divider"></div>
+                    <div class="ui button primary active">Record List 1</div>
+                    <a href="{{ route('record_list_2') }}" class="ui button primary">Record List 2</a>
                     <div class="ui inverted grey segment">
                         <form action="{{ route('/home') }}" method="GET" style="margin: 0; !important">
                             <div class="ui inverted small form">
@@ -109,7 +111,7 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="3">
+                        <tr><th colspan="4">
                                 History
                             </th>
                         </tr></thead>
@@ -119,6 +121,7 @@
                                 <td><a style="font-weight: bold" href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
                                 <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
                                 <td> {{ $record->updated_at->diffForHumans() }}</td>
+                                <td>{{ $record->lists->name }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -133,76 +136,73 @@
 @stop
 
 @section('scripts')
-        <script>
-            $('#search_patient').click(function(){
-                $(this).val('');
-            });
+    <script>
+        $('#search_patient').click(function(){
+            $(this).val('');
+        });
 
-            $.fn.search.settings.templates = {
-                category: function(response) {
-                    $('.results').empty();
-                    $.each(response.results, function (index, item) {
-                        $.each(item.results, function (indx, itm) {
-                            $('.results').append(
-                                '<a class="result" href="' + itm.url + '">' +
-                                '<div class="content">' +
-                                '<div class="title">' + itm.title + '</div>' +
-                                '<div class="description">' + itm.description + '</div>'+
-                                '</div>'+
-                                '</a>'
-                            );
-                        })
+        $.fn.search.settings.templates = {
+            category: function(response) {
+                $('.results').empty();
+                $.each(response.results, function (index, item) {
+                    $.each(item.results, function (indx, itm) {
+                        $('.results').append(
+                            '<a class="result" href="' + itm.url + '">' +
+                            '<div class="content">' +
+                            '<div class="title">' + itm.title + '</div>' +
+                            '<div class="description">' + itm.description + '</div>'+
+                            '</div>'+
+                            '</a>'
+                        );
                     })
+                })
+            },
+        }
+
+        $('.ui.search').search({
+            debug: true,
+            type: 'category',
+            minCharacters: 2,
+            cache: false,
+            apiSettings   : {
+                url: '{{ URL::to('/') }}/record_query/{query}',
+                onResponse: function(patientSource) {
+                    var
+                            response = {
+                                results : {}
+                            };
+
+                    if(patientSource.items === undefined) {
+                        // no results
+
+                        return response;
+                    }
+                    // translate GitHub API response to work with search
+                    $.each(patientSource.items, function(index, item) {
+                        var language = item.language || 'Unknown',
+                                maxResults = 8
+                                ;
+
+                        // create new language category
+                        if(response.results[language] === undefined) {
+                            response.results[language] = {
+                                name    : language,
+                                results : []
+                            };
+                        }
+
+                        // add result to category
+                        response.results[language].results.push({
+                            title           : item.title,
+                            description     : item.description,
+                            url             : item.html_url
+                        });
+                    });
+
+
+                    return response;
                 },
             }
-
-            $('.ui.search')
-                .search({
-                    debug: true,
-                    type: 'category',
-                    minCharacters: 2,
-                    cache: false,
-                    apiSettings   : {
-                        url: '{{ URL::to('/') }}/record_query/{query}',
-                        onResponse: function(patientSource) {
-                            var
-                                    response = {
-                                        results : {}
-                                    };
-
-                            if(patientSource.items === undefined) {
-                                // no results
-
-                                return response;
-                            }
-                            // translate GitHub API response to work with search
-                            $.each(patientSource.items, function(index, item) {
-                                var language = item.language || 'Unknown',
-                                        maxResults = 8
-                                        ;
-
-                                // create new language category
-                                if(response.results[language] === undefined) {
-                                    response.results[language] = {
-                                        name    : language,
-                                        results : []
-                                    };
-                                }
-
-                                // add result to category
-                                response.results[language].results.push({
-                                    title           : item.title,
-                                    description     : item.description,
-                                    url             : item.html_url
-                                });
-                            });
-
-
-                            return response;
-                        },
-                    }
-                });
-
-
-        </script>
+        });
+    </script>
 @stop

@@ -6,14 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Record;
-use App\Callback;
+use App\Record2ndList;
 
-class UserController extends Controller
+class Record2ndListController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $show_record_2nd_list = Record2ndList::show2ndList();
+
+        return $show_record_2nd_list;
     }
 
     /**
@@ -31,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -42,15 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $newUser = new User();
-        $newUser->name = $request->get('name');
-        $newUser->email = $request->get('email');
-        $newUser->password = bcrypt($request->get('password'));
-        $newUser->type = 'agent';
-
-        $newUser->save();
-
-        return redirect()->back()->with('message', 'User was successfully saved');
+        //
     }
 
     /**
@@ -59,9 +49,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($record)
     {
-        //
+
     }
 
     /**
@@ -96,12 +86,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function showDashboard()
-    {
-        $show_dashboard = User::showAdminDashboard();
-
-        return $show_dashboard;
     }
 }

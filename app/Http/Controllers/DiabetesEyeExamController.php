@@ -42,4 +42,15 @@ class DiabetesEyeExamController extends Controller
 
         return $store_diabetes_eye_exam;
     }
+
+    public function showDiabetesEyeExam($record_id)
+    {
+        $record = Record::find($record_id);
+        $dispositions = Disposition::all();
+
+        // Update user status if user status was IDLE
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        return view('admin.diabetes_eye_exam', compact('record', 'dispositions'));
+    }
 }

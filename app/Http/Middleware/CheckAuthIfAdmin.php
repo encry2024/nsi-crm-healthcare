@@ -5,8 +5,16 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class RedirectIfAuthenticated
+class CheckAuthIfAdmin
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+
     /**
      * The Guard implementation.
      *
@@ -25,18 +33,12 @@ class RedirectIfAuthenticated
         $this->auth = $auth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            return redirect('/home/list/1');
+        if ($request->user()->type != 'admin') {
+            return redirect('home/list/1');
         }
+
 
         return $next($request);
     }

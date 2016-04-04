@@ -159,4 +159,18 @@ class RecordController extends Controller
 
         return redirect()->back()->with('message', $request->get('page_name') . ' ' . 'status was successfully updated')->with('msg_type', 'success');
     }
+
+    public function getList2()
+    {
+        $show_list_2 = Record::showList2();
+
+        return $show_list_2;
+    }
+
+    public function showRecordDemographics($record_id)
+    {
+        $showRecordDemographics = Record::showDemographics($record_id);
+
+        return $showRecordDemographics;
+    }
 }

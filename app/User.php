@@ -47,6 +47,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Record::class);
     }
 
+    public function records_2nd_list()
+    {
+        return $this->hasMany(Record2ndList::class);
+    }
+
     public function callbacks()
     {
         return $this->hasMany('App\Callback')->orderBy('schedule');
@@ -81,5 +86,22 @@ class User extends Model implements AuthenticatableContract,
     public function userType()
     {
         return $this->type();
+    }
+
+    public static function showAdminDashboard()
+    {
+        $ctr = 0;
+        $all_records = Record::with(['user' => function ($query) {
+            $query->where('type', '=', 'agent');
+        }]);
+
+        $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
+        $all_records->setPath('dashboard');
+
+        $callbacks = Callback::with(['user' => function($query) {
+            $query->where('type', '=', 'agent');
+        }])->where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
+
+        return view('auth.dashboard', compact('ctr', 'all_records', 'callbacks'));
     }
 }

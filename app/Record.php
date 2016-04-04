@@ -93,6 +93,11 @@ class Record extends Eloquent
         return $this->belongsTo(User::class);
     }
 
+    public function lists()
+    {
+        return $this->belongsTo(RecordList::class, 'list_id');
+    }
+
     public static function storeRecord($request)
     {
         $record = Record::whereBtn($request->get('btn'))->first();
@@ -190,5 +195,56 @@ class Record extends Eloquent
 
     public function getLastDisposition() {
         return History::where('record_id', $this->id)->orderBy('created_at', 'DESC')->first();
+    }
+
+    public static function showList2()
+    {
+        // Update user status to IDLE
+        Auth::user()->addStatus('IDLE');
+
+        $records = Record::whereUserId(Auth::user()->id)->whereListId(2);
+
+        if(!empty(request('gender'))) {
+            $records = $records->where('gender', request('gender'));
+        }
+
+        if(!empty(request('age_from'))) {
+            $records = $records->where('age', '>=', request('age_from'));
+        }
+
+        if(!empty(request('age_to'))) {
+            $records = $records->where('age', '<=', request('age_to'));
+        }
+
+        $ctr = 0;
+        $records = $records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
+        $records->setPath("?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
+
+        // get callbacks with filters
+        $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
+
+        return view('user.home', compact('records', 'ctr', 'callbacks', 'all_records'));
+    }
+
+    public static function showDemographics($record_id)
+    {
+        $record = Record::find($record_id);
+
+        if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
+
+        // Check if there are checklist entries for this record
+        if(count($record->checklist) != count($record->getList())) {
+            // Delete first all related checklist
+            Checklist::where('record_id', $record->id)->delete();
+
+            // Generate list for this record
+            foreach($record->getList() as $list) {
+                $record->checklist()->save(new Checklist($list));
+            }
+        }
+
+        $dispositions = Disposition::all();
+        $record = Record::find($record->id);    // Reinstantiate.. To reflect immediately the changes in checklist
+        return view('admin.demographics', compact('record', 'dispositions'));
     }
 }

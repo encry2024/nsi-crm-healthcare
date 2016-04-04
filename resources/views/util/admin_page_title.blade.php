@@ -1,19 +1,19 @@
 <div class="row">
-    @if (Request::route()->getName() == 'demo_2nd_questionnaire')
+    @if (Request::route()->getName() == 'admin_demo_2')
         <h2 class="ui left floated header">
             <div class="content">
                 Demographics 2nd Questionnaire
             </div>
         </h2>
         <br>
-    @elseif (Request::route()->getName() == 'record.show')
+    @elseif (Request::route()->getName() == 'admin_demographics')
         <h2 class="ui left floated header">
             <div class="content">
                 Demographics
             </div>
         </h2>
         <br>
-    @elseif (Request::route()->getName() == 'bcs')
+    @elseif (Request::route()->getName() == 'admin_bcs')
         <h2 class="ui left floated header">
             <div class="content">
                 Breast Cancer Screening
@@ -29,15 +29,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == Request::route()->getName())
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == Request::route()->getName())
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -67,7 +67,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'ccs')
+    @elseif (Request::route()->getName() == 'admin_ccs')
         <h2 class="ui left floated header">
             <div class="content">
                 Colon Cancer Screening
@@ -83,15 +83,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == Request::route()->getName())
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == Request::route()->getName())
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -121,7 +121,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'fv')
+    @elseif (Request::route()->getName() == 'admin_fv')
         <h2 class="ui left floated header">
             <div class="content">
                 Flu/Influenza Vaccine
@@ -138,10 +138,10 @@
                 <input type="hidden" name="task">
                 @foreach($record->checklist as $record_checklist)
                     @if ($record_checklist->name == 'iv')
-                    @if ($record_checklist->value != null)
+                        @if ($record_checklist->value != null)
                             {{ $record_checklist->value }}
-                    @else
-                        TASKS
+                        @else
+                            TASKS
                         @endif
                     @endif
                 @endforeach
@@ -173,7 +173,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'pv')
+    @elseif (Request::route()->getName() == 'admin_pv')
         <h2 class="ui left floated header">
             <div class="content">
                 Pneumonia Vaccine
@@ -189,15 +189,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == Request::route()->getName())
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == Request::route()->getName())
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -227,7 +227,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'bp')
+    @elseif (Request::route()->getName() == 'admin_bp')
         <h2 class="ui left floated header">
             <div class="content">
                 Blood Pressure
@@ -243,15 +243,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == 'chbp')
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == 'chbp')
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -281,7 +281,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'da1c')
+    @elseif (Request::route()->getName() == 'admin_da1c')
         <h2 class="ui left floated header">
             <div class="content">
                 Diabetes: A1C
@@ -297,15 +297,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == 'hapc')
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == 'hapc')
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -335,7 +335,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'dee')
+    @elseif (Request::route()->getName() == 'admin_dee')
         <h2 class="ui left floated header">
             <div class="content">
                 Diabetes: Eye Exam
@@ -351,15 +351,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == Request::route()->getName())
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == Request::route()->getName())
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -389,7 +389,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'hrm')
+    @elseif (Request::route()->getName() == 'admin_hrm')
         <h2 class="ui left floated header">
             <div class="content">
                 High Risk Meds
@@ -405,15 +405,15 @@
             <div class="ui right floated small floating dropdown button task_button">
                 <input type="hidden" name="task">
                 <label class="text">
-                @foreach($record->checklist as $record_checklist)
-                    @if ($record_checklist->name == Request::route()->getName())
-                        @if ($record_checklist->value != null)
-                            {{ $record_checklist->value }}
-                        @else
-                            TASKS
+                    @foreach($record->checklist as $record_checklist)
+                        @if ($record_checklist->name == Request::route()->getName())
+                            @if ($record_checklist->value != null)
+                                {{ $record_checklist->value }}
+                            @else
+                                TASKS
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
                 </label>
                 <div class="menu">
                     <div class="scrolling menu">
@@ -443,7 +443,7 @@
             </div>
         </form>
         <br><br>
-    @elseif (Request::route()->getName() == 'o')
+    @elseif (Request::route()->getName() == 'admin_o')
         <h2 class="ui left floated header">
             <div class="content">
                 Others
