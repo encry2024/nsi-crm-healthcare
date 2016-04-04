@@ -61,7 +61,7 @@ return [
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => 'hc_',
-            'unix_socket'   => '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
+//          'unix_socket'   => '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
             'strict'    => false,
         ],
 
