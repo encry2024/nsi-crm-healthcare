@@ -98,9 +98,7 @@ class User extends Model implements AuthenticatableContract,
         $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
         $all_records->setPath('dashboard');
 
-        $callbacks = Callback::with(['user' => function($query) {
-            $query->where('type', '=', 'agent');
-        }])->where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
+        $callbacks = Callback::where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
 
         return view('auth.dashboard', compact('ctr', 'all_records', 'callbacks'));
     }

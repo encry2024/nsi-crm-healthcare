@@ -10,35 +10,8 @@
             </div>
         </h5>
     </div>
-    @if (isset($record))
-        <div class="ui dropdown item borderless">
-            <i class="help icon"></i>
-            Help
-            <div class="menu">
-                <div class="item"><i class="lock icon"></i>- Readonly Fields</div>
-                <div class="item"><i class="write icon"></i>- Editable Fields</div>
-                <div class="item">BCW - Before Call Work</div>
-                <div class="item">ACW - After Call Work</div>
-            </div>
-        </div>
 
-        <a class="item borderless" href="{{ route('record.show', $record->id) }}">
-            <i class="write icon"></i>
-            Form
-        </a>
-
-        <a class="item borderless" href="{{ route('callbacks', $record->id) }}">
-            <i class="repeat icon"></i>
-            Callbacks
-        </a>
-
-        <a class="item borderless" href="{{ route('history', $record->id) }}">
-            <i class="book icon"></i>
-            Disposition History
-        </a>
-    @endif
-
-    @if (strpos(Route::getCurrentRoute()->getPath(), 'home') !== FALSE)
+    @if (strpos(Route::current()->getName(), 'admin_dashboard') !== FALSE)
         <div class="item borderless">
             <div class="ui search">
                 <div class="ui icon input">

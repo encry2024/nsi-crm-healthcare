@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('header')
-    @include('util.header')
+    @include('admin.header')
 @stop
 
 @section('content')
@@ -54,7 +54,7 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="4">
+                        <tr><th colspan="5">
                                 History
                             </th>
                         </tr></thead>
@@ -62,7 +62,8 @@
                         @foreach($callbacks as $callback)
                             <tr>
                                 <td>{{ $callback->user->name }}</td>
-                                <td><a style="font-weight: bold" href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
+                                <td>{{ $record->lists->name }}</td>
+                                <td><a style="font-weight: bold" href="{{ route('admin_demographics', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
                                 <td>{{ $callback->schedule->diffForHumans() }}</td>
                                 <td>{{ $callback->notes }}</td>
                             </tr>
@@ -85,16 +86,18 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="3">
+                        <tr><th colspan="5">
                                 History
                             </th>
                         </tr></thead>
                         <tbody>
-                        @foreach(\Illuminate\Support\Facades\Auth::user()->records()->where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
+                        @foreach(\App\Record::where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
                             <tr>
-                                <td><a style="font-weight: bold" href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                                <td><a style="font-weight: bold" href="{{ route('admin_demographics', $record->id) }}">{{ $record->name }}</a></td>
+                                <td>{{ $record->lists->name }}</td>
+                                <td>{{ $record->user->name }}</td>
                                 <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
-                                <td> {{ $record->updated_at->diffForHumans() }}</td>
+                                <td>{{ $record->updated_at->diffForHumans() }}</td>
                             </tr>
                         @endforeach
                         </tbody>
