@@ -109,7 +109,7 @@ class User extends Model implements AuthenticatableContract,
         }
 
         $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-        $all_records->setPath('dashboard');
+        $all_records->setPath("?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
 
         $callbacks = Callback::where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
 
