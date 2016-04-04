@@ -13,7 +13,7 @@ class CreateRecords2ndListsTable extends Migration
     public function up()
     {
         Schema::create('records_2nd_lists', function (Blueprint $blueprint) {
-
+            $blueprint->integer('id');
         });
     }
 
