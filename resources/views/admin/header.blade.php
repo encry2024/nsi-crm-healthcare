@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <a class="ui right item borderless" href="{{ route('/home') }}"><i class="icon dashboard"></i> Dashboard</a>
+    <a class="ui right item borderless" href="{{ route('admin_dashboard') }}"><i class="icon dashboard"></i> Dashboard</a>
     <div class="ui dropdown item borderless">
         <i class="user icon"></i> {{ Auth::user()->name }} <i class="dropdown icon"></i>
         <div class="menu">
