@@ -15,7 +15,7 @@
                     <a href="{{ route('/home') }}" class="ui button {{ Route::current()->getName()=="/home"?"primary":"" }}">Record List 1</a>
                     <a href="{{ route('record_list_2') }}" class="ui button {{ Route::current()->getName()=="record_list_2"?"primary":"" }}">Record List 2</a>
                     <div class="ui inverted grey segment">
-                        <form action="{{ route('/home') }}" method="GET" style="margin: 0; !important">
+                        <form action="{{ Route::current()->getName()=="record_list_2"?route('record_list_2'):route('/home') }}" method="GET" style="margin: 0; !important">
                             <div class="ui inverted small form">
                                 <div class="two fields">
                                     <div class="field">

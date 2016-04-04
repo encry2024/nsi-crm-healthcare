@@ -46,6 +46,7 @@
                     <tr>
                         <th class="one wide"></th>
                         <th class="three wide">Assigned To</th>
+                        <th class="three wide">List</th>
                         <th class="six wide">Patient Name</th>
                         <th class="three wide">MRN</th>
                         <th class="one wide">Gender</th>
@@ -58,6 +59,7 @@
                         <tr>
                             <td>{{ ((($all_records->currentPage() - 1) * $all_records->perPage()) + ($ctr++) + 1) }}</td>
                             <td>{{ $record->user->name }}</td>
+                            <td>{{ $record->lists->name }}</td>
                             <td><a style="font-weight: bold" href="{{ route('admin_demographics', $record->id) }}">{{ $record->name }}</a></td>
                             <td>{{ $record->mrn }}</td>
                             <td>{{ $record->gender }}</td>
