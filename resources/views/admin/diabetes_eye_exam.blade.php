@@ -142,44 +142,10 @@
 
                             <div class="field @if($errors->has('q15')) error @endif">
                                 <label for="q15" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                <div class="ui selection dropdown">
+                                <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q15">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">
-                                        @if(count($record->diabetes_eye_exam) != 0)
-                                            @if ($record->diabetes_eye_exam->q15 == "Patient Transferred")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Scheduled Appointment")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Patient Refused")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "NPC")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Pending")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Call back")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Voicemail")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "No answer")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Disconnected Number")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Do Not Call")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Privacy Manager")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Deceased")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Different PCP")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Up-to-date")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @elseif ($record->diabetes_eye_exam->q15 == "Done Outside SMG")
-                                                {{ $record->diabetes_eye_exam->q15 }}
-                                            @endif
-                                        @endif
-                                    </div>
+                                    <div class="default text">Outreach result</div>
                                     <div class="menu">
                                         <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                         <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -287,4 +253,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->diabetes_eye_exam->q15)?$record->diabetes_eye_exam->q15:"" }}");
+    </script>
 @stop

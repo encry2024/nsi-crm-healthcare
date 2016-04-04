@@ -289,44 +289,10 @@
 
                                 <div class="field @if($errors->has('q9')) error @endif">
                                     <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q9">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->diabetes_a1_c) != 0)
-                                                @if ($record->diabetes_a1_c->q9 == "Patient Transferred")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Scheduled Appointment")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Patient Refused")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "NPC")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Pending")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Call back")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Voicemail")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "No answer")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Disconnected Number")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Do Not Call")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Privacy Manager")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Deceased")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Different PCP")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Up-to-date")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @elseif ($record->diabetes_a1_c->q9 == "Done Outside SMG")
-                                                    {{ $record->diabetes_a1_c->q9 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -671,44 +637,10 @@
 
                             <div class="field @if($errors->has('q9')) error @endif">
                                 <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
-                                <div class="ui selection dropdown">
+                                <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q9">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">
-                                        @if(count($record->diabetes_a1_c) != 0)
-                                            @if ($record->diabetes_a1_c->q9 == "Patient Transferred")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Scheduled Appointment")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Patient Refused")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "NPC")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Pending")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Call back")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Voicemail")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "No answer")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Disconnected Number")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Do Not Call")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Privacy Manager")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Deceased")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Different PCP")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Up-to-date")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @elseif ($record->diabetes_a1_c->q9 == "Done Outside SMG")
-                                                {{ $record->diabetes_a1_c->q9 }}
-                                            @endif
-                                        @endif
-                                    </div>
+                                    <div class="default text">Outreach result</div>
                                     <div class="menu">
                                         <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                         <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -761,4 +693,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->diabetes_a1_c->q9)?$record->diabetes_a1_c->q9:"" }}");
+    </script>
 @stop

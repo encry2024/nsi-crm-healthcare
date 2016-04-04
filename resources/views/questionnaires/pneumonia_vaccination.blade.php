@@ -144,45 +144,11 @@
                                 </div>
 
                                 <div class="field @if($errors->has('q8')) error @endif">
-                                    <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <label for="q8" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q8">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->pneumonia_vaccination) != 0)
-                                                @if ($record->pneumonia_vaccination->q8 == "Patient Transferred")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Scheduled Appointment")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Patient Refused")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "NPC")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Pending")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Call back")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Voicemail")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "No answer")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Disconnected Number")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Do Not Call")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Privacy Manager")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Deceased")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Different PCP")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Up-to-date")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Done Outside SMG")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -486,37 +452,11 @@
                                 </div>
 
                                 <div class="disabled field @if($errors->has('q8')) error @endif">
-                                    <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <label for="q8" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q8">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->pneumonia_vaccination) != 0)
-                                                @if ($record->pneumonia_vaccination->q8 == "Patient Transferred")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Scheduled Appointment")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Patient Refused")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "NPC")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Pending")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Call back")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Voicemail")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "No answer")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Disconnected Number")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Do Not Call")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @elseif ($record->pneumonia_vaccination->q8 == "Privacy Manager")
-                                                    {{ $record->pneumonia_vaccination->q8 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -529,6 +469,10 @@
                                             <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                             <div class="item" data-value="Do Not Call">Do Not Call</div>
                                             <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                            <div class="item" data-value="Deceased">Deceased</div>
+                                            <div class="item" data-value="Different PCP">Different PCP</div>
+                                            <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                            <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                         </div>
                                     </div>
                                     <div class="field">
@@ -636,4 +580,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->pneumonia_vaccination->q8)?$record->pneumonia_vaccination->q8:"" }}");
+    </script>
 @stop
