@@ -280,6 +280,6 @@
     @include('util.form_scripts')
 
     <script>
-        $('.outreach').dropdown('set selected', "{{ $record->breast_cancer_screening->q4 }}");
+        $('.outreach').dropdown('set selected', "{{ isset($record->breast_cancer_screening->q4)?$record->breast_cancer_screening->q4:"" }}");
     </script>
 @stop
