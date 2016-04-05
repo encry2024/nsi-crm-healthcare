@@ -58,7 +58,7 @@
         @foreach($record->getCustomFields() as $column)
             <div class="item">
                 <div class="right floated content">
-                    {{ $record->custom()->$column }}
+                    {{ $record->custom()?$record->custom()->$column:"" }}
                 </div>
                 <div class="content">
                     {{ str_replace("_", " ", ucwords($column, "_")) }}
