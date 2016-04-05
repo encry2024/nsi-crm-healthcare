@@ -99,6 +99,11 @@ class Record extends Eloquent
         return $this->belongsTo(RecordList::class, 'list_id');
     }
 
+    public function demographic_2nd()
+    {
+        return $this->hasOne(Demographics2ndQt::class);
+    }
+
     public static function storeRecord($request)
     {
         $record = Record::whereBtn($request->get('btn'))->first();
@@ -203,7 +208,7 @@ class Record extends Eloquent
         // Update user status to IDLE
         Auth::user()->addStatus('IDLE');
 
-        $records = Record::whereUserId(Auth::user()->id)->whereListId(2);
+        $records = Record::with(['demographic_2nd'])->whereUserId(Auth::user()->id)->whereListId(2);
 
         if(!empty(request('gender'))) {
             $records = $records->where('gender', request('gender'));
@@ -224,7 +229,7 @@ class Record extends Eloquent
         // get callbacks with filters
         $callbacks = Auth::user()->callbacks()->where('schedule', '>',date('Y-m-d', strtotime('-2 day', time())))->get();
 
-        return view('user.home', compact('records', 'ctr', 'callbacks', 'all_records'));
+        return view('medical_record_number.record_2nd_list', compact('records', 'ctr', 'callbacks'));
     }
 
     public static function showDemographics($record_id)

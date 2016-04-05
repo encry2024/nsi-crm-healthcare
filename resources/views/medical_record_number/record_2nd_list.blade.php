@@ -55,19 +55,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($records_2nd_list as $record)
+                    @foreach($records as $record)
                         <tr>
-                            <td>{{ ((($records_2nd_list->currentPage() - 1) * $records_2nd_list->perPage()) + ($ctr++) + 1) }}</td>
-                            <td><a style="font-weight: bold" href="{{ route('demo_2nd_questionnaire', $record->id) }}">{{ $record->patient_name }}</a></td>
-                            <td>{{ $record->appt_date }}</td>
-                            <td>{{ $record->appt_start_time }}</td>
-                            <td>{{ $record->notes }}</td>
-                            <td>{{ $record->appt_note }}</td>
+                            <td>{{ ((($records->currentPage() - 1) * $records->perPage()) + ($ctr++) + 1) }}</td>
+                            <td><a style="font-weight: bold" href="{{ route('demo_2nd_questionnaire', $record->id) }}">{{ $record->name }}</a></td>
+                            {{-- <td>{{ $record->demographic_2nd->appt_date }}</td>
+                            <td>{{ $record->demographic_2nd->appt_start_time }}</td>
+                            <td>{{ $record->demographic_2nd->notes }}</td>
+                            <td>{{ $record->demographic_2nd->appt_note }}</td> --}}
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                @include('util.paginator', ['paginator' => $records_2nd_list->appends(Request::only('filter'))])
+                @include('util.paginator', ['paginator' => $records->appends(Request::only('filter'))])
             </div>
 
             <div class="column">

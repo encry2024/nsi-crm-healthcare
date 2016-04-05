@@ -25,7 +25,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="field @if($errors->has('q1')) error @endif">
-                                <label style="font-size: 16px;">1) What is the date of most recent pneumovax for patients 65 or older (N/A if pt < 65) </label>
+                                <label style="font-size: 15px;">1) What is the date of most recent pneumovax for patients 65 or older (N/A if pt < 65) </label>
                                 <div class="two fields">
                                     <div class="field">
                                         <div class="ui big left icon input">
@@ -57,7 +57,7 @@
                             <div class="two fields">
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q4')) error @endif">
-                                        <label for="q4" style="font-size: 16px;">2) Is the patient >65 years old and was a pneumovax given</label>
+                                        <label for="q4" style="font-size: 15px;">2) Is the patient >65 years old and was a pneumovax given</label>
                                         <div class="ui radio checkbox">
                                             <input type="radio" name="q4" id="q4"
                                                    @if(count($record->pneumonia_vaccination) > 0)
@@ -100,7 +100,7 @@
 
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q5')) error @endif">
-                                        <label for="q5" style="font-size: 16px;">3) If the date is NOT between date range, was outreach to patient made?</label>
+                                        <label for="q5" style="font-size: 15px;">3) If the date is NOT between date range, was outreach to patient made?</label>
                                         <div class="ui radio checkbox">
                                             <input type="radio" name="q5" id="q5"
                                                    @if(count($record->pneumonia_vaccination) > 0)
@@ -143,7 +143,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q8')) error @endif">
-                                <label for="q8" style="font-size: 14px;">6) What was the result of the outreach?</label>
+                                <label for="q8" style="font-size: 15px;">6) What was the result of the outreach?</label>
                                 <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q8">
                                     <i class="dropdown icon"></i>
@@ -180,7 +180,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q9')) error @endif">
-                                <label for="q9" style="font-size: 16px;">5) If done outside SMG, did you request document from outside provider or patient?</label>
+                                <label for="q9" style="font-size: 15px;">5) If done outside SMG, did you request document from outside provider or patient?</label>
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="q9" id="q9"
                                            @if(count($record->pneumonia_vaccination) > 0)
@@ -209,7 +209,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q6')) error @endif">
-                                <label for="q6" style="font-size: 16px;">6) Was document received and recorded in EMR?</label>
+                                <label for="q6" style="font-size: 15px;">6) Was document received and recorded in EMR?</label>
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="q6" id="q6"
                                            @if(count($record->pneumonia_vaccination) > 0)
@@ -238,7 +238,7 @@
 
 
                             <div class="field @if($errors->has('q7')) error @endif">
-                                <label style="font-size: 16px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                                <label style="font-size: 15px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                                 <div class="ui large left icon input">
                                     <input type="text" name="q7"
                                            @if(count($record->pneumonia_vaccination) > 0)

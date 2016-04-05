@@ -25,7 +25,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="field @if($errors->has('q3')) error @endif">
-                                <label for="q3" style="font-size: 16px;">1) Date of 2nd Chart review:   If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                                <label for="q3" style="font-size: 15px;">1) Date of 2nd Chart review:   If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                                 <div class="ui big left input">
                                     <input name="q3"
                                            @if(count($record->other) > 0)
@@ -39,7 +39,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q12')) error @endif">
-                                    <label for="q12" style="font-size: 16px;">2) Patient satisfaction:  Was this call helpful? (y/N)</label>
+                                    <label for="q12" style="font-size: 15px;">2) Patient satisfaction:  Was this call helpful? (y/N)</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q12" id="q12"
                                                @if(count($record->other) > 0)
@@ -82,7 +82,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q13')) error @endif">
-                                    <label for="q13" style="font-size: 16px;">3) Patient Satisfaction: Was this the best time to have called you?</label>
+                                    <label for="q13" style="font-size: 15px;">3) Patient Satisfaction: Was this the best time to have called you?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q13" id="q13"
                                                @if(count($record->other) > 0)
@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q11')) error @endif">
-                                <label style="font-size: 16px;">4) Additional Comments</label>
+                                <label style="font-size: 15px;">4) Additional Comments</label>
                                 <div class="ui big left input">
                                     <textarea type="text" name="q11" >@if(count($record->other) > 0){{ $record->other->q11 }}@endif</textarea>
                                 </div>

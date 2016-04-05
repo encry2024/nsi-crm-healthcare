@@ -27,7 +27,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q1')) error @endif">
-                                    <label for="q1" style="font-size: 16px;">1) Does the patient have a diagnosis of hypertension or a history of hypertension?</label>
+                                    <label for="q1" style="font-size: 15px;">1) Does the patient have a diagnosis of hypertension or a history of hypertension?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q1" id="q1"
                                                @if(count($record->blood_pressure) > 0)
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q2')) error @endif">
-                                <label style="font-size: 16px;">2) What is the most recent BP reading? </label>
+                                <label style="font-size: 15px;">2) What is the most recent BP reading? </label>
                                 <div class="ui big left input">
                                     <input type="text" name="q2"
                                            @if(count($record->blood_pressure) > 0)
@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q7')) error @endif">
-                                <label style="font-size: 16px;">3) What is the date of the most recent BP from an office visit?</label>
+                                <label style="font-size: 15px;">3) What is the date of the most recent BP from an office visit?</label>
                                 <div class="two fields">
                                     <div class="field">
                                         <div class="ui big left icon input">
@@ -114,7 +114,7 @@
                             <div class="two fields">
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q3')) error @endif">
-                                        <label for="q3" style="font-size: 16px;">4) Is Blood pressure > 140/90?</label>
+                                        <label for="q3" style="font-size: 15px;">4) Is Blood pressure > 140/90?</label>
                                         <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                             <input type="radio" name="q3" id="q3"
                                                    @if(count($record->blood_pressure) > 0)
@@ -157,7 +157,7 @@
 
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q4')) error @endif">
-                                        <label for="q4" style="font-size: 16px;">5) If out of range (> 140/90), was patient outreach made?</label>
+                                        <label for="q4" style="font-size: 15px;">5) If out of range (> 140/90), was patient outreach made?</label>
                                         <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                             <input type="radio" name="q4" id="q4"
                                                    @if(count($record->blood_pressure) > 0)
@@ -200,7 +200,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q5')) error @endif">
-                                <label for="q5" style="font-size: 14px;">6) What was the result of the outreach?</label>
+                                <label for="q5" style="font-size: 15px;">6) What was the result of the outreach?</label>
                                 <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q5">
                                     <i class="dropdown icon"></i>
@@ -237,7 +237,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q6')) error @endif">
-                                <label style="font-size: 16px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                                <label style="font-size: 15px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                                 <div class="ui large left icon input">
                                     <input type="text" name="q6"
                                            @if(count($record->blood_pressure) > 0)

@@ -27,7 +27,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q1')) error @endif">
-                                    <label for="q1" style="font-size: 16px;">1) Refer to the High Risk Medication List.  Is the patient on High Risk Med?</label>
+                                    <label for="q1" style="font-size: 15px;">1) Refer to the High Risk Medication List.  Is the patient on High Risk Med?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q1" id="q1"
                                            @if(count($record->high_risk_meds) > 0)
@@ -70,7 +70,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q4')) error @endif">
-                                    <label for="q4" style="font-size: 16px;">2) If YES, task Pharmacist</label>
+                                    <label for="q4" style="font-size: 15px;">2) If YES, task Pharmacist</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q4" id="q4"
                                                @if(count($record->high_risk_meds) > 0)
@@ -112,7 +112,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q5')) error @endif">
-                                <label style="font-size: 16px;">3) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
+                                <label style="font-size: 15px;">3) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
                                 <div class="ui big left input">
                                     <input type="text" name="q5"
                                            @if(count($record->high_risk_meds) > 0)
@@ -161,7 +161,7 @@
 
                             <div class="grouped disabled fields">
                                 <div class="field @if($errors->has('q1')) error @endif">
-                                    <label for="q1" style="font-size: 16px;">1) Refer to the High Risk Medication List.  Is the patient on High Risk Med?</label>
+                                    <label for="q1" style="font-size: 15px;">1) Refer to the High Risk Medication List.  Is the patient on High Risk Med?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q1" id="q1"
                                                @if(count($record->high_risk_meds) > 0)
@@ -204,7 +204,7 @@
 
                             <div class="grouped disabled fields">
                                 <div class="field @if($errors->has('q4')) error @endif">
-                                    <label for="q4" style="font-size: 16px;">2) If YES, task Pharmacist</label>
+                                    <label for="q4" style="font-size: 15px;">2) If YES, task Pharmacist</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q4" id="q4"
                                                @if(count($record->high_risk_meds) > 0)
@@ -246,7 +246,7 @@
                             </div>
 
                             <div class="disabled field @if($errors->has('q5')) error @endif">
-                                <label style="font-size: 16px;">3) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
+                                <label style="font-size: 15px;">3) Closed Loop: If you made an appt., was the appt. kept? If you tasked the office, did the office act on the task & close the task? Did you update the QM tab for the patient?</label>
                                 <div class="ui big left input">
                                     <input type="text" name="q5"
                                            @if(count($record->high_risk_meds) > 0)
