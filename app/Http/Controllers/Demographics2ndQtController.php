@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Demographics2ndQt;
-use App\Record2ndList;
+use App\Record;
+use Illuminate\Support\Facades\Auth;
 
 class Demographics2ndQtController extends Controller
 {
@@ -18,7 +19,7 @@ class Demographics2ndQtController extends Controller
      */
     public function index($records_2nd_list_id)
     {
-        $record = Record2ndList::find($records_2nd_list_id);
+        $record = Record::find($records_2nd_list_id);
 
         // Update user status if user status was IDLE
         if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
