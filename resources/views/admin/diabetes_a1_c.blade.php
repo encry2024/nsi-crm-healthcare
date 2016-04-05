@@ -24,7 +24,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q1')) error @endif">
-                                    <label for="q1" style="font-size: 16px;">1) Does the patient have a diagnosis of diabetes or a history of diabetes?</label>
+                                    <label for="q1" style="font-size: 15px;">1) Does the patient have a diagnosis of diabetes or a history of diabetes?</label>
                                     <div class="ui radio checkbox " style="margin-top: 0.5rem !important;">
                                         <input type="radio"  name="q1" id="q1" value="Yes"
                                                @if(count($record->diabetes_a1_c) > 0)
@@ -67,7 +67,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q2')) error @endif">
-                                    <label for="q2" style="font-size: 16px;">2) Was the office visit date between July-Dec. 2015?</label>
+                                    <label for="q2" style="font-size: 15px;">2) Was the office visit date between July-Dec. 2015?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q2" id="q2" value="Yes"
                                                @if(count($record->diabetes_a1_c) > 0)
@@ -113,7 +113,7 @@
                             <div class="two fields">
 
                                 <div class="field @if($errors->has('q3')) error @endif">
-                                    <label style="font-size: 16px;">3) What is the date of the most recent office visit? </label>
+                                    <label style="font-size: 15px;">3) What is the date of the most recent office visit? </label>
                                     <div class="two fields">
                                         <div class="field">
                                             <div class="ui big left icon input">
@@ -158,7 +158,7 @@
                             <div class="two fields">
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q5')) error @endif">
-                                        <label for="q5" style="font-size: 16px;">5) Is the A1c Under 9%?</label>
+                                        <label for="q5" style="font-size: 15px;">5) Is the A1c Under 9%?</label>
                                         <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                             <input type="radio" name="q5" id="q5"
                                                    @if(count($record->diabetes_a1_c) > 0)
@@ -201,7 +201,7 @@
 
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q6')) error @endif">
-                                        <label for="q6" style="font-size: 16px;">6) Is the A1c Under 8%?</label>
+                                        <label for="q6" style="font-size: 15px;">6) Is the A1c Under 8%?</label>
                                         <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                             <input type="radio" name="q6" id="q6"
                                                    @if(count($record->diabetes_a1_c) > 0)
@@ -245,7 +245,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q7')) error @endif">
-                                    <label for="q7" style="font-size: 16px;">7) If out of range (>8%) or not done in past 6 months, was outreach made?</label>
+                                    <label for="q7" style="font-size: 15px;">7) If out of range (>8%) or not done in past 6 months, was outreach made?</label>
                                     <div class="ui radio checkbox" style="margin-top: 0.5rem !important;">
                                         <input type="radio" name="q7" id="q7"
                                                @if(count($record->diabetes_a1_c) > 0)
@@ -287,7 +287,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q9')) error @endif">
-                                <label for="q9" style="font-size: 14px;">8) What was the result of the outreach?</label>
+                                <label for="q9" style="font-size: 15px;">8) What was the result of the outreach?</label>
                                 <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q9">
                                     <i class="dropdown icon"></i>
@@ -324,7 +324,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q11')) error @endif">
-                                <label style="font-size: 16px;">9) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                                <label style="font-size: 15px;">9) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                                 <div class="ui large left icon input">
                                     <input type="text" name="q11"
                                            @if(count($record->diabetes_a1_c) > 0)

@@ -114,7 +114,7 @@
                             <div class="inline fields">
 
                                 <div class="field @if($errors->has('q4')) error @endif">
-                                    <label for="q4" style="font-size: 14px;">4. Ok to call?</label>
+                                    <label for="q4" style="font-size: 15px;">4. Ok to call?</label>
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="q4" id="q4"
                                                @if(count($record->demographic) > 0)

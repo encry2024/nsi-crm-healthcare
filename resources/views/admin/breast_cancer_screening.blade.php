@@ -23,7 +23,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="field @if($errors->has('q1')) error @endif">
-                                <label style="font-size: 14px;">1. What is the date of the most recent Mammogram?</label>
+                                <label style="font-size: 15px;">1. What is the date of the most recent Mammogram?</label>
                                 <div class="two fields">
                                     <div class="field">
                                         <div class="ui large left icon input">
@@ -32,7 +32,7 @@
                                                    value="{{ $record->breast_cancer_screening->q1 }}"
                                                    @else
                                                    value=""
-                                                    @endif
+                                                   @endif
                                             >
                                             <i class="calendar icon"></i>
                                         </div>
@@ -55,7 +55,7 @@
                             <div class="field">
                                 <div class="two fields">
                                     <div class="grouped fields">
-                                        <label for="q2" style="font-size: 14px;">2) Is this a date between date range: 1/1/2014-current date?</label>
+                                        <label for="q2" style="font-size: 15px;">2) Is this a date between date range: 1/1/2014-current date?</label>
                                         <div class="field @if($errors->has('q2')) error @endif">
                                             <div class="ui radio checkbox" >
                                                 <input type="radio" name="q2" id="q2"
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="grouped fields">
-                                        <label for="q3" style="font-size: 14px;">3) If the date is NOT between date range, was outreach to patient made?</label>
+                                        <label for="q3" style="font-size: 15px;">3) If the date is NOT between date range, was outreach to patient made?</label>
 
                                         <div class="field @if($errors->has('q3')) error @endif">
 
@@ -145,7 +145,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q4')) error @endif">
-                                <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                <label for="q4" style="font-size: 15px;">4) What was the result of the outreach?</label>
                                 <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q4">
                                     <i class="dropdown icon"></i>
@@ -167,7 +167,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q5')) error @endif">
-                                <label for="q5" style="font-size: 14px;">5) Enter appt date if appt made</label>
+                                <label for="q5" style="font-size: 15px;">5) Enter appt date if appt made</label>
                                 <div class="ui large left icon input">
                                     <input name="q5" id="appt_date"
                                            @if(count($record->breast_cancer_screening) > 0)
@@ -183,7 +183,7 @@
                             <div class="two fields">
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q6')) error @endif">
-                                        <label for="q6" style="font-size: 14px;">6) If done outside SMG, did you request document from outside provider or patient?</label>
+                                        <label for="q6" style="font-size: 15px;">6) If done outside SMG, did you request document from outside provider or patient?</label>
                                         <div class="ui radio checkbox" >
                                             <input type="radio" name="q6" id="q6" value="Yes"
                                                    @if(count($record->breast_cancer_screening) > 0)
@@ -214,7 +214,7 @@
 
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q7')) error @endif">
-                                        <label for="q7" style="font-size: 14px;">7) Was document received and recorded in EMR?</label>
+                                        <label for="q7" style="font-size: 15px;">7) Was document received and recorded in EMR?</label>
                                         <div class="ui radio checkbox">
                                             <input type="radio" name="q7" id="q7" value="Yes"
                                                    @if(count($record->breast_cancer_screening) > 0)
@@ -245,7 +245,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q8')) error @endif">
-                                <label style="font-size: 14px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
+                                <label style="font-size: 15px;">8) Closed loop: appt kept or task acted on/closed by office?</label>
                                 <div class="ui large left icon input">
                                     <input type="text" name="q8"
                                            @if(count($record->breast_cancer_screening) > 0)

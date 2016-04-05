@@ -23,7 +23,7 @@
                         <form method="POST" action="{{ route('submit_diabetes_eye_exam', $record->id) }}" class="ui form">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="field @if($errors->has('q12')) error @endif">
-                                <label>1) What is the date of most recent Dilated Eye?</label>
+                                <label style="font-size: 15px">1) What is the date of most recent Dilated Eye?</label>
                                 <div class="two fields">
                                     <div class="field">
                                         <div class="ui big left icon input">
@@ -53,7 +53,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q17')) error @endif">
-                                    <label>2) Is this a date between date range: 1/1/2015-current date?</label>
+                                    <label style="font-size: 15px">2) Is this a date between date range: 1/1/2015-current date?</label>
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="q17" id="q17"
                                                @if(count($record->diabetes_eye_exam) > 0)
@@ -98,7 +98,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q16')) error @endif">
-                                    <label>3)If the date is NOT between date range, was outreach to patient made?</label>
+                                    <label style="font-size: 15px">3)If the date is NOT between date range, was outreach to patient made?</label>
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="q16" id="q16"
                                                @if(count($record->diabetes_eye_exam) > 0)
@@ -142,7 +142,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q15')) error @endif">
-                                <label for="q15" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                                <label for="q15" style="font-size: 15px;">4) What was the result of the outreach?</label>
                                 <div class="ui selection dropdown outreach">
                                     <input type="hidden" name="q15">
                                     <i class="dropdown icon"></i>
@@ -179,7 +179,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q14')) error @endif">
-                                <label>5) If done outside SMG, did you request document form outside provider or patient?</label>
+                                <label style="font-size: 15px">5) If done outside SMG, did you request document form outside provider or patient?</label>
                                 <div class="ui left input">
                                     <input name="q14"
                                            @if(count($record->diabetes_eye_exam) > 0)
@@ -193,7 +193,7 @@
 
                             <div class="grouped fields">
                                 <div class="field @if($errors->has('q13')) error @endif">
-                                    <label>6) Was document received and recorded in EMR?</label>
+                                    <label style="font-size: 15px">6) Was document received and recorded in EMR?</label>
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="q13" id="q13"
                                                @if(count($record->diabetes_eye_exam) > 0)
@@ -225,7 +225,7 @@
                             </div>
 
                             <div class="field @if($errors->has('q11')) error @endif">
-                                <label style="font-size: 16px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                                <label style="font-size: 15px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                                 <div class="ui large left icon input">
                                     <input type="text" name="q11"
                                            @if(count($record->diabetes_eye_exam) > 0)
@@ -270,7 +270,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="disabled field @if($errors->has('q12')) error @endif">
-                            <label>1) What is the date of most recent Dilated Eye?</label>
+                            <label style="font-size: 15px">1) What is the date of most recent Dilated Eye?</label>
                             <div class="two fields">
                                 <div class="field">
                                     <div class="ui big left icon input">
@@ -300,7 +300,7 @@
 
                         <div class="grouped disabled fields">
                             <div class="field @if($errors->has('q17')) error @endif">
-                                <label>2) Is this a date between date range: 1/1/2015-current date?</label>
+                                <label style="font-size: 15px">2) Is this a date between date range: 1/1/2015-current date?</label>
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="q17" id="q17"
                                            @if(count($record->diabetes_eye_exam) > 0)
@@ -345,7 +345,7 @@
 
                         <div class="grouped disabled fields">
                             <div class="field @if($errors->has('q16')) error @endif">
-                                <label>3)If the date is NOT between date range, was outreach to patient made?</label>
+                                <label style="font-size: 15px">3)If the date is NOT between date range, was outreach to patient made?</label>
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="q16" id="q16"
                                            @if(count($record->diabetes_eye_exam) > 0)
@@ -389,7 +389,7 @@
                         </div>
 
                         <div class="disabled field @if($errors->has('q15')) error @endif">
-                            <label for="q15" style="font-size: 14px;">4) What was the result of the outreach?</label>
+                            <label for="q15" style="font-size: 15px;">4) What was the result of the outreach?</label>
                             <div class="ui selection dropdown outreach">
                                 <input type="hidden" name="q15">
                                 <i class="dropdown icon"></i>
@@ -426,7 +426,7 @@
                         </div>
 
                         <div class="disabled field @if($errors->has('q14')) error @endif">
-                            <label>5) If done outside SMG, did you request document form outside provider or patient?</label>
+                            <label style="font-size: 15px">5) If done outside SMG, did you request document form outside provider or patient?</label>
                             <div class="ui left input">
                                 <input name="q14"
                                        @if(count($record->diabetes_eye_exam) > 0)
@@ -440,7 +440,7 @@
 
                         <div class="grouped disabled fields">
                             <div class="field @if($errors->has('q13')) error @endif">
-                                <label>6) Was document received and recorded in EMR?</label>
+                                <label style="font-size: 15px">6) Was document received and recorded in EMR?</label>
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="q13" id="q13"
                                            @if(count($record->diabetes_eye_exam) > 0)
@@ -472,7 +472,7 @@
                         </div>
 
                         <div class="disabled field @if($errors->has('q11')) error @endif">
-                            <label style="font-size: 16px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
+                            <label style="font-size: 15px;">7) Closed loop: If you made an appt., was the appt. kept?  If you tasked the office, did the office act on the task & close the task?  Did the you update the QM tab for the patient? </label>
                             <div class="ui large left icon input">
                                 <input type="text" name="q11"
                                        @if(count($record->diabetes_eye_exam) > 0)
