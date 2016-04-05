@@ -90,17 +90,28 @@ class User extends Model implements AuthenticatableContract,
 
     public static function showAdminDashboard()
     {
+
         $ctr = 0;
         $all_records = Record::with(['user' => function ($query) {
             $query->where('type', '=', 'agent');
         }]);
 
-        $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
-        $all_records->setPath('dashboard');
+        if(!empty(request('gender'))) {
+            $all_records = $all_records->where('gender', request('gender'));
+        }
 
-        $callbacks = Callback::with(['user' => function($query) {
-            $query->where('type', '=', 'agent');
-        }])->where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
+        if(!empty(request('age_from'))) {
+            $all_records = $all_records->where('age', '>=', request('age_from'));
+        }
+
+        if(!empty(request('age_to'))) {
+            $all_records = $all_records->where('age', '<=', request('age_to'));
+        }
+
+        $all_records = $all_records->orderBy('updated_at')->orderBy('gender')->orderBy('age', 'DESC')->paginate(20);
+        $all_records->setPath("?gender=" . request('gender') . "&age_from=" . request('age_from') . "&age_to=" . request('age_to'));
+
+        $callbacks = Callback::where('schedule', '>', date('Y-m-d', strtotime('-2 day', time())))->get();
 
         return view('auth.dashboard', compact('ctr', 'all_records', 'callbacks'));
     }

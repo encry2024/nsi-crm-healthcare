@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('header')
-    @include('util.header')
+    @include('admin.header')
 @stop
 
 @section('content')
@@ -12,12 +12,41 @@
                     <div class="content"><i class="dashboard icon"></i>Dashboard</div>
                 </h2>
                 <div class="ui divider"></div>
-
+                <div class="ui inverted grey segment">
+                    <form action="{{ route('admin_dashboard') }}" method="GET" style="margin: 0; !important">
+                        <div class="ui inverted small form">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label> Gender </label>
+                                    <select class="ui dropdown" name="gender">
+                                        <option value="">All</option>
+                                        <option {{ request('gender') =='M' ? 'selected':'' }} value="M">Male</option>
+                                        <option {{ request('gender') =='F' ? 'selected':'' }} value="F">Female</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Age</label>
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <input placeholder="from..." type="text" name="age_from" value="{{ request('age_from') }}">
+                                        </div>
+                                        <div class="field">
+                                            <input placeholder="to..." type="text" name="age_to" value="{{ request('age_to') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ui submit button">Filter</button>
+                            <a href="{{ route('admin_dashboard') }}" class="ui button">Clear Filter</a>
+                        </div>
+                    </form>
+                </div>
                 <table class="ui table striped unstackable small">
                     <thead>
                     <tr>
                         <th class="one wide"></th>
                         <th class="three wide">Assigned To</th>
+                        <th class="three wide">List</th>
                         <th class="six wide">Patient Name</th>
                         <th class="three wide">MRN</th>
                         <th class="one wide">Gender</th>
@@ -30,6 +59,7 @@
                         <tr>
                             <td>{{ ((($all_records->currentPage() - 1) * $all_records->perPage()) + ($ctr++) + 1) }}</td>
                             <td>{{ $record->user->name }}</td>
+                            <td>{{ $record->lists->name }}</td>
                             <td><a style="font-weight: bold" href="{{ route('admin_demographics', $record->id) }}">{{ $record->name }}</a></td>
                             <td>{{ $record->mrn }}</td>
                             <td>{{ $record->gender }}</td>
@@ -54,7 +84,7 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="4">
+                        <tr><th colspan="5">
                                 History
                             </th>
                         </tr></thead>
@@ -62,7 +92,8 @@
                         @foreach($callbacks as $callback)
                             <tr>
                                 <td>{{ $callback->user->name }}</td>
-                                <td><a style="font-weight: bold" href="{{ route('record.show', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
+                                <td>{{ $callback->record->lists->name }}</td>
+                                <td><a style="font-weight: bold" href="{{ route('admin_demographics', $callback->record->id) }}">{{ $callback->record->name }}</a></td>
                                 <td>{{ $callback->schedule->diffForHumans() }}</td>
                                 <td>{{ $callback->notes }}</td>
                             </tr>
@@ -85,16 +116,18 @@
 
                     <table class="ui striped table unstackable small">
                         <thead>
-                        <tr><th colspan="3">
+                        <tr><th colspan="5">
                                 History
                             </th>
                         </tr></thead>
                         <tbody>
-                        @foreach(\Illuminate\Support\Facades\Auth::user()->records()->where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
+                        @foreach(\App\Record::where('updated_at', '!=' ,'0000-00-00 00:00:00')->orderBy('records.updated_at', 'DESC')->take(5)->get() as $record)
                             <tr>
-                                <td><a style="font-weight: bold" href="{{ route('record.show', $record->id) }}">{{ $record->name }}</a></td>
+                                <td><a style="font-weight: bold" href="{{ route('admin_demographics', $record->id) }}">{{ $record->name }}</a></td>
+                                <td>{{ $record->lists->name }}</td>
+                                <td>{{ $record->user->name }}</td>
                                 <td>{{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition->name:"" }}</td>
-                                <td> {{ $record->updated_at->diffForHumans() }}</td>
+                                <td>{{ $record->updated_at->diffForHumans() }}</td>
                             </tr>
                         @endforeach
                         </tbody>

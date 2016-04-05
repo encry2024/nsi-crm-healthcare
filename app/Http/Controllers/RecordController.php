@@ -65,6 +65,8 @@ class RecordController extends Controller
      */
     public function show($record)
     {
+        if(Auth::user()->type=='admin') return redirect()->route('admin_demographics', $record->id);
+
         // Update user status if user status was IDLE
         if(Auth::user()->status == 'IDLE') Auth::user()->addStatus('BCW', $record->id);
 

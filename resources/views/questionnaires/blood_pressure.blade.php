@@ -202,44 +202,10 @@
 
                                 <div class="field @if($errors->has('q5')) error @endif">
                                     <label for="q5" style="font-size: 14px;">6) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q5">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->blood_pressure) != 0)
-                                                @if ($record->blood_pressure->q5 == "Patient Transferred")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Scheduled Appointment")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Patient Refused")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "NPC")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Pending")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Call back")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Voicemail")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "No answer")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Disconnected Number")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Do Not Call")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Privacy Manager")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Deceased")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Different PCP")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Up-to-date")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Done Outside SMG")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -497,36 +463,10 @@
 
                                 <div class="disabled field @if($errors->has('q5')) error @endif">
                                     <label for="q5" style="font-size: 14px;">6) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q5">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->blood_pressure) != 0)
-                                                @if ($record->blood_pressure->q5 == "Patient Transferred")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Scheduled Appointment")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Patient Refused")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "NPC")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Pending")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Call back")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Voicemail")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "No answer")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Disconnected Number")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Do Not Call")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @elseif ($record->blood_pressure->q5 == "Privacy Manager")
-                                                    {{ $record->blood_pressure->q5 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -539,6 +479,10 @@
                                             <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                             <div class="item" data-value="Do Not Call">Do Not Call</div>
                                             <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                            <div class="item" data-value="Deceased">Deceased</div>
+                                            <div class="item" data-value="Different PCP">Different PCP</div>
+                                            <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                            <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                         </div>
                                     </div>
                                     <div class="field">
@@ -587,4 +531,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->blood_pressure->q5)?$record->blood_pressure->q5:"" }}");
+    </script>
 @stop

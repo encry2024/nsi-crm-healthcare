@@ -142,44 +142,10 @@
 
                                 <div class="field @if($errors->has('q4')) error @endif">
                                     <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q4">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->colon_cancer_screening) != 0)
-                                                @if ($record->colon_cancer_screening->q4 == "Patient Transferred")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Scheduled Appointment")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Patient Refused")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "NPC")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Pending")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Call back")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Voicemail")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "No answer")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Disconnected Number")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Do Not Call")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Privacy Manager")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Deceased")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Different PCP")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Up-to-date")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Done Outside SMG")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -198,7 +164,6 @@
                                             <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                         </div>
                                     </div>
-                                    </div>
                                     <div class="field">
                                         <div class="ui large left input">
                                             <input name="q4_a" id="q4_a"
@@ -210,7 +175,7 @@
                                             >
                                         </div>
                                     </div>
-
+                                </div>
                                 <div class="grouped fields">
                                     <div class="field @if($errors->has('q5')) error @endif">
                                         <label for="q5" style="font-size: 14px;">5) If done outside SMG, did you request document from outside provider or patient?</label>
@@ -422,36 +387,10 @@
 
                                 <div class="disabled field @if($errors->has('q4')) error @endif">
                                     <label for="q4" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                    <div class="ui selection dropdown">
+                                    <div class="ui selection dropdown outreach">
                                         <input type="hidden" name="q4">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">
-                                            @if(count($record->colon_cancer_screening) != 0)
-                                                @if ($record->colon_cancer_screening->q4 == "Patient Transferred")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Scheduled Appointment")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Patient Refused")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "NPC")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Pending")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Call back")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Voicemail")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "No answer")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Disconnected Number")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Do Not Call")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @elseif ($record->colon_cancer_screening->q4 == "Privacy Manager")
-                                                    {{ $record->colon_cancer_screening->q4 }}
-                                                @endif
-                                            @endif
-                                        </div>
+                                        <div class="default text">Outreach result</div>
                                         <div class="menu">
                                             <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                             <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -464,6 +403,10 @@
                                             <div class="item" data-value="Disconnected Number">Disconnected Number</div>
                                             <div class="item" data-value="Do Not Call">Do Not Call</div>
                                             <div class="item" data-value="Privacy Manager">Privacy Manager</div>
+                                            <div class="item" data-value="Deceased">Deceased</div>
+                                            <div class="item" data-value="Different PCP">Different PCP</div>
+                                            <div class="item" data-value="Up-to-date">Up-to-date</div>
+                                            <div class="item" data-value="Done Outside SMG">Done Outside SMG</div>
                                         </div>
                                     </div>
                                 </div>
@@ -560,4 +503,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->colon_cancer_screening->q4)?$record->colon_cancer_screening->q4:"" }}");
+    </script>
 @stop

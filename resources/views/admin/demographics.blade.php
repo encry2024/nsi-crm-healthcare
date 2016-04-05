@@ -13,7 +13,7 @@
                 @include('util.form_left_sidebar')
             </div>
             <div class="nine wide column">
-                @include('util.page_title')
+                @include('util.admin_page_title')
                 <div class="row">
                     <div class="ui divider"></div>
                 </div>

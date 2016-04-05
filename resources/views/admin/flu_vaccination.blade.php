@@ -142,44 +142,10 @@
 
                             <div class="field @if($errors->has('q7')) error @endif">
                                 <label for="q7" style="font-size: 14px;">4) What was the result of the outreach?</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="q7">
+                                <div class="ui selection dropdown outreach">
+                                    <input type="hidden" name="q4">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">
-                                        @if(count($record->flu_vaccination) != 0)
-                                            @if ($record->flu_vaccination->q7 == "Patient Transferred")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Scheduled Appointment")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Patient Refused")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "NPC")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Pending")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Call back")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Voicemail")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "No answer")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Disconnected Number")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Do Not Call")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Privacy Manager")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Deceased")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Different PCP")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Up-to-date")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @elseif ($record->flu_vaccination->q7 == "Done Outside SMG")
-                                                {{ $record->flu_vaccination->q7 }}
-                                            @endif
-                                        @endif
-                                    </div>
+                                    <div class="default text">Outreach result</div>
                                     <div class="menu">
                                         <div class="item" data-value="Patient Transferred">Patient Transferred</div>
                                         <div class="item" data-value="Scheduled Appointment">Scheduled Appointment</div>
@@ -301,4 +267,8 @@
 
 @section('scripts')
     @include('util.form_scripts')
+
+    <script>
+        $('.outreach').dropdown('set selected', "{{ isset($record->flu_vaccination->q4)?$record->flu_vaccination->q4:"" }}");
+    </script>
 @stop
