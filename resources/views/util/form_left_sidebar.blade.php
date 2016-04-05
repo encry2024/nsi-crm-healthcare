@@ -1,94 +1,78 @@
+<div class="ui top attached raised teal segment">
+    <div class="ui top attached label">Basic Info</div>
+    <div class="ui middle aligned divided list">
+        <div class="item">
+            <div class="right floated content">
+                <span class="ui teal tiny header">{{ $record->name }}</span>
+            </div>
+            <div class="content">
+                Name:
+            </div>
+        </div>
+        <div class="item">
+            <div class="right floated content">
+                {{ $record->mrn }}
+            </div>
+            <div class="content">
+                MRN:
+            </div>
+        </div>
+        <div class="item">
+            <div class="right floated content">
+                {{ $record->btn }}
+            </div>
+            <div class="content">
+                Phone:
+            </div>
+        </div>
+        <div class="item">
+            <div class="right floated content">
+                {{ $record->gender }}
+            </div>
+            <div class="content">
+                Gender:
+            </div>
+        </div>
+        <div class="item">
+            <div class="right floated content">
+                {{ $record->date_of_birth }} / {{ $record->age }}
+            </div>
+            <div class="content">
+                DOB / Age:
+            </div>
+        </div>
+        <div class="item">
+            <div class="right floated content">
+                {{ $record->user->name }}
+            </div>
+            <div class="content">
+                Assigned Agent:
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui top attached raised blue segment">
+    <div class="ui top attached label">Other Info</div>
+    <div class="ui middle aligned divided list">
+        @foreach($record->getCustomFields() as $column)
+            <div class="item">
+                <div class="right floated content">
+                    {{ $record->custom()->$column }}
+                </div>
+                <div class="content">
+                    {{ str_replace("_", " ", ucwords($column, "_")) }}
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <div class="ui secondary raised orange segment">
     <form class="ui relaxed padded stackable form" action="{{ route('record.update', $record->id) }}" method="POST">
         <div class="ui container">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PATCH">
-
-        <div class="field @if($errors->has('mrn')) error @endif">
-            <label><i class="lock icon"></i> Med. Record Number </label>
-            <div class="ui left icon input">
-                <input type="text" name="mrn" value="{{ $record->mrn }}" placeholder="Medical Record Number" readonly>
-                <i class="file text outline icon"></i>
-            </div>
-        </div>
-
-        <div class="ui divider"></div>
-
-        <div class="field @if($errors->has('name')) error @endif">
-            <label><i class="write icon"></i> Name</label>
-            <div class="ui small left icon input">
-                <input type="text" name="name" value="{{ $record->name }}" placeholder="Name" value="{{ Input::old('name') }}">
-                <i class="info icon"></i>
-            </div>
-        </div>
-
-        <div class="field @if($errors->has('gender')) error @endif">
-            <label><i class="write icon"></i> Gender </label>
-            <select class="ui fluid dropdown">
-                <option value="">Gender</option>
-                <option {{ $record->gender =='M' ? 'selected':'' }} value="M">Male</option>
-                <option {{ $record->gender =='F' ? 'selected':'' }} value="F">Female</option>
-            </select>
-        </div>
-
-
-        <div class="two fields">
-
-            <div class="field @if($errors->has('date_of_birth')) error @endif">
-                <label><i class="write icon"></i> Date of Birth </label>
-                <div class="ui fluid small left icon input">
-                    <input name="date_of_birth" value="{{ date('F d, Y', strtotime($record->date_of_birth)) }}" placeholder="Date of Birth" id="dob" onchange="_calculateAge()" readonly>
-                    <i class="calendar icon"></i>
-                </div>
-            </div>
-
-            <div class="field @if($errors->has('age')) error @endif">
-                <label><i class="lock icon"></i> Age </label>
-                <div class="ui small left input">
-                    <input name="age" value="{{ $record->age }}" placeholder="Age" id="age" readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="two fields">
-                <div class="field @if($errors->has('btn')) error @endif">
-                    <label><i class="write icon"></i> Phone Number </label>
-                    <div class="ui left icon input">
-                        <input type="text" name="btn" value="{{ $record->btn }}" placeholder="BTN/Phone Number" value="{{ Input::old('btn') }}">
-                        <i class="phone icon"></i>
-                    </div>
-                </div>
-
-                <div class="field @if($errors->has('rn')) error @endif">
-                    <label><i class="write icon"></i> RN </label>
-                    <div class="ui left icon input">
-                        <input type="text" name="rn" value="{{ $record->rn }}" placeholder="Name of Care Innovations - RN" value="{{ Input::old('rn') }}">
-                        <i class="phone icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="two fields">
-                <div class="field @if($errors->has('insurance')) error @endif">
-                    <label><i class="write icon"></i> Insurance </label>
-                    <div class="ui small left icon fluid input">
-                        <input type="text" name="insurance" value="{{ $record->insurance }}" placeholder="Insurance">
-                        <i class="file text outline icon"></i>
-                    </div>
-                </div>
-
-                <div class="field @if($errors->has('pcp')) error @endif">
-                    <label><i class="write icon"></i> PCP </label>
-                    <div class="ui small left icon input">
-                        <input type="text" name="pcp" value="{{ $record->pcp }}" placeholder="pcp">
-                        <i class="file text outline icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="field">
             <label><i class="write icon"></i> Call Disposition </label>
@@ -107,11 +91,8 @@
         <div class="field @if($errors->has('date_of_birth')) error @endif">
             <label><i class="write icon"></i> Update Date and Time </label>
             <div class="ui small left icon input">
-                <input name="update_timestamp" value="
-                @if ($record->update_timestamp != NULL)
-                    {{ date('F d, Y', strtotime($record->update_timestamp)) }}
-                @endif
-                " placeholder="Update date and time" id="update_timestamp" readonly>
+
+                <input name="update_timestamp" value="{{ $record->update_timestamp != NULL?date('F d, Y', strtotime($record->update_timestamp)):"" }}" placeholder="Update date and time" id="update_timestamp" readonly>
                 <i class="calendar icon"></i>
             </div>
         </div>
@@ -131,16 +112,6 @@
 
 
 <script>
-    function _calculateAge() {
-        var dob = document.getElementById('dob').value;
-        var age = moment().diff(moment(dob, 'MMMM DD, YYYY'), 'years');
-
-        if (age == "NaN") { document.getElementById('age').value = ""; }
-        else { document.getElementById('age').value = age; }
-
-        //document.getElementById('age').value = age;
-    }
-
     $('.disposition')
             .dropdown('set selected', {{ isset($record->getLastDisposition()->disposition_id)?$record->getLastDisposition()->disposition_id:0 }})
     ;

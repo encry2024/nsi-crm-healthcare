@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\DB;
 
 class Record extends Eloquent
 {
@@ -143,15 +144,15 @@ class Record extends Eloquent
     public static function updateRecord($request, $record)
     {
         $record->update([
-            'name'    => $request->get('name'),
+            'call_notes'    => $request->get('call_notes'),
+            'last_disposition'  => $request->get('disposition'),
+            'update_timestamp' => date('Y-m-d', strtotime($request->get('update_timestamp'))),
+            /*'name'    => $request->get('name'),
             'btn'           => $request->get('btn'),
             'reference_no'  => $request->get('reference_no'),
             'date_of_birth' => date('Y-m-d', strtotime($request->get('date_of_birth'))),
             'age'           => $request->get('age'),
-            'call_notes'    => $request->get('call_notes'),
-            'last_disposition'  => $request->get('disposition'),
-            'update_timestamp' => date('Y-m-d', strtotime($request->get('update_timestamp'))),
-            'rn'  => $request->get('rn')
+            'rn'  => $request->get('rn')*/
         ]);
 
         // Insert record history
@@ -246,5 +247,26 @@ class Record extends Eloquent
         $dispositions = Disposition::all();
         $record = Record::find($record->id);    // Reinstantiate.. To reflect immediately the changes in checklist
         return view('admin.demographics', compact('record', 'dispositions'));
+    }
+
+    public function getCustomFields()
+    {
+        // Get all fields of the custom table
+        $fields = DB::getSchemaBuilder()->getColumnListing('custom_' . $this->list_id);
+
+        // remove id and record_id fields
+        if(($key = array_search('id', $fields)) !== false) {
+            unset($fields[$key]);
+        }
+        if(($key = array_search('record_id', $fields)) !== false) {
+            unset($fields[$key]);
+        }
+
+        return $fields;
+    }
+
+    public function custom()
+    {
+        return DB::table('custom_' . $this->list_id)->where('record_id', $this->id)->first();
     }
 }
