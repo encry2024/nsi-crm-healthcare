@@ -12,10 +12,10 @@
                     <div class="content"><i class="dashboard icon"></i>Dashboard</div>
                 </h2>
                 <div class="ui divider"></div>
-                    <a href="{{ route('/home') }}" class="ui button {{ Route::current()->getName()=="/home"?"primary":"" }}">Record List 1</a>
-                    <a href="{{ route('record_list_2') }}" class="ui button {{ Route::current()->getName()=="record_list_2"?"primary":"" }}">Record List 2</a>
+                    <a href="{{ url('home/list/1') }}" class="ui button {{ Request::is('home/list/1')?"primary":"" }}">Record List 1</a>
+                    <a href="{{ url('home/list/2') }}" class="ui button {{ Request::is('home/list/2')?"primary":"" }}">Record List 2</a>
                     <div class="ui inverted grey segment">
-                        <form action="{{ Route::current()->getName()=="record_list_2"?route('record_list_2'):route('/home') }}" method="GET" style="margin: 0; !important">
+                        <form action="{{ Request::url() }}" method="GET" style="margin: 0; !important">
                             <div class="ui inverted small form">
                                 <div class="two fields">
                                     <div class="field">
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <button class="ui submit button">Filter</button>
-                                <a href="{{ route('/home') }}" class="ui button">Clear Filter</a>
+                                <a href="{{ Request::url() }}" class="ui button">Clear Filter</a>
                             </div>
                         </form>
                     </div>

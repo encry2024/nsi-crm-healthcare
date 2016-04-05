@@ -31,11 +31,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check_auth_type'], function 
 
 });
 
-Route::get('/home/list/1', ['middleware' => 'auth', 'as' => '/home', function () {
+Route::get('/home/list/{list}', ['middleware' => 'auth', 'as' => '/home', function ($list) {
     // Update user status to IDLE
     Auth::user()->addStatus('IDLE');
 
-    $records = App\Record::whereUserId(Auth::user()->id)->whereListId(1);
+    $records = App\Record::whereUserId(Auth::user()->id)->whereListId($list);
 
     if(!empty(request('gender'))) {
         $records = $records->where('gender', request('gender'));
@@ -164,4 +164,4 @@ Route::post('record/{record}/checklist', 'RecordController@updateChecklist')->na
 Route::post('record/{record}/store_state', 'RecordController@storeState')->name('store_state');
 
 // Records 2nd Patient List
-Route::get('home/list/2', 'RecordController@getList2')->name('record_list_2');
+//Route::get('home/list/2', 'RecordController@getList2')->name('record_list_2');
