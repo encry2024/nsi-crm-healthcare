@@ -100,7 +100,7 @@
         <div class="field @if($errors->has('call_notes')) error @endif">
             <label><i class="write icon"></i> Call Note </label>
             <div class="ui small left icon input">
-                <textarea name="call_notes">{{ $record->call_notes }}</textarea>
+                <textarea name="call_notes" rows="3">{{ $record->call_notes }}</textarea>
                 <i class="pencil icon"></i>
             </div>
         </div>
