@@ -58,7 +58,9 @@
             });
             @endif
 
-            $('.ui.radio.checkbox').checkbox();
+            $('.ui.radio.checkbox').checkbox({
+                uncheckable: true
+            });
 
             $('.break').click(function(){
                 $('body').dimmer('show');
