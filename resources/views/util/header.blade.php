@@ -50,7 +50,11 @@
         </div>
     @endif
 
-    <a class="ui right item borderless" href="{{ route('/home') }}"><i class="icon dashboard"></i> Dashboard</a>
+    @if (isset($record))
+        <a class="ui right item borderless" href="{{ url('home/list/' . $record->list_id) }}"><i class="icon dashboard"></i> Dashboard</a>
+    @else
+        <a class="ui right item borderless" href="{{ url('home/list/1') }}"><i class="icon dashboard"></i> Dashboard</a>
+    @endif
     <div class="ui dropdown item borderless">
         <i class="user icon"></i> {{ Auth::user()->name }} <i class="dropdown icon"></i>
         <div class="menu">
